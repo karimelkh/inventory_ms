@@ -26,18 +26,9 @@ class Product(models.Model):
         # default = '',
 #    )
 #    prod_img = models.ImageField(upload_tp='')
-    suppl = models.ForeignKey(
-        "Supplier",
-        on_delete=models.CASCADE,
-    )
-    cat = models.ForeignKey(
-        "Category",
-        on_delete=models.CASCADE,
-    )
-    locat = models.ForeignKey(
-        "Location",
-        on_delete=models.CASCADE,
-    )
+    suppl = models.ForeignKey( "Supplier", on_delete=models.CASCADE )
+    cat = models.ForeignKey( "Category", on_delete=models.CASCADE )
+    locat = models.ForeignKey( "Location", on_delete=models.CASCADE )
 
 
  

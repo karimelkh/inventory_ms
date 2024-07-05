@@ -1,95 +1,163 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://cdn.tailwindcss.com"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-qFOQ9YFAeGj1gDOuUD61g3D+tLDv3u1ECYWqT82WQoaWrOhAY+5mRMTTVsQdWutbA5FORCnkEPEgU0OF8IzGvA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<title>
-		{% block title %}
+<html lang="en" class="">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- <script src="https://cdn.tailwindcss.com"></script> -->
+		<link href="{% static 'css/styles.css' %}" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<title>
+			{% block title %}
 			Inventory MS
-		{% endblock %}
-	</title>
-</head>
-<body class="">
-	{% block header %}
-		<header class="bg-gray-400">
-			<div class="container mx-auto py-4 flex justify-between bg-red-400">
+			{% endblock %}
+		</title>
+	</head>
+	<body class="font-['Poppins'] bg-gray-200 dark:bg-gray-700">
+		{% block header %}
+		<header class="mb-5 bg-white shadow">
+			<div class="container mx-auto py-4 flex justify-between">
 				<a href="#" class="">
 					<i class="fa-solid fa-boxes-stacked"></i>
 				</a>
 				{% block nav %}
-					<ul class="flex justify-between bg-green-400">
-						<li class="">
-							<a href="#" class="mx-2 my-2">items</a>
-						</li>
-						<li class="">
-							<a href="#" class="mx-2 my-2">suppliers</a>
-						</li>
-						<li class="">
-							<a href="#" class="mx-2 my-2">orders</a>
-						</li>
-						<li class="">
-							<a href="#" class="mx-2 my-2">profile</a>
-						</li>
-					</ul>
+				<ul class="flex justify-between">
+					<li class="">
+						<button class="" id="">
+							<i class="fa-solid fa-user"></i>
+							<span class="text-sm font-bold">
+								{{ username }}
+							</span>
+							<i class="fa-solid fa-caret-down"></i>
+						</button>
+					</li>
+				</ul>
 				{% endblock %}
 			</div>
 		</header>
-	{% endblock %}
+		{% endblock %}
 
-	<section class="">
-		{% block sidebar %}
-			<aside class="fixed top-[56px] left-0 w-16 flex flex-col bg-cyan-400">
-				<ul class="">
-					<li class="">a</li>
-					<li class="">b</li>
-					<li class="">c</li>
-					<li class="">d</li>
+		<section id="main-sec" class="grid grid-cols-[250px_1fr]">
+			<button id="show-sidebar-btn" class="hidden w-[45px] h-10 left-0 top-[80px] absolute flex items-center justify-center bg-blue-300 text-blue-800 rounded-tr-full rounded-br-full duration-250 hover:bg-blue-400">
+				<i class="fa-solid fa-right-long"></i>
+			</button>
+			{% block sidebar %}
+			<aside id="sidebar" class="flex flex-col bg-gray-200 rounded-md shadow">
+				<div class="px-5 flex items-center justify-between bg-gray-300">
+					<span class="py-3 text-2xl font-bold">Browse</span>
+					<button id="hide-sidebar-btn" class="p-1 round-full sctive:bg-gray-800">
+						<i class="fa-regular fa-circle-xmark font-semibold duration-250 hover:text-red-700"></i>
+					</button>
+				</div>
+				<ul class="w-full mb-5 mr-5 text-lg">
+					<li class="my-1 py-3 pr-4 pl-5 border-b-2 border-gray-300">
+						<a href="/items" class="w-full flex items-center">
+							<i class="fa-solid fa-cubes w-5"></i>
+							<span class="mx-4 capitalize">items</span>
+							<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
+								{{ items_count }}
+							</span>
+						</a>
+					</li>
+					<li class="my-1 py-3 pr-4 pl-5 border-b-2 border-gray-300">
+						<a href="/items" class="w-full flex items-center">
+							<i class="fa-solid fa-list"></i>
+							<span class="mx-4 capitalize">categories</span>
+							<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
+								-
+							</span>
+						</a>
+					</li>
+					<li class="my-1 py-3 pr-4 pl-5 flex items-center border-b-2 border-gray-300">
+						<a href="/suppliers" class="w-full flex items-center">
+							<i class="fa-solid fa-building w-5"></i>
+							<span class="mx-4 capitalize">suppliers</span>
+							<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
+								{{ suppls_count }}
+							</span>
+						</a>
+					</li>
+					<li class="my-1 py-3 pr-4 pl-5 flex items-center border-b-2 border-gray-300">
+						<a href="/locations" class="w-full flex items-center">
+							<i class="fa-solid fa-thumbtack w-5"></i>
+							<span class="mx-4 capitalize">locations</span>
+							<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
+								{{ locats_count }}
+							</span>
+						</a>
+					</li>
+					<li class="my-1 py-3 pr-4 pl-5 flex items-center">
+						<a href="/orders" class="w-full flex items-center">
+							<i class="fa-solid fa-truck w-5"></i>
+							<span class="mx-4 capitalize">orders</span>
+							<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
+								-
+							</span>
+						</a>
+					</li>
 				</ul>
 			</aside>
-		{% endblock %}
+			{% endblock %}
 
-		{% block main %}
-			<main class="container mx-auto bg-red-500">
+			{% block main %}
+			<!-- <main class="container mx-auto"> -->
+			<main class="mx-20">
 				{% block actions %}
-					<section class="text-center">
-						actions
-					</section>
+				<section class="text-center">
+					actions
+				</section>
 				{% endblock %}
 				{% block table %}
-					<!-- <table class="w-full mx-auto border border-collapse border-gray-500"> -->
+				<section class="overflow-auto rounded-m shadow">
 					<table class="w-full">
-						<thead class="bg-gray-50 border-b-2 border-gray-200">
+						<thead class="border-b-2 border-gray-200 bg-gray-50">
 							<tr class="">
-								<th class="p-3 text-left">Product ID</th>
-								<th class="p-3 text-left">Image</th>
-								<th class="p-3 text-left">Qnty in stock</th>
-								<th class="p-3 text-left">status</th>
+								<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">ID</th>
+								<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Title</th>
+								<th class="p-3 text-sm font-semibold tracking-wide text-left">Description</th>
+								<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Quantity</th>
+								<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Supplier</th>
+								<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Category</th>
+								<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Location</th>
 							</tr>
 						</thead>
-						<tbody class="">
-							<tr class="bg-white">
-								<td class="p-3 text-left">iegwyud</td>
-								<td class="p-3 text-left">image</td>
-								<td class="p-3 text-left">100</td>
-								<td class="p-3 text-left">(in stock)</td>
+						<tbody class="divide-y devide-gray-200">
+							{% for item in prod_data %}
+							<tr class="{% cycle 'bg-white' 'bg-gray-100' %} hover:bg-gray-200 duration-250">
+								<td class="p-3 text-sm text-gary-700 text-left">
+									<a href="items/{{ item.id_prod }}" class="text-blue-500 font-bold hover:underline">{{ item.id_prod }}</a>
+								</td>
+								<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">{{ item.prod_title }}</td>
+								<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">{{ item.prod_desc }}</td>
+								<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">{{ item.qty_in_stock }}</td>
+								<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
+									<a href="items/{{ item.suppl_id }}" class="text-blue-500 font-bold hover:underline">{{ item.suppl_id }}</a>
+								</td>
+								<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
+									<a href="items/{{ item.cat_id }}" class="text-blue-500 font-bold hover:underline">{{ item.cat_id }}</a>
+								</td>
+								<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
+									<a href="items/{{ item.locat_id }}" class="text-blue-500 font-bold hover:underline">{{ item.locat_id }}</a>
+								</td>
 							</tr>
-							<tr class="bg-gray-100">
-								<td class="p-3 text-left">iegwyud</td>
-								<td class="p-3 text-left">image</td>
-								<td class="p-3 text-left">100</td>
-								<td class="p-3 text-left">(in stock)</td>
-							</tr>
+							{% endfor %}
 						</tbody>
 					</table>
+				</section>
 				{% endblock %}
 			</main>
-		{% endblock %}
-	</section>
+			{% endblock %}
+		</section>
 
-	{% block footer %}
-	{% endblock %}
-</body>
+		{% block footer %}
+		{% endblock %}
+
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/main.js' %}"></script>
+	</body>
 </html>
+
