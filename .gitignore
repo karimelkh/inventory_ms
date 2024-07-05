@@ -3,3 +3,4 @@ main/__pycache__/
 main/migrations/__pycache__/
 node_modules/
 static/css/styles.css
+djenv/
