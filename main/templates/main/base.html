@@ -5,8 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<!-- <script src="https://cdn.tailwindcss.com"></script> -->
-		<link href="{% static 'css/styles.css' %}" rel="stylesheet">
+		<link href="{% static "css/styles.css" %}" rel="stylesheet">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -17,14 +16,13 @@
 			{% endblock %}
 		</title>
 	</head>
-	<body class="font-['Poppins'] bg-gray-200 dark:bg-gray-700">
+	<body class="font-["Poppins"] bg-gray-200 dark:bg-gray-700">
 		{% block header %}
 		<header class="mb-5 bg-white shadow">
 			<div class="container mx-auto py-4 flex justify-between">
 				<a href="#" class="">
 					<i class="fa-solid fa-boxes-stacked"></i>
 				</a>
-				{% block nav %}
 				<ul class="flex justify-between">
 					<li class="">
 						<button class="" id="">
@@ -36,11 +34,11 @@
 						</button>
 					</li>
 				</ul>
-				{% endblock %}
 			</div>
 		</header>
 		{% endblock %}
 
+		{% block main %}
 		<section id="main-sec" class="grid grid-cols-[250px_1fr]">
 			<button id="show-sidebar-btn" class="hidden w-[45px] h-10 left-0 top-[80px] absolute flex items-center justify-center bg-blue-300 text-blue-800 rounded-tr-full rounded-br-full duration-250 hover:bg-blue-400">
 				<i class="fa-solid fa-right-long"></i>
@@ -54,8 +52,8 @@
 					</button>
 				</div>
 				<ul class="w-full mb-5 mr-5 text-lg">
-					<li class="my-1 py-3 pr-4 pl-5 border-b-2 border-gray-300">
-						<a href="/items" class="w-full flex items-center">
+					<li class="py-4 pr-4 pl-5 border-b-2 border-gray-300 duration-250 hover:bg-gray-700 hover:text-gray-50">
+						<a href="/items" class="w-full h-full flex items-center">
 							<i class="fa-solid fa-cubes w-5"></i>
 							<span class="mx-4 capitalize">items</span>
 							<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
@@ -63,16 +61,16 @@
 							</span>
 						</a>
 					</li>
-					<li class="my-1 py-3 pr-4 pl-5 border-b-2 border-gray-300">
+					<li class="py-4 pr-4 pl-5 border-b-2 border-gray-300 duration-250 hover:bg-gray-700 hover:text-gray-50">
 						<a href="/items" class="w-full flex items-center">
 							<i class="fa-solid fa-list"></i>
 							<span class="mx-4 capitalize">categories</span>
 							<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
-								-
+								{{ cats_count }}
 							</span>
 						</a>
 					</li>
-					<li class="my-1 py-3 pr-4 pl-5 flex items-center border-b-2 border-gray-300">
+					<li class="py-4 pr-4 pl-5 border-b-2 border-gray-300 duration-250 hover:bg-gray-700 hover:text-gray-50">
 						<a href="/suppliers" class="w-full flex items-center">
 							<i class="fa-solid fa-building w-5"></i>
 							<span class="mx-4 capitalize">suppliers</span>
@@ -81,7 +79,7 @@
 							</span>
 						</a>
 					</li>
-					<li class="my-1 py-3 pr-4 pl-5 flex items-center border-b-2 border-gray-300">
+					<li class="py-4 pr-4 pl-5 border-b-2 border-gray-300 duration-250 hover:bg-gray-700 hover:text-gray-50">
 						<a href="/locations" class="w-full flex items-center">
 							<i class="fa-solid fa-thumbtack w-5"></i>
 							<span class="mx-4 capitalize">locations</span>
@@ -90,12 +88,12 @@
 							</span>
 						</a>
 					</li>
-					<li class="my-1 py-3 pr-4 pl-5 flex items-center">
+					<li class="py-4 pr-4 pl-5 border-b-2 border-gray-300 duration-250 hover:bg-gray-700 hover:text-gray-50">
 						<a href="/orders" class="w-full flex items-center">
 							<i class="fa-solid fa-truck w-5"></i>
 							<span class="mx-4 capitalize">orders</span>
 							<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
-								-
+								{{ orders_count }}
 							</span>
 						</a>
 					</li>
@@ -103,8 +101,7 @@
 			</aside>
 			{% endblock %}
 
-			{% block main %}
-			<!-- <main class="container mx-auto"> -->
+			{% block content %}
 			<main class="mx-20">
 				{% block actions %}
 				<section class="text-center">
@@ -127,7 +124,7 @@
 						</thead>
 						<tbody class="divide-y devide-gray-200">
 							{% for item in prod_data %}
-							<tr class="{% cycle 'bg-white' 'bg-gray-100' %} hover:bg-gray-200 duration-250">
+							<tr class="{% cycle "bg-white" "bg-gray-100" %} hover:bg-gray-200 duration-250">
 								<td class="p-3 text-sm text-gary-700 text-left">
 									<a href="items/{{ item.id_prod }}" class="text-blue-500 font-bold hover:underline">{{ item.id_prod }}</a>
 								</td>
@@ -152,12 +149,9 @@
 			</main>
 			{% endblock %}
 		</section>
-
-		{% block footer %}
 		{% endblock %}
 
-		<script src="{% static 'js/jquery.min.js' %}"></script>
-		<script src="{% static 'js/main.js' %}"></script>
+		<script src="{% static "js/jquery.min.js" %}"></script>
+		<script src="{% static "js/main.js" %}"></script>
 	</body>
 </html>
-

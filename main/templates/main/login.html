@@ -1,8 +1,25 @@
-{% extends 'main/base.html' %}
+{% extends "main/base.html" %}
 
 {% block title %}
 	Login
 {% endblock %}
 
 {% block header %}
+{% endblock %}
+
+{% block main %}
+<section class="h-screen w-full p-10 flex items-center justify-center bg-gray-300">
+	<div class="w-1/4 p-10 rounded-lg shadow bg-white">
+		<form method="post" class="">
+			{% csrf_token %}
+			<label for="username">Username: </label>
+			<input type="text" id="username" name="username" value="{{ form.username.value }}">
+			<label for="password">Password: </label>
+			<input type="password" id="password" name="password" value="{{ form.password.value }}">
+			<button type="submit" class="">
+				login
+			</button>
+		</form>
+	</div>
+</section>
 {% endblock %}

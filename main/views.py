@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
 from . import models
+from .forms import LoginForm
+
 
 def home(req):
     username = req.user.username
@@ -27,19 +30,29 @@ def home(req):
         "cats_count": c_count,
         "suppls_count": s_count,
         "locats_count": l_count,
-        # "orders_count": ,
+        "orders_count": "-",
     }
     return render(req, 'main/home.html', home_dict)
 
-#def home(req):
-#   prod_ids_list = models.Product.objects.values_list('id_prod', flat=True)
-#   prod_obj = models.Product.objects
-#   home_dict = { "prod_ids": prod_ids_list, "prod_obj": prod_obj }
-#   return render(req, 'main/home.html', home_dict)
 
 def items(req, id):
     items_dict = {}
     return render(req, 'main/items.html', items_dict)
 
-def login(req):
-    return render(req, 'main/login.html')
+
+def login_user(req):
+    if req.method == 'POST':
+        form = LoginForm(req.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(req, username=username, password=password)
+            if user is not None:
+                login(req, user)
+                return redirect('/home')
+            else:
+                form.add_error(None, 'Invalid username or password')
+    else:
+        form = LoginForm()
+
+    return render(req, 'main/login.html', {'form': form})
