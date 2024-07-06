@@ -1,11 +1,11 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en" class="">
+<html lang="en" class="dark">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="{% static "css/styles.css" %}" rel="stylesheet">
+		<link href="{% static 'css/styles.css' %}" rel="stylesheet">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -16,22 +16,50 @@
 			{% endblock %}
 		</title>
 	</head>
-	<body class="font-["Poppins"] bg-gray-200 dark:bg-gray-700">
+	<body class="font-['Poppins'] bg-gray-200 dark:bg-gray-700">
 		{% block header %}
 		<header class="mb-5 bg-white shadow">
 			<div class="container mx-auto py-4 flex justify-between">
-				<a href="#" class="">
+				<a href="#" class="duration-250 hover:text-red-500">
 					<i class="fa-solid fa-boxes-stacked"></i>
 				</a>
-				<ul class="flex justify-between">
-					<li class="">
-						<button class="" id="">
+				<ul class="flex flex-col justify-center">
+					<li class="w-full">
+						<button class="w-20 flex items-center justify-between" id="tog-usermenu-btn">
 							<i class="fa-solid fa-user"></i>
 							<span class="text-sm font-bold">
 								{{ username }}
 							</span>
 							<i class="fa-solid fa-caret-down"></i>
 						</button>
+					</li>
+					<li id="usermenu-list" class="hidden">
+						<ul class="absolute top-[60px] text-center bg-white rounded-md shadow">
+							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
+								<a href="#" class="flex items-center">
+									<i class="fa-solid fa-gear w-3"></i>
+									<span class="mx-4">settings</span>
+								</a>
+							</li>
+							<li id="theme-switcher" class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
+								<a href="#" class="flex items-center">
+									<i class="fa-solid fa-sun w-3" id="light-icon"></i>
+									<span class="mx-4">theme</span>
+								</a>
+							</li>
+							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
+								<a href="#" class="flex items-center">
+									<i class="fa-solid fa-right-from-bracket w-3"></i>
+									<span class="mx-4">logout</span>
+								</a>
+							</li>
+							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
+								<a href="#" class="flex items-center">
+									<i class="fa-regular fa-address-card w-3"></i>
+									<span class="mx-4">profile</span>
+								</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</div>
@@ -151,7 +179,7 @@
 		</section>
 		{% endblock %}
 
-		<script src="{% static "js/jquery.min.js" %}"></script>
-		<script src="{% static "js/main.js" %}"></script>
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/main.js' %}"></script>
 	</body>
 </html>
