@@ -4,3 +4,23 @@
 @tailwind components;
 @tailwind utilities;
 
+input.hided-pw-field {}
+
+input.shown-pw-field {}
+
+.menu {
+	position: absolute;
+	top: 60px;
+	right: 0;
+	@apply bg-white;
+	@apply rounded-md;
+	@apply shadow;
+}
+
+.header-btn {
+	display: flex; 
+	align-items: center;
+	justify-content: space-between;
+	@apply px-4;
+	@apply py-2;
+}

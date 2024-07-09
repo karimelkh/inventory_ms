@@ -2,6 +2,8 @@ $(document).ready(function()
 {
 	$("#hide-sidebar-btn").click(hideSideBar);
 	$("#show-sidebar-btn").click(showSideBar);
+	$("#tog-usermenu-btn").click(toggleUserMenu);
+	$("#tog-newmenu-btn").click(toggleNewMenu);
 });
 
 function hideSideBar()
@@ -16,4 +18,14 @@ function showSideBar()
 	$("#show-sidebar-btn").addClass("hidden");
 	$("#main-sec").addClass("grid");
 	$("#sidebar").show();
+}
+
+function toggleUserMenu()
+{
+	$("#usermenu-list").toggle();
+}
+
+function toggleNewMenu()
+{
+	$("#newmenu-list").toggle();
 }

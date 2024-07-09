@@ -22,18 +22,50 @@
 				<a href="#" class="duration-250 hover:text-red-500">
 					<i class="fa-solid fa-boxes-stacked"></i>
 				</a>
-				<ul class="flex flex-col justify-center">
-					<li class="w-full">
-						<button class="w-20 flex items-center justify-between" id="tog-usermenu-btn">
+				<ul class="flex items-center justify-center">
+					<li class="relative h-full mr-12">
+						<button id="tog-newmenu-btn" class="header-btn">
+							<i class="fa-solid fa-circle-plus"></i>
+							<span class="ml-2">
+								New
+							</span>
+						</button>
+						<ul id="newmenu-list" class="menu">
+							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
+								<a href="/new/item" class="flex items-center">
+									<i class="fa-solid fa-cubes w-3"></i>
+									<span class="mx-4">Item</span>
+								</a>
+							</li>
+							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
+								<a href="/new/locations" class="flex items-center">
+									<i class="fa-solid fa-thumbtack w-3"></i>
+									<span class="mx-4">Location</span>
+								</a>
+							</li>
+							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
+								<a href="/new/categories" class="flex items-center">
+									<i class="fa-solid fa-list w-3"></i>
+									<span class="mx-4">Category</span>
+								</a>
+							</li>
+							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
+								<a href="suppliers" class="flex items-center">
+									<i class="fa-solid fa-building w-3"></i>
+									<span class="mx-4">Supplier</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="relative h-full">
+						<button class="header-btn" id="tog-usermenu-btn">
 							<i class="fa-solid fa-user"></i>
-							<span class="text-sm font-bold">
+							<span class="mx-2 text-sm font-semibold">
 								{{ username }}
 							</span>
 							<i class="fa-solid fa-caret-down"></i>
 						</button>
-					</li>
-					<li id="usermenu-list" class="hidden">
-						<ul class="absolute top-[60px] text-center bg-white rounded-md shadow">
+						<ul id="usermenu-list" class="menu">
 							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
 								<a href="#" class="flex items-center">
 									<i class="fa-solid fa-gear w-3"></i>
@@ -41,8 +73,9 @@
 								</a>
 							</li>
 							<li id="theme-switcher" class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
-								<a href="#" class="flex items-center">
+								<a class="flex items-center">
 									<i class="fa-solid fa-sun w-3" id="light-icon"></i>
+									<i style="display:none" class="fa-solid fa-moon w-3" id="dark-icon"></i>
 									<span class="mx-4">theme</span>
 								</a>
 							</li>
@@ -71,14 +104,14 @@
 				<i class="fa-solid fa-right-long"></i>
 			</button>
 			{% block sidebar %}
-			<aside id="sidebar" class="flex flex-col bg-gray-200 rounded-md shadow">
+			<aside id="sidebar" class="h-fit flex flex-col bg-gray-200 rounded-md shadow">
 				<div class="px-5 flex items-center justify-between bg-gray-300">
 					<span class="py-3 text-2xl font-bold">Browse</span>
 					<button id="hide-sidebar-btn" class="p-1 round-full sctive:bg-gray-800">
 						<i class="fa-regular fa-circle-xmark font-semibold duration-250 hover:text-red-700"></i>
 					</button>
 				</div>
-				<ul class="w-full mb-5 mr-5 text-lg">
+				<ul class="w-full mr-5 text-lg">
 					<li class="py-4 pr-4 pl-5 border-b-2 border-gray-300 duration-250 hover:bg-gray-700 hover:text-gray-50">
 						<a href="/items" class="w-full h-full flex items-center">
 							<i class="fa-solid fa-cubes w-5"></i>
@@ -115,7 +148,7 @@
 							</span>
 						</a>
 					</li>
-					<li class="py-4 pr-4 pl-5 border-b-2 border-gray-300 duration-250 hover:bg-gray-700 hover:text-gray-50">
+					<li class="py-4 pr-4 pl-5 duration-250 hover:bg-gray-300">
 						<a href="/orders" class="w-full flex items-center">
 							<i class="fa-solid fa-truck w-5"></i>
 							<span class="mx-4 capitalize">orders</span>
@@ -131,8 +164,12 @@
 			{% block content %}
 			<main class="mx-20">
 				{% block actions %}
-				<section class="text-center">
-					actions
+				<section class="w-full bg-gray-50">
+					<div class="flex items-center justify-between bg-green-100">
+						<h1 class="">
+							Items
+						</h1>
+					</div>
 				</section>
 				{% endblock %}
 				{% block table %}
@@ -179,6 +216,11 @@
 		{% endblock %}
 
 		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/theme.js' %}"></script>
+
+		{% block scripts %}
 		<script src="{% static 'js/main.js' %}"></script>
+		{% endblock %}
+
 	</body>
 </html>
