@@ -7,7 +7,8 @@ New Item
 {% block content %}
 <section class="h-screen w-full p-10 flex flex-col items-center justify-center bg-gray-100 dark:bg-black">
 	<div class="w-1/4 p-10 rounded-lg shadow text-gray-800 bg-gray-300">
-		<form method="get" class="new">
+		<form method="post" enctype="multipart/form-data" class="new">
+			{% csrf_token %}
 			{% for field in form %}
 				<label for="{{ field.id_for_label }}"> {{ field.label }} </label>
 				{{ field }}

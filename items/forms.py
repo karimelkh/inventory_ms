@@ -5,7 +5,7 @@ class NewItemForm(forms.Form):
     title = forms.CharField(label="title", widget=forms.TextInput(attrs={"id":"title"}))
     description = forms.CharField(label="description")
     quantity = forms.IntegerField(label="quantity")
-#   status = forms.
     supplier = forms.IntegerField(label="supplier")
     category = forms.IntegerField(label="category")
     location = forms.IntegerField(label="location")
+    img = forms.ImageField(label="image")
