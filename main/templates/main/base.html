@@ -24,13 +24,68 @@
 				</a>
 				<ul class="flex items-center justify-center">
 					<li class="relative h-full mr-12">
-						<button id="tog-newmenu-btn" class="header-btn">
+						<button id="tog-browsemenu" class="header-btn">
+							<i class="fa-regular fa-compass"></i>
+							<span class="ml-2">
+								Browse
+							</span>
+						</button>
+						<ul id="browsemenu" style="display:none;" class="menu">
+							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
+								<a href="/items/" class="flex items-center">
+									<i class="fa-solid fa-cubes w-3"></i>
+									<span class="mx-4">Items</span>
+									<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
+										{{ items_count }}
+									</span>
+								</a>
+							</li>
+							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
+								<a href="/locations/" class="flex items-center">
+									<i class="fa-solid fa-thumbtack w-3"></i>
+									<span class="mx-4">Locations</span>
+									<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
+										{{ locats_count }}
+									</span>
+								</a>
+							</li>
+							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
+								<a href="/categories/" class="flex items-center">
+									<i class="fa-solid fa-list w-3"></i>
+									<span class="mx-4">Categories</span>
+									<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
+										{{ cats_count }}
+									</span>
+								</a>
+							</li>
+							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
+								<a href="/suppliers/" class="flex items-center">
+									<i class="fa-solid fa-building w-3"></i>
+									<span class="mx-4">Suppliers</span>
+									<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
+										{{ suppls_count }}
+									</span>
+								</a>
+							</li>
+							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
+								<a href="/suppliers/" class="flex items-center">
+									<i class="fa-solid fa-truck w-3"></i>
+									<span class="mx-4">Orders</span>
+									<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
+										{{ orders_count }}
+									</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="relative h-full mr-12">
+						<button id="tog-newmenu" class="header-btn">
 							<i class="fa-solid fa-circle-plus"></i>
 							<span class="ml-2">
 								New
 							</span>
 						</button>
-						<ul id="newmenu-list" style="display:none;" class="menu">
+						<ul id="newmenu" style="display:none;" class="menu">
 							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
 								<a href="/items/new" class="flex items-center">
 									<i class="fa-solid fa-cubes w-3"></i>
@@ -58,14 +113,14 @@
 						</ul>
 					</li>
 					<li class="relative h-full">
-						<button class="header-btn min-w-[7rem]" id="tog-usermenu-btn">
+						<button class="header-btn min-w-[7rem]" id="tog-usermenu">
 							<i class="fa-solid fa-user"></i>
 							<span class="mx-2 text-sm font-semibold">
 								{{ username }}
 							</span>
 							<i class="fa-solid fa-caret-down"></i>
 						</button>
-						<ul id="usermenu-list" style="display:none;" class="menu">
+						<ul id="usermenu" style="display:none;" class="menu">
 							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
 								<a href="#" class="flex items-center">
 									<i class="fa-solid fa-gear w-3"></i>
@@ -99,68 +154,7 @@
 		{% endblock %}
 
 		{% block main %}
-		<section id="main-sec" class="grid grid-cols-[250px_1fr]">
-			<button id="show-sidebar-btn" class="hidden w-[45px] h-10 left-0 top-[80px] absolute flex items-center justify-center bg-blue-300 text-blue-800 rounded-tr-full rounded-br-full duration-250 hover:bg-blue-400">
-				<i class="fa-solid fa-right-long"></i>
-			</button>
-			{% block sidebar %}
-			<aside id="sidebar" class="h-fit flex flex-col bg-gray-200 rounded-md shadow">
-				<div class="px-5 flex items-center justify-between bg-gray-300">
-					<span class="py-3 text-2xl font-bold">Browse</span>
-					<button id="hide-sidebar-btn" class="p-1 round-full sctive:bg-gray-800">
-						<i class="fa-regular fa-circle-xmark font-semibold duration-250 hover:text-red-700"></i>
-					</button>
-				</div>
-				<ul class="w-full mr-5 text-lg">
-					<li class="py-4 pr-4 pl-5 border-b-2 border-gray-300 duration-250 hover:bg-gray-700 hover:text-gray-50">
-						<a href="/items" class="w-full h-full flex items-center">
-							<i class="fa-solid fa-cubes w-5"></i>
-							<span class="mx-4 capitalize">items</span>
-							<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
-								{{ items_count }}
-							</span>
-						</a>
-					</li>
-					<li class="py-4 pr-4 pl-5 border-b-2 border-gray-300 duration-250 hover:bg-gray-700 hover:text-gray-50">
-						<a href="/items" class="w-full flex items-center">
-							<i class="fa-solid fa-list"></i>
-							<span class="mx-4 capitalize">categories</span>
-							<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
-								{{ cats_count }}
-							</span>
-						</a>
-					</li>
-					<li class="py-4 pr-4 pl-5 border-b-2 border-gray-300 duration-250 hover:bg-gray-700 hover:text-gray-50">
-						<a href="/suppliers" class="w-full flex items-center">
-							<i class="fa-solid fa-building w-5"></i>
-							<span class="mx-4 capitalize">suppliers</span>
-							<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
-								{{ suppls_count }}
-							</span>
-						</a>
-					</li>
-					<li class="py-4 pr-4 pl-5 border-b-2 border-gray-300 duration-250 hover:bg-gray-700 hover:text-gray-50">
-						<a href="/locations" class="w-full flex items-center">
-							<i class="fa-solid fa-thumbtack w-5"></i>
-							<span class="mx-4 capitalize">locations</span>
-							<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
-								{{ locats_count }}
-							</span>
-						</a>
-					</li>
-					<li class="py-4 pr-4 pl-5 duration-250 hover:bg-gray-300">
-						<a href="/orders" class="w-full flex items-center">
-							<i class="fa-solid fa-truck w-5"></i>
-							<span class="mx-4 capitalize">orders</span>
-							<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
-								{{ orders_count }}
-							</span>
-						</a>
-					</li>
-				</ul>
-			</aside>
-			{% endblock %}
-
+		<section id="main-sec" class="">
 			{% block content %}
 			<main class="mx-20">
 				{% block actions %}

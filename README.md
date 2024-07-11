@@ -14,3 +14,8 @@
     - `notifications`: notify for low stock (...)
     - `settings`: stock settings
 - mv `location` -> `site`
+
+## Ideas for home page
+- grid of items and products, ...
+- notifications
+- latest changes/actions

@@ -1,31 +1,22 @@
 $(document).ready(function()
 {
-	$("#hide-sidebar-btn").click(hideSideBar);
-	$("#show-sidebar-btn").click(showSideBar);
-	$("#tog-usermenu-btn").click(toggleUserMenu);
-	$("#tog-newmenu-btn").click(toggleNewMenu);
+	$("#tog-usermenu").click(toggleUserMenu);
+	$("#tog-newmenu").click(toggleNewMenu);
+	$("#tog-browsemenu").click(toggleBrowseMenu);
 });
-
-function hideSideBar()
-{
-	$("#sidebar").hide();
-	$("#main-sec").removeClass("grid");
-	$("#show-sidebar-btn").removeClass("hidden");
-}
-
-function showSideBar()
-{
-	$("#show-sidebar-btn").addClass("hidden");
-	$("#main-sec").addClass("grid");
-	$("#sidebar").show();
-}
 
 function toggleUserMenu()
 {
-	$("#usermenu-list").toggle();
+	$("#usermenu").toggle();
 }
 
 function toggleNewMenu()
 {
-	$("#newmenu-list").toggle();
+	$("#newmenu").toggle();
 }
+
+function toggleBrowseMenu()
+{
+	$("#browsemenu").toggle();
+}
+
