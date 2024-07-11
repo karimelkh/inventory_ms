@@ -13,7 +13,4 @@
     - `orders`: -
     - `notifications`: notify for low stock (...)
     - `settings`: stock settings
-
 - mv `location` -> `site`
-- use `ModelForm` instead of `Form`
-- add dates to `CHANGELOG.md`
