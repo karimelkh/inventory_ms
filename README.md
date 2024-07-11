@@ -2,6 +2,8 @@
 
 ## TODOs
 - fix: show drop down menu for fks
+- fix: change the default home look
+- feat: make the browse menu beside the create new btn
 - feat: hide/show columns
 - feat: find the best ID pattern for the project
 - feat: page 404
