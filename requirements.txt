@@ -1,5 +1,6 @@
 asgiref==3.8.1
 Django==5.0.6
 django-livereload-server==0.5.1
+pillow==10.4.0
 sqlparse==0.5.0
 tornado==6.4.1
