@@ -1,6 +1,10 @@
 ims/__pycache__/
 main/__pycache__/
 main/migrations/__pycache__/
+items/__pycache__/
+items/migrations/__pycache__/
+users/__pycache__/
+users/migrations/__pycache__/
 node_modules/
 static/css/styles.css
 djenv/
