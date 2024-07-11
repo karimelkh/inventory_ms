@@ -1,7 +1,6 @@
 # IMS
 
 ## TODOs
-- fix: show drop down menu for fks
 - fix: change the default home look
 - feat: make the browse menu beside the create new btn
 - feat: hide/show columns
@@ -17,3 +16,4 @@
 
 - mv `location` -> `site`
 - use `ModelForm` instead of `Form`
+- add dates to `CHANGELOG.md`
