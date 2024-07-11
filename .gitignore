@@ -8,3 +8,4 @@ users/migrations/__pycache__/
 node_modules/
 static/css/styles.css
 djenv/
+media/
