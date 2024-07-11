@@ -30,27 +30,27 @@
 								New
 							</span>
 						</button>
-						<ul id="newmenu-list" class="menu">
+						<ul id="newmenu-list" style="display:none;" class="menu">
 							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
-								<a href="/new/item" class="flex items-center">
+								<a href="/items/new" class="flex items-center">
 									<i class="fa-solid fa-cubes w-3"></i>
 									<span class="mx-4">Item</span>
 								</a>
 							</li>
 							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
-								<a href="/new/locations" class="flex items-center">
+								<a href="/locations/new" class="flex items-center">
 									<i class="fa-solid fa-thumbtack w-3"></i>
 									<span class="mx-4">Location</span>
 								</a>
 							</li>
 							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
-								<a href="/new/categories" class="flex items-center">
+								<a href="/categories/new" class="flex items-center">
 									<i class="fa-solid fa-list w-3"></i>
 									<span class="mx-4">Category</span>
 								</a>
 							</li>
 							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
-								<a href="suppliers" class="flex items-center">
+								<a href="/suppliers/new" class="flex items-center">
 									<i class="fa-solid fa-building w-3"></i>
 									<span class="mx-4">Supplier</span>
 								</a>
@@ -58,14 +58,14 @@
 						</ul>
 					</li>
 					<li class="relative h-full">
-						<button class="header-btn" id="tog-usermenu-btn">
+						<button class="header-btn min-w-[7rem]" id="tog-usermenu-btn">
 							<i class="fa-solid fa-user"></i>
 							<span class="mx-2 text-sm font-semibold">
 								{{ username }}
 							</span>
 							<i class="fa-solid fa-caret-down"></i>
 						</button>
-						<ul id="usermenu-list" class="menu">
+						<ul id="usermenu-list" style="display:none;" class="menu">
 							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
 								<a href="#" class="flex items-center">
 									<i class="fa-solid fa-gear w-3"></i>
@@ -80,7 +80,7 @@
 								</a>
 							</li>
 							<li class="px-4 py-2 rounded-md duration-250 hover:bg-gray-200">
-								<a href="#" class="flex items-center">
+								<a href="/logout/" class="flex items-center">
 									<i class="fa-solid fa-right-from-bracket w-3"></i>
 									<span class="mx-4">logout</span>
 								</a>
@@ -188,7 +188,7 @@
 						</thead>
 						<tbody class="divide-y devide-gray-200">
 							{% for item in prod_data %}
-							<tr class="{% cycle "bg-white" "bg-gray-100" %} hover:bg-gray-200 duration-250">
+							<tr class="{% cycle 'bg-white' 'bg-gray-100' %} hover:bg-gray-200 duration-250">
 								<td class="p-3 text-sm text-gary-700 text-left">
 									<a href="items/{{ item.id_prod }}" class="text-blue-500 font-bold hover:underline">{{ item.id_prod }}</a>
 								</td>

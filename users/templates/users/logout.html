@@ -1,0 +1,27 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}
+Logout
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block main %}
+<section class="h-screen w-full p-10 flex flex-col items-center justify-center bg-gray-100 dark:bg-black">
+	<div class="w-2/5 p-10 rounded-lg shadow text-gray-800 bg-gray-300">
+		<h1>Logout</h1>
+		<form method="post" class="logout">
+			{% csrf_token %}
+			<p>
+				You are logged in. Are you sure you want to
+				<button type="submit">logout</button> ?
+			</p>
+		</form>
+	</div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

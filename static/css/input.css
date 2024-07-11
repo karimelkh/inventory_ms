@@ -24,3 +24,110 @@ input.shown-pw-field {}
 	@apply px-4;
 	@apply py-2;
 }
+
+/* LOGIN */
+form.login label {
+	display: block;
+	@apply font-semibold;
+}
+
+form.login input {
+	outline: none;
+	@apply mb-4;
+	@apply p-2;
+	@apply w-full;
+} 
+ 
+form.login button {
+	display: block;
+	transition-duration: 250ms;
+	@apply px-4;
+	@apply py-2;
+	@apply text-green-700;
+	@apply font-semibold;
+	@apply bg-green-300;
+	@apply hover:bg-green-400;
+	@apply focus:bg-green-500;
+	@apply focus:text-green-100;
+	@apply rounded-md;
+	@apply shadow;
+}
+
+div.login-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	@apply mb-4;
+}
+
+div.login-header h1 {
+	@apply font-bold;
+}
+div.login-header button {}
+
+div.errors {
+	@apply mb-4;
+}
+div.errors div {
+	display: flex;
+	align-items: center;
+	@apply px-10;
+	@apply py-2;
+	@apply text-red-600;
+	@apply bg-red-200;
+	@apply rounded-md;
+}
+div.errors i {}
+div.errors p {
+	margin-left: 8px;
+	@apply font-semibold;
+}
+
+/* LOGOUT */
+
+form.logout {}
+form.logout p {}
+form.logout button {
+	display: inline;
+	transition-duration: 250;
+	@apply font-semibold;
+	@apply underline;
+	@apply text-blue-500;
+}
+form.logout button:hover {
+	@apply text-blue-600;
+}
+
+/* Add Item */
+/*
+ * for now the login's inputs are similar to these ones
+ * TO STYLE LATER!!
+*/
+form.new {}
+
+form.new label {
+	display: block;
+	@apply font-semibold;
+}
+
+form.new input {
+	outline: none;
+	@apply mb-4;
+	@apply p-2;
+	@apply w-full;
+}
+
+form.new button {
+	display: block;
+	transition-duration: 250ms;
+	@apply px-4;
+	@apply py-2;
+	@apply text-green-700;
+	@apply font-semibold;
+	@apply bg-green-300;
+	@apply hover:bg-green-400;
+	@apply focus:bg-green-500;
+	@apply focus:text-green-100;
+	@apply rounded-md;
+	@apply shadow;
+}

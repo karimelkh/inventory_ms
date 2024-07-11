@@ -11,25 +11,39 @@
 {% block main %}
 <section class="h-screen w-full p-10 flex flex-col items-center justify-center bg-gray-100 dark:bg-black">
 	<div class="w-1/4 p-10 rounded-lg shadow text-gray-800 bg-gray-300">
-		<div class="flex items-center justify-between">
-			<h1 class="">Sign In</h1>
-			<button id="theme-switcher" class="">
+		<div class="login-header">
+			<h1>Logout</h1>
+			<button id="theme-switcher">
 				<i id="dark-icon" style="display:none" class="fa-solid fa-moon"></i>
 				<i id="light-icon" class="fa-regular fa-sun"></i>
 			</button>
 		</div>
-		<form method="post" class="">
+		<div class="errors">
+			<div>
+				<i class="fa-solid fa-circle-exclamation"></i>
+				<p>default error</p>
+			</div>
+			{% if errors %}
+			{% for err in errors %}
+			<div>
+				<i class="fa-solid fa-circle-exclamation"></i>
+				<p>{{ err }}</p>
+			</div>
+			{% endfor %}
+			{% endif %}
+		</div>
+		<form method="post" class="login">
 			{% csrf_token %}
-			<label for="username" class="block font-semibold">Username</label>
-			<input type="text" id="username" name="username" value="{{ form.username.value }}" class="w-full mb-4 p-2 outline-none">
-			<label for="password" class="block">Password</label>
+			<label for="{{ form.username.id_for_label }}">
+				{{ form.username.label }}
+			</label>
+			{{ form.username }}
+			<label for="{{ form.password.id_for_label }}"> {{ form.password.label }} </label>
 			<div class="relative w-full mb-4">
-				<input type="password" id="password" name="password" value="{{ form.password.value }}" class="hided-pw-field w-full p-2 outline-none">
+				{{ form.password }}
 				<i id="hs-pw-btn" class="fa-solid fa-eye absolute top-[12px] right-[5%]"></i>
 			</div>
-			<button type="submit" class="px-4 py-2 block text-green-700 font-semibold bg-green-300 duration-250 hover:bg-green-400 focus:bg-green-500 focus:text-green-100 rounded-md shadow">
-				login
-			</button>
+			<button type="submit">login</button>
 		</form>
 	</div>
 </section>
