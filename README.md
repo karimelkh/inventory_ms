@@ -3,6 +3,7 @@
 ## TODOs
 - fix: separating login and logout from `main` app 
 - fix: show drop down menu for fks
+- feat: update the item model (and its forms) for other cols
 - feat: hide/show columns
 - feat: find the best ID pattern for the project
 - feat: page 404
@@ -13,3 +14,6 @@
     - `orders`: -
     - `notifications`: notify for low stock (...)
     - `settings`: stock settings
+
+- mv `location` -> `site`
+- use `ModelForm` instead of `Form`
