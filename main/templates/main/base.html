@@ -19,7 +19,7 @@
 		{% block header %}
 		<header class="mb-5 bg-white shadow">
 			<div class="container mx-auto py-4 flex justify-between">
-				<a href="#" class="duration-250 hover:text-red-500">
+				<a href="/home/" class="duration-250 hover:text-red-500">
 					<i class="fa-solid fa-boxes-stacked"></i>
 				</a>
 				<ul class="flex items-center justify-center">
@@ -153,56 +153,14 @@
 		</header>
 		{% endblock %}
 
+		<!-- consider styling it later -->
 		{% block main %}
 		<section id="main-sec" class="">
 			{% block content %}
 			<main class="mx-20">
 				{% block actions %}
-				<section class="w-full bg-gray-50">
-					<div class="flex items-center justify-between bg-green-100">
-						<h1 class="">
-							Items
-						</h1>
-					</div>
-				</section>
 				{% endblock %}
 				{% block table %}
-				<section class="overflow-auto rounded-m shadow">
-					<table class="w-full">
-						<thead class="border-b-2 border-gray-200 bg-gray-50">
-							<tr class="">
-								<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">ID</th>
-								<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Title</th>
-								<th class="p-3 text-sm font-semibold tracking-wide text-left">Description</th>
-								<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Quantity</th>
-								<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Supplier</th>
-								<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Category</th>
-								<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Location</th>
-							</tr>
-						</thead>
-						<tbody class="divide-y devide-gray-200">
-							{% for item in prod_data %}
-							<tr class="{% cycle 'bg-white' 'bg-gray-100' %} hover:bg-gray-200 duration-250">
-								<td class="p-3 text-sm text-gary-700 text-left">
-									<a href="items/{{ item.id_prod }}" class="text-blue-500 font-bold hover:underline">{{ item.id_prod }}</a>
-								</td>
-								<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">{{ item.prod_title }}</td>
-								<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">{{ item.prod_desc }}</td>
-								<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">{{ item.qty_in_stock }}</td>
-								<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
-									<a href="items/{{ item.suppl_id }}" class="text-blue-500 font-bold hover:underline">{{ item.suppl_id }}</a>
-								</td>
-								<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
-									<a href="items/{{ item.cat_id }}" class="text-blue-500 font-bold hover:underline">{{ item.cat_id }}</a>
-								</td>
-								<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
-									<a href="items/{{ item.locat_id }}" class="text-blue-500 font-bold hover:underline">{{ item.locat_id }}</a>
-								</td>
-							</tr>
-							{% endfor %}
-						</tbody>
-					</table>
-				</section>
 				{% endblock %}
 			</main>
 			{% endblock %}

@@ -1,7 +1,42 @@
 from django.shortcuts import render, redirect
-# from main.models import Supplier, Category, Location
+from main.models import Supplier, Category, Location
 from .forms import NewItemForm
-# from .models import Item
+from .models import Item
+
+def index(req):
+    if req.user.is_authenticated:
+        username = req.user.username
+        prods = Item.objects.all()
+        i_count = Item.objects.count()
+        c_count = Category.objects.count()
+        s_count = Supplier.objects.count()
+        l_count = Location.objects.count()
+        o_count = 0
+        prod_data = [
+            {
+                'id_prod': prod.prod_id,
+                'prod_title': prod.prod_title,
+                'prod_desc': prod.prod_desc,
+                'qty_in_stock': prod.stock,
+                'cat_id': prod.cat_id,
+                'locat_id': prod.locat_id,
+                'suppl_id': prod.suppl_id
+            }
+            for prod in prods
+        ]
+        context = {
+            "prod_data": prod_data,
+            "username": username,
+            "items_count": i_count,
+            "cats_count": c_count,
+            "suppls_count": s_count,
+            "locats_count": l_count,
+            "orders_count": o_count,
+        }
+        return render(req, "items/index.html", context)
+    else:
+        return redirect("/login/")
+
 
 def new(req):
     if req.method == "POST":
@@ -20,46 +55,3 @@ def new(req):
         form = NewItemForm()
         context = { "form": form }
     return render(req, "items/new.html", context)
-
-
-# def new(req):
-#     if req.method == "POST":
-#         # 2nd time
-#         form = NewItemForm(req.POST, req.FILES)
-#         action = req.POST.get("action")
-#         print(f"action: {action}")
-#         if form.is_valid():
-#             # valid form
-#             id = form.cleaned_data["id"]
-#             ttl = form.cleaned_data["title"]
-#             desc = form.cleaned_data["description"]
-#             stock = form.cleaned_data["quantity"]
-#             img = form.cleaned_data["img"]
-#             suppl = form.cleaned_data["supplier"]
-#             cat = form.cleaned_data["category"]
-#             locat = form.cleaned_data["location"]
-#             new_item = Item(
-#                     prod_id = id,
-#                     prod_title = ttl,
-#                     prod_desc = desc,
-#                     stock = stock,
-#                     img = img,
-#                     suppl = Supplier.objects.get(id_suppl=suppl),
-#                     cat = Category.objects.get(id_cat=cat),
-#                     locat = Location.objects.get(id_locat=locat)
-#                 )
-#             new_item.save()
-#             if action == "save":
-#                 # stay oon the page
-#                 context = { "form": form }
-#             elif action == "save_quit":
-#                 # go to /home/
-#                 return redirect("/home/")
-#         else:
-#             # invlid form
-#             form.add_error(None, "Form not valid!")
-#             context = { "form": form }
-#     else: # 1st time
-#         form = NewItemForm()
-#         context = { "form": form }
-#     return render(req, "items/new.html", context)
