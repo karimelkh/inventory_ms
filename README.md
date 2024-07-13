@@ -10,17 +10,17 @@
 - feat: page 404
 - feat: create the following apps:
     - `locations`: products locations
-    - `suppliers`: -
     - `orders`/`ship`: -
     - `notifications`: notify for low stock (...)
     - `settings`: stock settings
     - `partners`
 - feat: show a floating menu at a time
-- mv `location` -> `site`
+- mv `location` -> `site` -> `storagesite`
 - make the `img` field fk referencing the table of imgs
 - rename tables attributes of the db
 - display names instead of IDs in items table for categories, ...
 - use django-phonenumber-field
+- edit db schema: products/items can have multiple storage sites
 
 ## Ideas for home page
 - grid of items and products, ...
