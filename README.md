@@ -8,7 +8,6 @@
 - feat: page 404
 - feat: create the following apps:
     - `locations`: products locations
-    - `categories`: products categories
     - `suppliers`: -
     - `orders`/`ship`: -
     - `notifications`: notify for low stock (...)
