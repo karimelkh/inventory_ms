@@ -9,6 +9,8 @@ categories/__pycache__/
 categories/migrations/__pycache__/
 suppliers/__pycache__/
 suppliers/migrations/__pycache__/
+storagesites/__pycache__/
+storagesites/migrations/__pycache__/
 node_modules/
 static/css/styles.css
 djenv/

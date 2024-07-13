@@ -21,6 +21,8 @@
 - display names instead of IDs in items table for categories, ...
 - use django-phonenumber-field
 - edit db schema: products/items can have multiple storage sites
+- add rating attribute/column to some tables
+- add uniqueness constaint to the tables
 
 ## Ideas for home page
 - grid of items and products, ...
