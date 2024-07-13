@@ -6,11 +6,3 @@ class Location(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Supplier(models.Model):
-    id_suppl = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100, default="def_suppl")
-
-    def __str__(self):
-        return self.name

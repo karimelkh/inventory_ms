@@ -2,7 +2,9 @@
 
 ## TODOs
 - fix: change the default home look
-- fix: when i came from another page to the home i don't find any user obj
+- fix: when i came from another page to the home i don't find the counts
+- fix: make some enhancements in `items.views.index`
+- fix tailwind problem (not compiling some the classes in `categories` app)
 - feat: hide/show columns
 - feat: find the best ID pattern for the project
 - feat: page 404
@@ -16,6 +18,9 @@
 - feat: show a floating menu at a time
 - mv `location` -> `site`
 - make the `img` field fk referencing the table of imgs
+- rename tables attributes of the db
+- display names instead of IDs in items table for categories, ...
+- use django-phonenumber-field
 
 ## Ideas for home page
 - grid of items and products, ...

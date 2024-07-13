@@ -9,6 +9,7 @@ urlpatterns = [
     path("items/", include("items.urls")),
     path("categories/", include("categories.urls")),
     path("cats/", include("categories.urls")),
+    path("suppliers/", include("suppliers.urls")),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

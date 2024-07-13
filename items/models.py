@@ -1,6 +1,7 @@
 from django.db import models
-from main.models import Supplier, Location
+from main.models import Location
 from categories.models import Category
+from suppliers.models import Supplier
 
 
 class Item(models.Model):

@@ -5,6 +5,7 @@ module.exports = {
 		"./users/templates/**/*.html",
 		"./items/templates/**/*.html",
 		"./categories/templates/**/*.html",
+		"./suppliers/templates/**/*.html",
 	],
 	darkMode: "class",
 	theme: {

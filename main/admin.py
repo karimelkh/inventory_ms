@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Location, Supplier
+from .models import Location
 
 # admin.site.register(Product)
 # admin.site.register(Category)
 admin.site.register(Location)
-admin.site.register(Supplier)
+# admin.site.register(Supplier)

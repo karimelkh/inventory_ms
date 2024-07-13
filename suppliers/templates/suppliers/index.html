@@ -1,0 +1,76 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Suppliers
+{% endblock %}
+
+{% block actions %}
+{% endblock %}
+
+{% block table %}
+<section class="overflow-auto rounded-m shadow">
+	<table class="w-full">
+		<thead class="border-b-2 border-gray-200 bg-gray-50">
+			<tr class="">
+				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">ID</th>
+				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Name</th>
+				<th class="p-3 text-sm font-semibold tracking-wide text-left">Description</th>
+				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Address</th>
+				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Phone</th>
+				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Email</th>
+				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-center">Is Active</th>
+				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Website</th>
+			</tr>
+		</thead>
+		<tbody class="divide-y devide-gray-200">
+			{% for s in suppls %}
+			<tr class="{% cycle 'bg-white' 'bg-gray-100' %} hover:bg-gray-200 duration-250">
+				<td class="p-3 text-sm text-gary-700 text-left">
+					<a href="/categories/{{ s.suppl_id }}" class="text-blue-500 font-bold hover:underline">
+						{{ s.suppl_id }}
+					</a>
+				</td>
+				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
+					{{ s.suppl_name }}
+				</td>
+				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
+					{{ s.suppl_desc }}
+				</td>
+				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
+					{{ s.suppl_addr }}
+				</td>
+				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
+					{{ s.suppl_phone }}
+				</td>
+				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
+					<a href="mailto:{{s.suppl_email}}">
+						{{ s.suppl_email }}
+					</a>
+				</td>
+				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
+					{% if s.is_active %}
+						<span class="px-3 py-1 font-semibold rounded-lg bg-green-200 text-green-700">
+							active
+						</span>
+					{% else %}
+						<span class="px-3 py-1 font-semibold rounded-lg bg-red-200 text-red-700">
+							not active
+						</span>
+					{% endif %}
+				</td>
+				<td class="p-3 text-left text-blue-500 font-bold">
+					{% if s.suppl_site %}
+						<a href="{{ s.suppl_site }}" target="_blank" class="text-blue-500 underline">
+							<i class="fa-solid fa-arrow-up-right-from-square"></i>
+						</a>
+					{% else %}
+						<span>None</span>
+					{% endif %}
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</section>
+{% endblock %}

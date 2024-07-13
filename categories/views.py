@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from main.models import Supplier, Location
+from main.models import Location
 from items.models import Item
 from categories.models import Category
+from suppliers.models import Supplier
 from .forms import NewCatForm
 
 def index(req):
