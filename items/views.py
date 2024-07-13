@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from main.models import Location
 from categories.models import Category
 from suppliers.models import Supplier
+from storagesites.models import Site
 from .forms import NewItemForm
 from .models import Item
 
@@ -12,7 +12,7 @@ def index(req):
         i_count = Item.objects.count()
         c_count = Category.objects.count()
         s_count = Supplier.objects.count()
-        l_count = Location.objects.count()
+        l_count = Site.objects.count()
         o_count = 0
         prod_data = [
             {

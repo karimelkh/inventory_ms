@@ -1,0 +1,48 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Suppliers
+{% endblock %}
+
+{% block actions %}
+{% endblock %}
+
+{% block table %}
+<section class="overflow-auto rounded-m shadow">
+	<table class="w-full">
+		<thead class="border-b-2 border-gray-200 bg-gray-50">
+			<tr class="">
+				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">ID</th>
+				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Name</th>
+				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Address</th>
+				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Phone</th>
+				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">type</th>
+			</tr>
+		</thead>
+		<tbody class="divide-y devide-gray-200">
+			{% for s in sites %}
+			<tr class="{% cycle 'bg-white' 'bg-gray-100' %} hover:bg-gray-200 duration-250">
+				<td class="p-3 text-sm text-gary-700 text-left">
+					<a href="/categories/{{ s.site_id }}" class="text-blue-500 font-bold hover:underline">
+						{{ s.site_id }}
+					</a>
+				</td>
+				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
+					{{ s.site_name }}
+				</td>
+				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
+					{{ s.site_addr }}
+				</td>
+				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
+					{{ s.site_phone }}
+				</td>
+				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
+					{{ s.site_type }}
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</section>
+{% endblock %}

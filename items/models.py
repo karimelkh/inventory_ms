@@ -1,7 +1,7 @@
 from django.db import models
-from main.models import Location
 from categories.models import Category
 from suppliers.models import Supplier
+from storagesites.models import Site
 
 
 class Item(models.Model):
@@ -12,4 +12,4 @@ class Item(models.Model):
     img = models.ImageField(upload_to="imgs/", null=True, blank=True)
     suppl = models.ForeignKey( Supplier, on_delete=models.CASCADE )
     cat = models.ForeignKey( Category, on_delete=models.CASCADE )
-    locat = models.ForeignKey( Location, on_delete=models.CASCADE )
+    locat = models.ForeignKey( Site, on_delete=models.CASCADE )

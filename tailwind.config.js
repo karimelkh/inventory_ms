@@ -6,6 +6,7 @@ module.exports = {
 		"./items/templates/**/*.html",
 		"./categories/templates/**/*.html",
 		"./suppliers/templates/**/*.html",
+		"./storagesites/templates/**/*.html",
 	],
 	darkMode: "class",
 	theme: {
