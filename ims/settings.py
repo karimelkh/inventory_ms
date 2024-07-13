@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'items.apps.ItemsConfig',
     'users.apps.UsersConfig',
+    'categories.apps.CategoriesConfig',
 ]
 
 MIDDLEWARE = [

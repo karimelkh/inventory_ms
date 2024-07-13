@@ -5,6 +5,8 @@ items/__pycache__/
 items/migrations/__pycache__/
 users/__pycache__/
 users/migrations/__pycache__/
+categories/__pycache__/
+categories/migrations/__pycache__/
 node_modules/
 static/css/styles.css
 djenv/

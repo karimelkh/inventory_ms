@@ -1,5 +1,7 @@
 from django.db import models
-from main.models import Supplier, Category, Location
+from main.models import Supplier, Location
+from categories.models import Category
+
 
 class Item(models.Model):
     prod_id = models.AutoField(primary_key=True)

@@ -7,6 +7,8 @@ urlpatterns = [
     path("", include("main.urls")),
     path("", include("users.urls")),
     path("items/", include("items.urls")),
+    path("categories/", include("categories.urls")),
+    path("cats/", include("categories.urls")),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

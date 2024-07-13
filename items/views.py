@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from main.models import Supplier, Category, Location
+from main.models import Supplier, Location
+from categories.models import Category
 from .forms import NewItemForm
 from .models import Item
 
@@ -47,7 +48,7 @@ def new(req):
             if action == "save":
                 context = { "form": form }
             elif action == "save_quit":
-                return redirect("/home/")
+                return redirect("/items/")
         else:
             form.add_error(None, "Form not valid!")
             context = { "form": form }
