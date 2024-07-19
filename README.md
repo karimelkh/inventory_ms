@@ -5,6 +5,13 @@
 - fix: when i came from another page to the home i don't find the counts
 - fix: make some enhancements in `items.views.index` (and for other apps)
 - fix tailwind problem (not compiling some the classes in `categories` app)
+- fix: delay/lag in loading styles after hiding columns (just in Firefox)
+    - **possible solutions:**
+        - return a json response and generate table in JS
+- feat: make short links like: `i` -> `items`
+- feat: rename files after uploading them
+- feat: drag&drop images/attachments [yt](https://www.youtube.com/watch?v=9Xh_ZpFkROI)
+- feat: work on the `actions` section
 - feat: CRUD operations on items/cats/sites/suppliers
 - feat: hide/show columns
 - feat: find the best ID pattern for the project
