@@ -30,11 +30,11 @@ tbody {
   /* @apply devide-gray-200; */
 }
 
-tr {
+tbody tr {
   transition-duration: 250ms;
 }
 
-tr:hover{
+tbody tr:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
@@ -249,3 +249,19 @@ form.new button{
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+
+
+form.pop-up {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+}
+form.pop-up > div {
+	margin-bottom: 10px;
+}
+form.pop-up input {}
+form.pop-up label {
+	display: inline;
+	margin-left: 10px;
+}
+form.pop-up {}

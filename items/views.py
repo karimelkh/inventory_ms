@@ -1,38 +1,48 @@
-from django.shortcuts import render, redirect
+# TODO: use functions to get counts instead of copy/paste
+
+from django.shortcuts import render, redirect, get_object_or_404
 from categories.models import Category
 from suppliers.models import Supplier
 from storagesites.models import Site
-from .forms import NewItemForm
+from .forms import NewItemForm, UpdateItemForm
 from .models import Item
+
+
+def show_item(req, id):
+    if req.user.is_authenticated:
+        item = get_object_or_404(Item, prod_id=id)
+        if req.method == "POST":
+            if "rm" in req.POST:
+                Item.objects.filter(prod_id=id).delete()
+                return redirect("/items/")
+            elif "ud" in req.POST:
+                form = UpdateItemForm(req.POST, instance=item)
+                if form.is_valid:
+                    form.save()
+                return redirect("show_item", id=id)
+        if Item.objects.filter(prod_id=id).exists():
+            prod = Item.objects.select_related("cat", "suppl", "locat").filter(prod_id=id)
+            form = UpdateItemForm(instance=item)
+            context = { "prod": prod[0], "form": form }
+            return render(req, "items/show_item.html", context)
+        return redirect("/items/")
+    return redirect("/login/")
+
 
 def index(req):
     if req.user.is_authenticated:
-        username = req.user.username
-        prods = Item.objects.all()
+        prods = Item.objects.select_related("cat", "suppl", "locat").all()
         i_count = Item.objects.count()
         c_count = Category.objects.count()
         s_count = Supplier.objects.count()
         l_count = Site.objects.count()
         o_count = 0
-        prod_data = [
-            {
-                'id_prod': prod.prod_id,
-                'prod_title': prod.prod_title,
-                'prod_desc': prod.prod_desc,
-                'qty_in_stock': prod.stock,
-                'cat_id': prod.cat_id,
-                'locat_id': prod.locat_id,
-                'suppl_id': prod.suppl_id
-            }
-            for prod in prods
-        ]
         context = {
-            "prod_data": prod_data,
-            "username": username,
+            "prod_data": prods,
             "items_count": i_count,
             "cats_count": c_count,
             "suppls_count": s_count,
-            "locats_count": l_count,
+            "sites_count": l_count,
             "orders_count": o_count,
         }
         return render(req, "items/index.html", context)

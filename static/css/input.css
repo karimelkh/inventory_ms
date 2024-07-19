@@ -4,6 +4,60 @@
 @tailwind components;
 @tailwind utilities;
 
+.table-sec {
+	@apply overflow-auto;
+	@apply rounded-md;
+	@apply shadow;
+}
+
+table {
+	@apply w-full;
+}
+
+thead {
+	@apply border-b-2;
+	@apply border-gray-200;
+	@apply bg-gray-50;
+}
+
+tbody {
+	@apply divide-y;
+	/* @apply devide-gray-200; */
+} 
+
+tbody tr {
+	transition-duration: 250ms;
+}
+
+tbody tr:hover {
+	@apply bg-gray-200
+}
+
+th {
+	@apply p-3;
+	@apply text-sm;
+	@apply font-semibold;
+	@apply tracking-wide;
+	@apply text-left;
+}
+
+td {
+	@apply p-3;
+	@apply text-sm;
+	@apply text-gray-700;
+	@apply text-left;
+	@apply whitespace-nowrap;
+}
+
+td a {
+	@apply text-blue-500;
+	@apply font-bold;
+}
+
+td a:hover {
+	@apply underline;
+}
+
 input.hided-pw-field {}
 
 input.shown-pw-field {}
@@ -25,7 +79,6 @@ input.shown-pw-field {}
 	@apply py-2;
 }
 
-/* LOGIN */
 form.login label {
 	display: block;
 	@apply font-semibold;
@@ -83,7 +136,6 @@ div.errors p {
 	@apply font-semibold;
 }
 
-/* LOGOUT */
 
 form.logout {}
 form.logout p {}
@@ -98,11 +150,6 @@ form.logout button:hover {
 	@apply text-blue-600;
 }
 
-/* Add Item */
-/*
- * for now the login's inputs are similar to these ones
- * TO STYLE LATER!!
-*/
 form.new {}
 
 form.new label {

@@ -1,0 +1,88 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Item - {{ prod.prod_title }}
+{% endblock %}
+
+{% block pop-ups %}
+<div style="display:none" id="rm-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white">
+	<form method="post" class="rm-form">
+		{% csrf_token %}
+		<p>
+			Are you sure you want to
+			<b>remove</b> Item NO.
+			<b>{{ prod.prod_id }}</b> ?
+			<button type="submit" name="rm">yes</button>
+			<button>no</button>
+		</p>
+	</form>
+</div>
+
+<div style="display:none" id="ud-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white">
+	<form method="post" class="rm-form">
+		{% csrf_token %}
+		{{ form.as_div }}
+		<button type="submit" name="ud">Update</button>
+	</form>
+</div>
+
+{% if prod.img %}
+<div style="display:none" id="img-modal" class="absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4">
+	<img class="cursor-zoom-out" src="{{ prod.img.url }}" alt="{{ prod.img }}" title="{{ prod.img }}">
+</div>
+{% endif %}
+{% endblock %}
+
+{% block main %}
+<section class="container mx-auto p-5 bg-white rounded-md">
+	<div class="mb-10 grid grid-cols-3 gap-8">
+		<h1 class="text-3xl font-bold">
+			{{ prod.prod_title }}
+			<span id="to_cpy" class="cursor-pointer text-blue-700 duration-300 hover:text-blue-900">
+				&num;{{ prod.prod_id }}
+			</span>
+		</h1>
+		{% if prod.img %}
+		<img width=400 id="item-img" class="cursor-zoom-in" src="{{ prod.img.url }}" alt="{{ prod.img }}" title="{{ prod.img }}">
+		{% else %}
+		<span class="w-26 h-60 flex items-center justify-center text-white bg-gray-500">
+			<button class="">
+				<i class="fa-solid fa-file-arrow-up"></i>
+				Add image
+			</button>
+		</span>
+		{% endif %}
+		<div class="flex gap-3">
+			<button id="rm-item" class="p-2 h-fit font-semibold text-red-800 bg-red-200">
+				<i class="fa-solid fa-trash-can"></i>
+				Remove
+			</button>
+			<button id="ud-item" class="p-2 h-fit font-semibold text-blue-800 bg-blue-200">
+				<i class="fa-solid fa-pen-to-square"></i>
+				Update
+			</button>
+		</div>
+	</div>
+	<table class="">
+		<thead>
+			<tr>
+				<th>description</th>
+				<th>quantity</th>
+				<th>supplier</th>
+				<th>category</th>
+				<th>site</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ prod.prod_desc }}</td>
+				<td>{{ prod.stock }}</td>
+				<td>{{ prod.suppl.suppl_name }}</td>
+				<td>{{ prod.cat.cat_name }}</td>
+				<td>{{ prod.locat.site_name }}</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+{% endblock %}

@@ -17,7 +17,12 @@
 			{% endblock %}
 		</title>
 	</head>
-	<body class="font-['Poppins'] bg-gray-200 dark:bg-gray-700">
+	<body class="font-['Poppins'] relative bg-gray-200 dark:bg-gray-700">
+		{% block pop-ups %}
+		{% endblock %}
+
+		<div style="display:none" id="overlay" class="z-10 w-full h-screen top-0 right-0 absolute bg-black opacity-25"></div>
+
 		{% block header %}
 		<header class="mb-5 bg-white shadow">
 			<div class="container mx-auto py-4 flex justify-between">
@@ -47,7 +52,7 @@
 									<i class="fa-solid fa-thumbtack w-3"></i>
 									<span class="mx-4">Locations</span>
 									<span class="w-6 h-5 flex items-center justify-center text-green-800 text-sm font-semibold rounded-lg bg-green-300">
-										{{ locats_count }}
+										{{ sites_count }}
 									</span>
 								</a>
 							</li>
@@ -155,7 +160,6 @@
 		</header>
 		{% endblock %}
 
-		<!-- consider styling it later -->
 		{% block main %}
 		<section id="main-sec" class="">
 			{% block content %}
@@ -169,11 +173,11 @@
 		</section>
 		{% endblock %}
 
-		<script src="{% static 'js/jquery.min.js' %}"></script>
-		<script src="{% static 'js/theme.js' %}"></script>
+		<script src="{% static 'js/jquery.min.js' %}" defer></script>
+		<script src="{% static 'js/theme.js' %}" defer></script>
 
 		{% block scripts %}
-		<script src="{% static 'js/main.js' %}"></script>
+		<script src="{% static 'js/main.js' %}" defer></script>
 		{% endblock %}
 
 	</body>

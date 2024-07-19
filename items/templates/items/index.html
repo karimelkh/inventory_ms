@@ -5,40 +5,123 @@
 Items
 {% endblock %}
 
+{% block pop-ups %}
+<div style="display:none" id="rm-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white">
+	<form method="post" class="rm-form">
+		{% csrf_token %}
+		<p>
+			Are you sure you want to
+			<b>remove</b> Item NO.
+			<b>{{ prod.prod_id }}</b> ?
+			<button type="submit" name="rm">yes</button>
+			<button>no</button>
+		</p>
+	</form>
+</div>
+
+<div style="display:none" id="ud-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white">
+	<form method="post" class="rm-form">
+		{% csrf_token %}
+		{{ form.as_div }}
+		<button type="submit" name="ud">Update</button>
+	</form>
+</div>
+{% endblock %}
+
 {% block actions %}
+<section class="mb-10 px-10 py-2 bg-white flex flex-col">
+	<div class="flex items-center justify-between">
+		<h1 class="text-3xl font-bold text-green-900">
+			Items
+		</h1>
+		<div class="flex">
+			<a href="/items/new/">
+				<button class="px-4 py-3 flex items-center font-semibold text-white bg-green-800">
+					<i class="fa-solid fa-square-plus w-5"></i>
+					<span class="ml-3">New Item</span>
+				</button>
+			</a>
+			<button id="tog-colsmenu" class="ml-2 px-2 py-1 bg-gray-500 text-gray-50 rounded-sm">
+				<i class="fa-solid fa-list"></i>
+				<i class="fa-solid fa-caret-down"></i>
+			</button>
+		</div>
+	</div>
+	<div class="relative flex justify-end">
+		<form style="display:none" id="colsmenu" class="p-5 absolute flex flex-col bg-white shadow">
+			<div>
+				<input type="checkbox" name="col" value="id" id="id-opt" checked>
+				<label for="id-opt">id</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="ttl" id="name-opt" checked>
+				<label for="name-opt">title</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="desc" id="desc-opt" checked>
+				<label for="desc-opt">description</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="qty" id="qty-opt" checked>
+				<label for="qty-opt">quantity</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="suppl" id="suppl-opt" checked>
+				<label for="suppl-opt">supplier</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="cat" id="cat-opt" checked>
+				<label for="cat-opt">category</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="site" id="site-opt" checked>
+				<label for="site-opt">site</label>
+			</div>
+		</form>
+	</div>
+</section>
 {% endblock %}
 
 {% block table %}
-<section class="overflow-auto rounded-m shadow">
-	<table class="w-full">
-		<thead class="border-b-2 border-gray-200 bg-gray-50">
-			<tr class="">
-				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">ID</th>
-				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Title</th>
-				<th class="p-3 text-sm font-semibold tracking-wide text-left">Description</th>
-				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Quantity</th>
-				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Supplier</th>
-				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Category</th>
-				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">Location</th>
+<section class="table-sec">
+	<table>
+		<thead>
+			<tr>
+				<th id="th-id" class="w-20">ID</th>
+				<th id="th-ttl" class="w-22">Title</th>
+				<th id="th-desc">Description</th>
+				<th id="th-qty" class="w-24">Quantity</th>
+				<th id="th-suppl" class="w-24">Supplier</th>
+				<th id="th-cat" class="w-24">Category</th>
+				<th id="th-site" class="w-24">Site</th>
+				<th class="w-6"></th>
 			</tr>
 		</thead>
-		<tbody class="divide-y devide-gray-200">
+		<tbody>
 			{% for item in prod_data %}
-			<tr class="{% cycle 'bg-white' 'bg-gray-100' %} hover:bg-gray-200 duration-250">
-				<td class="p-3 text-sm text-gary-700 text-left">
-					<a href="items/{{ item.id_prod }}" class="text-blue-500 font-bold hover:underline">{{ item.id_prod }}</a>
+			<tr class="{% cycle 'bg-white' 'bg-gray-100' %}">
+				<td id="td-id">
+					<a href="/items/{{ item.prod_id }}">{{ item.prod_id }}</a>
 				</td>
-				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">{{ item.prod_title }}</td>
-				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">{{ item.prod_desc }}</td>
-				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">{{ item.qty_in_stock }}</td>
-				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
-					<a href="items/{{ item.suppl_id }}" class="text-blue-500 font-bold hover:underline">{{ item.suppl_id }}</a>
+				<td id="td-ttl">{{ item.prod_title }}</td>
+				<td id="td-desc">{{ item.prod_desc }}</td>
+				<td id="td-qty">{{ item.stock }}</td>
+				<td id="td-suppl">
+					<a href="/items/{{ item.suppl_id }}">{{ item.suppl.suppl_name }}</a>
 				</td>
-				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
-					<a href="items/{{ item.cat_id }}" class="text-blue-500 font-bold hover:underline">{{ item.cat_id }}</a>
+				<td id="td-cat">
+					<a href="/items/{{ item.cat_id }}">{{ item.cat.cat_name }}</a>
 				</td>
-				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
-					<a href="items/{{ item.locat_id }}" class="text-blue-500 font-bold hover:underline">{{ item.locat_id }}</a>
+				<td id="td-site">
+					<a href="/items/{{ item.locat_id }}">{{ item.locat.site_name }}</a>
+				</td>
+				<td class="">
+					<button id="rm-item-{{ prod.prod_id }}" class="px-3 py-2 h-fit font-semibold text-red-800 bg-red-200">
+						<i class="fa-solid fa-trash-can"></i>
+					</button>
+					<button id="ud-item-{{ prod.prod_id }}" class="px-3 py-2 h-fit font-semibold text-blue-800 bg-blue-200">
+						<i class="fa-solid fa-pen-to-square"></i>
+					</button>
 				</td>
 			</tr>
 			{% endfor %}
