@@ -11,6 +11,7 @@ suppliers/__pycache__/
 suppliers/migrations/__pycache__/
 storagesites/__pycache__/
 storagesites/migrations/__pycache__/
+utils/__pycache__/
 node_modules/
 static/css/styles.css
 djenv/

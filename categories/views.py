@@ -4,28 +4,15 @@ from categories.models import Category
 from suppliers.models import Supplier
 from storagesites.models import Site
 from .forms import NewCatForm
+from utils.count import get_count
 
 def index(req):
     if req.user.is_authenticated:
         username = req.user.username
         cats = Category.objects.all()
-        i_count = Item.objects.count()
-        c_count = Category.objects.count()
-        s_count = Supplier.objects.count()
-        l_count = Site.objects.count()
-        o_count = 0
-        context = {
-            "cats": cats,
-            "username": username,
-            "items_count": i_count,
-            "cats_count": c_count,
-            "suppls_count": s_count,
-            "locats_count": l_count,
-            "orders_count": o_count,
-        }
+        context = { "cats": cats, "count": get_count() }
         return render(req, "categories/index.html", context)
-    else:
-        return redirect("/login/")
+    return redirect("/login/")
 
 
 def new(req):

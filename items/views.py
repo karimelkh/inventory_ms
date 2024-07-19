@@ -1,11 +1,10 @@
-# TODO: use functions to get counts instead of copy/paste
-
 from django.shortcuts import render, redirect, get_object_or_404
+from .models import Item
+from .forms import NewItemForm, UpdateItemForm
 from categories.models import Category
 from suppliers.models import Supplier
 from storagesites.models import Site
-from .forms import NewItemForm, UpdateItemForm
-from .models import Item
+from utils.count import get_count
 
 
 def show_item(req, id):
@@ -23,7 +22,7 @@ def show_item(req, id):
         if Item.objects.filter(prod_id=id).exists():
             prod = Item.objects.select_related("cat", "suppl", "locat").filter(prod_id=id)
             form = UpdateItemForm(instance=item)
-            context = { "prod": prod[0], "form": form }
+            context = { "prod": prod[0], "form": form, "count": get_count() }
             return render(req, "items/show_item.html", context)
         return redirect("/items/")
     return redirect("/login/")
@@ -32,19 +31,7 @@ def show_item(req, id):
 def index(req):
     if req.user.is_authenticated:
         prods = Item.objects.select_related("cat", "suppl", "locat").all()
-        i_count = Item.objects.count()
-        c_count = Category.objects.count()
-        s_count = Supplier.objects.count()
-        l_count = Site.objects.count()
-        o_count = 0
-        context = {
-            "prod_data": prods,
-            "items_count": i_count,
-            "cats_count": c_count,
-            "suppls_count": s_count,
-            "sites_count": l_count,
-            "orders_count": o_count,
-        }
+        context = { "prod_data": prods , "count": get_count() }
         return render(req, "items/index.html", context)
     else:
         return redirect("/login/")
