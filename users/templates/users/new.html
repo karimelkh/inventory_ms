@@ -1,0 +1,34 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+New User
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<section class="h-screen w-full p-10 flex flex-col items-center justify-center bg-gray-100 dark:bg-black">
+	<div class="w-1/4 p-10 rounded-lg shadow text-gray-800 bg-gray-300">
+		<div class="errors">
+			{% if errors %}
+			{% for err in errors %}
+			<div>
+				<i class="fa-solid fa-circle-exclamation"></i>
+				<p>{{ err }}</p>
+			</div>
+			{% endfor %}
+			{% endif %}
+		</div>
+		<form method="post" enctype="multipart/form-data" class="new">
+			{% csrf_token %}
+			{% for field in form %}
+			<label for="{{ field.id_for_label }}"> {{ field.label }} </label>
+			{{ field }}
+			{% endfor %}
+			<button type="submit" name="action" value="save">save</button>
+			<button type="submit" name="action" value="save_quit">save &amp; quit</button>
+		</form>
+	</div>
+</section>
+{% endblock %}

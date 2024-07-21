@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ user.username }}
+{% endblock %}
+
+{% block pop-ups %}
+{% endblock %}
+
+{% block main %}
+<section class="container mx-auto p-5 bg-white rounded-md">
+	<div class="mb-10 grid grid-cols-3 gap-8">
+		<h1 class="text-3xl font-bold">
+			{{ user.username }}
+		</h1>
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th>username</th>
+				{% if user.email %}
+				<th>email</th>
+				{% endif %}
+				<th>password hash</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ user.username }}</td>
+				{% if user.email %}
+				<td>{{ user.email }}</td>
+				{% endif %}
+				<td>{{ user.password }}</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+{% endblock %}
