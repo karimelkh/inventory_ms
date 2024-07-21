@@ -34,7 +34,7 @@ def new(req):
 
 
 @login_required
-def show_user(req, username):
+def show(req, username):
     user = get_object_or_404(User, username=username)
     context = { "user": user, "count": get_count() }
     return render(req, "users/show.html", context)

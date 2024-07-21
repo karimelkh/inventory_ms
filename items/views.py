@@ -9,7 +9,7 @@ from utils.count import get_count
 
 
 @login_required
-def show_item(req, id):
+def show(req, id):
     item = get_object_or_404(Item, prod_id=id)
     if req.method == "POST":
         if "rm" in req.POST:
