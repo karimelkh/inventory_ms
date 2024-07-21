@@ -1,11 +1,20 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from items.models import Item
 from categories.models import Category
-from suppliers.models import Supplier
-from storagesites.models import Site
 from .forms import NewCatForm
 from utils.count import get_count
+
+
+@login_required
+def show(req, id):
+    if Category.objects.filter(cat_id=id).exists():
+        cat = Category.objects.filter(cat_id=id)
+        # form = UpdateCatForm(instance=item)
+        # context = { "prod": prod[0], "form": form, "count": get_count() }
+        context = { "cat": cat[0], "count": get_count() }
+        return render(req, "categories/show.html", context)
+    return redirect("categories")
+
 
 @login_required
 def index(req):
