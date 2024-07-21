@@ -1,15 +1,19 @@
 # IMS
 
 ## TODOs
+- **ORGANIZE `README`**
 - fix: change the default home look
-- fix: when i came from another page to the home i don't find the counts
 - fix: make some enhancements in `items.views.index` (and for other apps)
 - fix tailwind problem (not compiling some the classes in `categories` app)
+- fix: conflict between user object in `main/base.html` and `users/*.html`
 - fix: delay/lag in loading styles after hiding columns (just in Firefox)
     - **possible solutions:**
         - return a json response and generate table in JS
+- feat: form help messages
+- feat: reset form btn
+- feat: add `cancel/abord` button in forms
 - feat: make short links like: `i` -> `items`
-- feat: rename files after uploading them
+- feat: rename files/images after uploading them
 - feat: drag&drop images/attachments [yt](https://www.youtube.com/watch?v=9Xh_ZpFkROI)
 - feat: CRUD operations on items/cats/sites/suppliers
 - feat: find the best ID pattern for the project
@@ -24,7 +28,8 @@
 - feat: Reporting and Analytics
 - feat: support mobile
 - feat: history and system logs
-- feat: display one item/cat/suppl/... page (item...DONE)
+- feat: display one item/cat/suppl/... page (item, user ...DONE)
+- feat: mv all/some items from one site to another 
 - make different users types and permessions and the ability for some users to manage other users
 - make the `img` field fk referencing the table of imgs
 - rename tables attributes of the db
@@ -34,6 +39,13 @@
 - add uniqueness constaint to the tables
 - handle forms errors
 - make actions section
+- search if possible to use ModelForm... for loginForm
+- discover decorators that comes with django:
+    - `login_required` (DONE)
+    - `user_passes_test`
+    - `require_http_methods`
+    - `cache_page`
+    - `vary_on_headers`
 
 ## Ideas for home page
 - grid of items and products, ...
