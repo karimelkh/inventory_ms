@@ -38,7 +38,7 @@
 - add rating attribute/column to some tables
 - add uniqueness constaint to the tables
 - handle forms errors
-- make actions section
+- make actions 
 - search if possible to use ModelForm... for loginForm
 - discover decorators that comes with django:
     - `login_required` (DONE)
