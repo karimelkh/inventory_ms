@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from items.models import Item
 from categories.models import Category
@@ -6,15 +7,14 @@ from storagesites.models import Site
 from .forms import NewSupplForm
 from utils.count import get_count
 
+@login_required
 def index(req):
-    if req.user.is_authenticated:
-        username = req.user.username
-        suppls = Supplier.objects.all()
-        context = { "suppls": suppls, "count": get_count() }
-        return render(req, "suppliers/index.html", context)
-    return redirect("/login/")
+    username = req.user.username
+    suppls = Supplier.objects.all()
+    context = { "suppls": suppls, "count": get_count() }
+    return render(req, "suppliers/index.html", context)
 
-
+@login_required
 def new(req):
     if req.method == "POST":
         form = NewSupplForm(req.POST, req.FILES)

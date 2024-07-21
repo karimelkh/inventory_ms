@@ -1,10 +1,9 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from utils.count import get_count 
 
+@login_required
 def home(req):
-    if req.user.is_authenticated:
-        username = req.user.username
-        context = { "count": get_count() }
-        return render(req, "main/home.html", context)
-    else:
-        return redirect("/login/")
+    username = req.user.username
+    context = { "count": get_count() }
+    return render(req, "main/home.html", context)
