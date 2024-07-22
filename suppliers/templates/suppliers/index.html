@@ -6,6 +6,57 @@ Suppliers
 {% endblock %}
 
 {% block actions %}
+<section class="mb-10 px-10 py-2 bg-white flex flex-col">
+	<div class="flex items-center justify-between">
+		<h1 class="text-3xl font-bold text-green-900">
+			Suppliers
+		</h1>
+		<div class="flex">
+			<a href="/suppliers/new/">
+				<button class="px-4 py-3 flex items-center font-semibold text-white bg-green-800">
+					<i class="fa-solid fa-square-plus w-5"></i>
+					<span class="ml-3">New Supplier</span>
+				</button>
+			</a>
+			<button id="tog-colsmenu" class="ml-2 px-2 py-1 bg-gray-500 text-gray-50 rounded-sm">
+				<i class="fa-solid fa-list"></i>
+				<i class="fa-solid fa-caret-down"></i>
+			</button>
+		</div>
+	</div>
+	<div class="relative flex justify-end">
+		<form style="display:none" id="colsmenu" class="p-5 absolute flex flex-col bg-white shadow">
+			<div>
+				<input type="checkbox" name="col" value="id" id="id-opt" checked>
+				<label for="id-opt">id</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="ttl" id="name-opt" checked>
+				<label for="name-opt">title</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="desc" id="desc-opt" checked>
+				<label for="desc-opt">description</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="qty" id="qty-opt" checked>
+				<label for="qty-opt">quantity</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="suppl" id="suppl-opt" checked>
+				<label for="suppl-opt">supplier</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="cat" id="cat-opt" checked>
+				<label for="cat-opt">category</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="site" id="site-opt" checked>
+				<label for="site-opt">site</label>
+			</div>
+		</form>
+	</div>
+</section>
 {% endblock %}
 
 {% block table %}
@@ -27,7 +78,7 @@ Suppliers
 			{% for s in suppls %}
 			<tr class="{% cycle 'bg-white' 'bg-gray-100' %} hover:bg-gray-200 duration-250">
 				<td class="p-3 text-sm text-gary-700 text-left">
-					<a href="/categories/{{ s.suppl_id }}" class="text-blue-500 font-bold hover:underline">
+					<a href="/suppliers/{{ s.suppl_id }}" class="text-blue-500 font-bold hover:underline">
 						{{ s.suppl_id }}
 					</a>
 				</td>

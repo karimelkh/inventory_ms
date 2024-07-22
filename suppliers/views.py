@@ -1,11 +1,18 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from items.models import Item
-from categories.models import Category
 from suppliers.models import Supplier
-from storagesites.models import Site
 from .forms import NewSupplForm
 from utils.count import get_count
+
+@login_required
+def show(req, id):
+    if Supplier.objects.filter(suppl_id=id).exists():
+        suppl = Supplier.objects.filter(suppl_id=id)
+        # form = UpdateSupplierForm(instance=item)
+        # context = { "suppl": suppl[0], "form": form, "count": get_count() }
+        context = { "suppl": suppl[0], "count": get_count() }
+        return render(req, "suppliers/show.html", context)
+    return redirect("suppliers")
 
 @login_required
 def index(req):

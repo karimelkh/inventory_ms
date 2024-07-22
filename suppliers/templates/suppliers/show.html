@@ -1,0 +1,64 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Supplier - {{ suppl.prod_title }}
+{% endblock %}
+
+{% block pop-ups %}
+{% endblock %}
+
+{% block main %}
+<section class="container mx-auto p-5 bg-white rounded-md">
+	<div class="mb-10 grid grid-cols-3 gap-8">
+		<h1 class="text-3xl font-bold">
+			{{ suppl.suppl_name }}
+			<span id="to_cpy" class="cursor-pointer text-blue-700 duration-300 hover:text-blue-900">
+				&num;{{ suppl.suppl_id }}
+			</span>
+		</h1>
+		<div class="flex gap-3">
+			<button id="rm-item" class="p-2 h-fit font-semibold text-red-800 bg-red-200">
+				<i class="fa-solid fa-trash-can"></i>
+				Remove
+			</button>
+			<button id="ud-item" class="p-2 h-fit font-semibold text-blue-800 bg-blue-200">
+				<i class="fa-solid fa-pen-to-square"></i>
+				Update
+			</button>
+		</div>
+	</div>
+	<table class="">
+		<thead>
+			<tr>
+				<th>description</th>
+				<th>email</th>
+				<th>addr</th>
+				<th>website</th>
+				<th>phone</th>
+				<th>is active</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ suppl.suppl_desc }}</td>
+				<td>{{ suppl.suppl_email }}</td>
+				<td>{{ suppl.suppl_addr }}</td>
+				<td>{{ suppl.suppl_site }}</td>
+				<td>{{ suppl.suppl_phone }}</td>
+				<td>
+					{% if suppl.is_active %}
+					<span class="text-green-700">
+						<i class="fa-solid fa-circle-check"></i>
+					</span>
+					{% else %}
+					<span class="text-red-700">
+						<i class="fa-solid fa-circle-xmark"></i>
+					</span>
+					{% endif %}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+{% endblock %}
