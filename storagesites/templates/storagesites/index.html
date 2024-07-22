@@ -24,7 +24,7 @@ Suppliers
 			{% for s in sites %}
 			<tr class="{% cycle 'bg-white' 'bg-gray-100' %} hover:bg-gray-200 duration-250">
 				<td class="p-3 text-sm text-gary-700 text-left">
-					<a href="/categories/{{ s.site_id }}" class="text-blue-500 font-bold hover:underline">
+					<a href="/sites/{{ s.site_id }}" class="text-blue-500 font-bold hover:underline">
 						{{ s.site_id }}
 					</a>
 				</td>

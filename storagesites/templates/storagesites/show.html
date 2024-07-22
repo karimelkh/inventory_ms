@@ -1,0 +1,58 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+Site - {{ site.site_name }}
+{% endblock %}
+
+{% block pop-ups %}
+{% endblock %}
+
+{% block main %}
+<section class="container mx-auto p-5 bg-white rounded-md">
+	<div class="mb-10 grid grid-cols-3 gap-8">
+		<h1 class="text-3xl font-bold">
+			{{ site.site_name }}
+			<span id="to_cpy" class="cursor-pointer text-blue-700 duration-300 hover:text-blue-900">
+				&num;{{ site.site_id }}
+			</span>
+		</h1>
+		{% if site.site_img %}
+		<img width=400 id="item-img" class="cursor-zoom-in" src="{{ site.site_img.url }}" alt="{{ site.site_img }}" title="{{ site.site_img }}">
+		{% else %}
+		<span class="w-26 h-60 flex items-center justify-center text-white bg-gray-500">
+			<button class="">
+				<i class="fa-solid fa-file-arrow-up"></i>
+				Add image
+			</button>
+		</span>
+		{% endif %}
+		<div class="flex gap-3">
+			<button id="rm-item" class="p-2 h-fit font-semibold text-red-800 bg-red-200">
+				<i class="fa-solid fa-trash-can"></i>
+				Remove
+			</button>
+			<button id="ud-item" class="p-2 h-fit font-semibold text-blue-800 bg-blue-200">
+				<i class="fa-solid fa-pen-to-square"></i>
+				Update
+			</button>
+		</div>
+	</div>
+	<table class="">
+		<thead>
+			<tr>
+				<th>type</th>
+				<th>address</th>
+				<th>phone</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ site.site_type }}</td>
+				<td>{{ site.site_addr }}</td>
+				<td>{{ site.site_phone }}</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+{% endblock %}
