@@ -5,5 +5,5 @@ from utils.count import get_count
 @login_required
 def home(req):
     username = req.user.username
-    context = { "count": get_count() }
+    context = { "count": get_count(), "username": req.user.username }
     return render(req, "main/home.html", context)

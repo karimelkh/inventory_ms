@@ -10,7 +10,7 @@ def show(req, id):
         suppl = Supplier.objects.filter(suppl_id=id)
         # form = UpdateSupplierForm(instance=item)
         # context = { "suppl": suppl[0], "form": form, "count": get_count() }
-        context = { "suppl": suppl[0], "count": get_count() }
+        context = { "suppl": suppl[0], "count": get_count(), "username": req.user.username }
         return render(req, "suppliers/show.html", context)
     return redirect("suppliers")
 
@@ -18,7 +18,7 @@ def show(req, id):
 def index(req):
     username = req.user.username
     suppls = Supplier.objects.all()
-    context = { "suppls": suppls, "count": get_count() }
+    context = { "suppls": suppls, "count": get_count(), "username": req.user.username }
     return render(req, "suppliers/index.html", context)
 
 @login_required

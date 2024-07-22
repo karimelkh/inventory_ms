@@ -11,7 +11,7 @@ def show(req, id):
         cat = Category.objects.filter(cat_id=id)
         # form = UpdateCatForm(instance=item)
         # context = { "prod": prod[0], "form": form, "count": get_count() }
-        context = { "cat": cat[0], "count": get_count() }
+        context = { "cat": cat[0], "count": get_count(), "username": req.user.username }
         return render(req, "categories/show.html", context)
     return redirect("categories")
 
@@ -20,7 +20,7 @@ def show(req, id):
 def index(req):
     username = req.user.username
     cats = Category.objects.all()
-    context = { "cats": cats, "count": get_count() }
+    context = { "cats": cats, "count": get_count(), "username": req.user.username }
     return render(req, "categories/index.html", context)
 
 @login_required

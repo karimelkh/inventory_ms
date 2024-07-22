@@ -10,7 +10,7 @@ from utils.count import get_count
 def index(req):
     if req.user.is_authenticated:
         users = User.objects.all()
-        context = { "users": users, "count": get_count() }
+        context = { "users": users, "count": get_count(), "username": req.user.username }
         return render(req, "users/index.html", context)
     return redirect("login")
 
@@ -36,7 +36,7 @@ def new(req):
 @login_required
 def show(req, username):
     user = get_object_or_404(User, username=username)
-    context = { "user": user, "count": get_count() }
+    context = { "user": user, "count": get_count(), "username": req.user.username }
     return render(req, "users/show.html", context)
 
 

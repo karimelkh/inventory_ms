@@ -10,7 +10,7 @@ def show(req, id):
         site = Site.objects.filter(site_id=id)
         # form = UpdateSiteForm(instance=item)
         # context = { "prod": prod[0], "form": form, "count": get_count() }
-        context = { "site": site[0], "count": get_count() }
+        context = { "site": site[0], "count": get_count(), "username": req.user.username }
         return render(req, "storagesites/show.html", context)
     return redirect("sites")
 
@@ -18,7 +18,7 @@ def show(req, id):
 def index(req):
     username = req.user.username
     sites = Site.objects.all()
-    context = { "sites": sites, "count": get_count() }
+    context = { "sites": sites, "count": get_count(), "username": req.user.username }
     return render(req, "storagesites/index.html", context)
 
 @login_required
