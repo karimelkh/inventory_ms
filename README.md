@@ -9,6 +9,7 @@
 - fix: delay/lag in loading styles after hiding columns (just in Firefox)
     - **possible solutions:**
         - return a json response and generate table in JS
+- feat: add more info fields to the user
 - feat: form help messages
 - feat: reset form btn
 - feat: add `cancel/abord` button in forms
@@ -46,6 +47,7 @@
     - `require_http_methods`
     - `cache_page`
     - `vary_on_headers`
+- make `SITE_TYPES` a table instead of a var
 
 ## Ideas for home page
 - grid of items and products, ...
