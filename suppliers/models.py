@@ -1,8 +1,9 @@
 from django.db import models
 
+
 class Supplier(models.Model):
     suppl_id = models.AutoField(primary_key=True)
-    suppl_name = models.CharField(max_length=100)
+    suppl_name = models.CharField(max_length=100, null=True, blank=True)
     suppl_desc = models.CharField(max_length=200, null=True, blank=True)
     suppl_email = models.EmailField()
     suppl_addr = models.CharField(max_length=200)

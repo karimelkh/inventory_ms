@@ -1,8 +1,11 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
+
 from categories.models import Category
-from .forms import NewCatForm
 from utils.count import get_count
+
+from .forms import NewCatForm
 
 
 @login_required
@@ -11,17 +14,17 @@ def show(req, id):
         cat = Category.objects.filter(cat_id=id)
         # form = UpdateCatForm(instance=item)
         # context = { "prod": prod[0], "form": form, "count": get_count() }
-        context = { "cat": cat[0], "count": get_count(), "username": req.user.username }
+        context = {"cat": cat[0], "count": get_count(), "username": req.user.username}
         return render(req, "categories/show.html", context)
     return redirect("categories")
 
 
 @login_required
 def index(req):
-    username = req.user.username
     cats = Category.objects.all()
-    context = { "cats": cats, "count": get_count(), "username": req.user.username }
+    context = {"cats": cats, "count": get_count(), "username": req.user.username}
     return render(req, "categories/index.html", context)
+
 
 @login_required
 def new(req):
@@ -30,14 +33,18 @@ def new(req):
         action = req.POST.get("action")
         if form.is_valid():
             form.save()
+            new_cat = Category.objects.filter(cat_name=form.cleaned_data["cat_name"])[0]
+            messages.success(
+                req, f"You have successfully created the {new_cat.cat_name} category"
+            )
             if action == "save":
-                context = { "form": form }
+                context = {"form": form}
             elif action == "save_quit":
-                return redirect("/categories/")
+                return redirect("show_cat", id=new_cat.cat_id)
         else:
             form.add_error(None, "Form not valid!")
-            context = { "form": form }
+            context = {"form": form}
     else:
         form = NewCatForm()
-        context = { "form": form }
+        context = {"form": form}
     return render(req, "categories/new.html", context)

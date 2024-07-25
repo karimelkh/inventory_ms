@@ -1,8 +1,11 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Item
-from .forms import NewItemForm, UpdateItemForm
+from django.shortcuts import get_object_or_404, redirect, render
+
 from utils.count import get_count
+
+from .forms import NewItemForm, UpdateItemForm
+from .models import Item
 
 
 @login_required
@@ -20,7 +23,12 @@ def show(req, id):
     if Item.objects.filter(prod_id=id).exists():
         prod = Item.objects.select_related("cat", "suppl", "locat").filter(prod_id=id)
         form = UpdateItemForm(instance=item)
-        context = { "prod": prod[0], "form": form, "count": get_count(), "username": req.user.username }
+        context = {
+            "prod": prod[0],
+            "form": form,
+            "count": get_count(),
+            "username": req.user.username,
+        }
         return render(req, "items/show.html", context)
     return redirect("items")
 
@@ -28,7 +36,7 @@ def show(req, id):
 @login_required
 def index(req):
     prods = Item.objects.select_related("cat", "suppl", "locat").all()
-    context = { "prod_data": prods , "count": get_count(), "username": req.user.username }
+    context = {"prod_data": prods, "count": get_count(), "username": req.user.username}
     return render(req, "items/index.html", context)
 
 
@@ -39,14 +47,22 @@ def new(req):
         action = req.POST.get("action")
         if form.is_valid():
             form.save()
+            created_item = Item.objects.filter(
+                prod_title=form.cleaned_data["prod_title"]
+            )[0]
+            messages.success(
+                req,
+                f"You have created the item {created_item.prod_title} successfully",
+            )
             if action == "save":
-                context = { "form": form }
+                # context = {"form": form}
+                pass
             elif action == "save_quit":
-                return redirect("items")
+                return redirect("show_item", id=created_item.prod_id)
         else:
             form.add_error(None, "Form not valid!")
-            context = { "form": form }
+            context = {"form": form}
     else:
         form = NewItemForm()
-        context = { "form": form }
+        context = {"form": form}
     return render(req, "items/new.html", context)

@@ -1,10 +1,21 @@
 from django import forms
+
 from .models import Item
 
+
 class NewItemForm(forms.ModelForm):
-    class Meta():
+    class Meta:
         model = Item
-        fields = [ "prod_id", "prod_title", "prod_desc", "stock", "img", "suppl", "cat", "locat" ]
+        fields = [
+            "prod_id",
+            "prod_title",
+            "prod_desc",
+            "stock",
+            "img",
+            "suppl",
+            "cat",
+            "locat",
+        ]
         labels = {
             "prod_id": "id",
             "prod_title": "title",
@@ -13,15 +24,25 @@ class NewItemForm(forms.ModelForm):
             "img": "image",
             "suppl": "supplier",
             "cat": "category",
-            "locat" : "site",
+            "locat": "site",
         }
         help_texts = {}
         error_messages = {}
+
 
 class UpdateItemForm(forms.ModelForm):
-    class Meta():
+    class Meta:
         model = Item
-        fields = [ "prod_id", "prod_title", "prod_desc", "stock", "img", "suppl", "cat", "locat" ]
+        fields = [
+            "prod_id",
+            "prod_title",
+            "prod_desc",
+            "stock",
+            "img",
+            "suppl",
+            "cat",
+            "locat",
+        ]
         labels = {
             "prod_id": "id",
             "prod_title": "title",
@@ -30,8 +51,7 @@ class UpdateItemForm(forms.ModelForm):
             "img": "image",
             "suppl": "supplier",
             "cat": "category",
-            "locat" : "site",
+            "locat": "site",
         }
         help_texts = {}
         error_messages = {}
-
