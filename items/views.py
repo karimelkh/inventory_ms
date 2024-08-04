@@ -35,8 +35,15 @@ def show(req, id):
 
 @login_required
 def index(req):
+    if req.method == "POST":
+        for id in req.POST.getlist("rm-id"):
+            Item.objects.filter(prod_id=id).delete()
     prods = Item.objects.select_related("cat", "suppl", "locat").all()
-    context = {"prod_data": prods, "count": get_count(), "username": req.user.username}
+    context = {
+        "prod_data": prods,
+        "count": get_count(),
+        "username": req.user.username,
+    }
     return render(req, "items/index.html", context)
 
 
