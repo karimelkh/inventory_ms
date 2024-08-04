@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require("tailwindcss/colors");
 module.exports = {
+  purge: false,
   content: [
     "./main/templates/**/*.html",
     "./users/templates/**/*.html",
@@ -7,9 +9,43 @@ module.exports = {
     "./categories/templates/**/*.html",
     "./suppliers/templates/**/*.html",
     "./storagesites/templates/**/*.html",
+    "./static/js/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        black: colors.black,
+        white: colors.white,
+        slate: colors.slate,
+        gray: colors.gray,
+        zinc: colors.zinc,
+        neutral: colors.neutral,
+        stone: colors.stone,
+        red: colors.red,
+        orange: colors.orange,
+        amber: colors.amber,
+        yellow: colors.yellow,
+        lime: colors.lime,
+        green: colors.green,
+        emerald: colors.emerald,
+        teal: colors.teal,
+        cyan: colors.cyan,
+        sky: colors.aky,
+        blue: colors.blue,
+        indigo: colors.indigo,
+        violet: colors.violet,
+        purple: colors.purple,
+        fuchsia: colors.fuchsia,
+        pink: colors.pink,
+        rose: colors.rose,
+        transparent: "transparent",
+        current: "currentColor",
+      },
+    },
+  },
+  safelist: {
+    pattern: /./,
+    variants: ["sm", "md", "lg", "xl", "2xl"],
   },
   plugins: [],
 };

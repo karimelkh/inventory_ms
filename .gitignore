@@ -13,7 +13,7 @@ storagesites/__pycache__/
 storagesites/migrations/__pycache__/
 utils/__pycache__/
 node_modules/
-# static/css/styles.css
+static/css/styles.css
 djenv/
 media/
 main/templates/404.html
