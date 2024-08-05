@@ -1,6 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from django.template.loader import render_to_string
+from django.shortcuts import get_object_or_404, render, redirect
 
 from utils.count import get_count
 
@@ -34,16 +37,32 @@ def show(req, id):
 
 
 @login_required
+@csrf_exempt
 def index(req):
     if req.method == "POST":
-        for id in req.POST.getlist("rm-id"):
-            Item.objects.filter(prod_id=id).delete()
+        if "action" in req.POST:
+            action = req.POST.get("action")
+            if action == "remove":
+                for id in req.POST.getlist("rm-id"):
+                    Item.objects.filter(prod_id=id).delete()
+            elif action == "update":
+                # the title should not be unique, to FIND a better way to do this
+                item = get_object_or_404(Item, prod_title=req.POST.get("prod_title"))
+                form = UpdateItemForm(req.POST, instance=item)
+                if form.is_valid:
+                    form.save()
+                pass
+            elif action == "getUpdateForm":
+                item = get_object_or_404(Item, prod_id=req.POST.get("id"))
+                update_form = UpdateItemForm(instance=item)
+                form_html = render_to_string('items/update_form.html', {'update_form': update_form})
+                return JsonResponse({'form_html': form_html})
     prods = Item.objects.select_related("cat", "suppl", "locat").all()
     context = {
-        "prod_data": prods,
-        "count": get_count(),
-        "username": req.user.username,
-    }
+            "prod_data": prods,
+            "count": get_count(),
+            "username": req.user.username,
+            }
     return render(req, "items/index.html", context)
 
 

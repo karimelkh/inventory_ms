@@ -10,7 +10,7 @@ $(document).ready(function () {
 	$("input[name='col']").on("change", updateTable);
 	$("#to_cpy").click(copyToClip);
 	// $("#rm-item").click(removeItemPopUp);
-	$("#ud-item").click(updateItemPopUp);
+	$("#ud-item").click(updatePopUp);
 	$("#item-img").click(zoomInImg);
 	$("#modal-img > img").click(zoomOutImg);
 	$("#overlay, #img-modal, #modal-img > img").click(zoomOutImg);
@@ -18,8 +18,39 @@ $(document).ready(function () {
 	// $("#overlay, form.ud-form button").click(hideUpdateForm);
 	$("input#select-all").on("change", ToggleRows);
 	$("button#del-btn").click(delRows);
-	//$("button.update-btn").click(UpdateRow);
+	$("button.update-btn").click(updateRow);
 });
+
+function updatePopUp() {
+	$("#ud-pop").show();
+	$("#overlay").show();
+}
+
+function updateRow()
+{
+	console.log("updateRow");
+	const id = $(this).data("id");
+	const action = $(this).data("action");
+	console.log(`action = ${action}`);
+	console.log(`id = ${id}`);
+	$.ajax({
+		method: "POST",
+		url: "",
+		contentType: "application/x-www-form-urlencoded",
+		data: {
+			action: action,
+			id: id
+		},
+		 success: function(res) {
+            console.log("success");
+            if (res.form_html) {
+                $("#ud-pop").html(res.form_html);
+                updatePopUp();
+            }
+        },
+		 error: function() { console.log("failure") }
+	});
+}
 
 // use Ajax instead
 function delRows() {
@@ -113,10 +144,5 @@ function copyToClip() {
 
 function removeItemPopUp() {
 	$("#rm-pop").show();
-	$("#overlay").show();
-}
-
-function updateItemPopUp() {
-	$("#ud-pop").show();
 	$("#overlay").show();
 }

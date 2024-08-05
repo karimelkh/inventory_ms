@@ -1,0 +1,5 @@
+<form method="post" class="ud-form">
+    {{ update_form.as_p }}
+    {% csrf_token %}
+    <button type="submit" name="action" value="update">Update</button>
+</form>

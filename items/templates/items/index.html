@@ -14,17 +14,12 @@ Items
             <b>remove</b> the following items:
         </p>
         <div id="send-ids"></div>
-        <button type="submit" name="rm">yes</button>
+        <button type="submit" name="action" value="remove">yes</button>
     </form>
 	<button>no</button>
 </div>
 
-<div style="display:none" id="ud-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white">
-    <form method="post" class="ud-form">
-        {% csrf_token %}
-        <button type="submit" name="ud">Update</button>
-    </form>
-</div>
+<div style="display:none" id="ud-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white"></div>
 {% endblock %}
 
 {% block actions %}
@@ -131,7 +126,7 @@ Items
 					</a>
                 </td>
                 <td class="">
-					<button data-id="{{ item.prod_id }}" class="update-btn px-3 py-2 h-fit font-semibold text-blue-800 bg-blue-200">
+					<button data-id="{{ item.prod_id }}" data-action="getUpdateForm" class="update-btn px-3 py-2 h-fit font-semibold text-blue-800 bg-blue-200">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </button>
                 </td>
