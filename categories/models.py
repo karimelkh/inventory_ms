@@ -22,10 +22,11 @@ class Category(models.Model):
         ("pink", "Pink"),
         ("rose", "Rose"),
     ]
-    cat_id = models.AutoField(primary_key=True)
-    cat_name = models.CharField(max_length=100, null=False, blank=False, unique=True)
-    cat_desc = models.CharField(max_length=200)
-    cat_clr = models.CharField(max_length=20, choices=COLOR_CHOICES)
+
+    id = models.CharField(max_length=50, primary_key=True)
+    name = models.CharField(max_length=100, null=False, blank=False, unique=True)
+    desc = models.CharField(max_length=200)
+    clr = models.CharField(max_length=20, choices=COLOR_CHOICES)
 
     def __str__(self):
-        return self.cat_name
+        return self.name

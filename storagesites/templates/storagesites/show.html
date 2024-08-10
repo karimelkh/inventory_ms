@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Site - {{ site.site_name }}
+{{ site.name }}
 {% endblock %}
 
 {% block pop-ups %}
@@ -12,13 +12,20 @@ Site - {{ site.site_name }}
 <section class="container mx-auto p-5 bg-white rounded-md">
 	<div class="mb-10 grid grid-cols-3 gap-8">
 		<h1 class="text-3xl font-bold">
-			{{ site.site_name }}
+			<span>
+				<a href="{% url 'sites' %}">Sites</a>
+				<span>&frasl;</span>
+			</span>
+			<br>
+			<span>
+				{{ site.name }}
+			</span>
 			<span id="to_cpy" class="cursor-pointer text-blue-700 duration-300 hover:text-blue-900">
-				&num;{{ site.site_id }}
+				&num;{{ site.id }}
 			</span>
 		</h1>
-		{% if site.site_img %}
-		<img width=400 id="item-img" class="cursor-zoom-in" src="{{ site.site_img.url }}" alt="{{ site.site_img }}" title="{{ site.site_img }}">
+		{% if site.img %}
+		<img width=400 id="item-img" class="cursor-zoom-in" src="{{ site.img.url }}" alt="{{ site.img }}" title="{{ site.img }}">
 		{% else %}
 		<span class="w-26 h-60 flex items-center justify-center text-white bg-gray-500">
 			<button class="">
@@ -48,9 +55,9 @@ Site - {{ site.site_name }}
 		</thead>
 		<tbody>
 			<tr>
-				<td>{{ site.site_type }}</td>
-				<td>{{ site.site_addr }}</td>
-				<td>{{ site.site_phone }}</td>
+				<td>{{ site.type }}</td>
+				<td>{{ site.addr }}</td>
+				<td>{{ site.phone }}</td>
 			</tr>
 		</tbody>
 	</table>

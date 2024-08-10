@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Supplier - {{ suppl.suppl_name }}
+{{ suppl.name }}
 {% endblock %}
 
 {% block pop-ups %}
@@ -12,9 +12,16 @@ Supplier - {{ suppl.suppl_name }}
 <section class="container mx-auto p-5 bg-white rounded-md">
 	<div class="mb-10 grid grid-cols-3 gap-8">
 		<h1 class="text-3xl font-bold">
-			{{ suppl.suppl_name }}
+			<span>
+				<a href="{% url 'suppliers' %}">Suppliers</a>
+				<span>&frasl;</span>
+			</span>
+			<br>
+			<span>
+				{{ suppl.name }}
+			</span>
 			<span id="to_cpy" class="cursor-pointer text-blue-700 duration-300 hover:text-blue-900">
-				&num;{{ suppl.suppl_id }}
+				&num;{{ suppl.id }}
 			</span>
 		</h1>
 		<div class="flex gap-3">
@@ -41,11 +48,11 @@ Supplier - {{ suppl.suppl_name }}
 		</thead>
 		<tbody>
 			<tr>
-				<td>{{ suppl.suppl_desc }}</td>
-				<td>{{ suppl.suppl_email }}</td>
-				<td>{{ suppl.suppl_addr }}</td>
-				<td>{{ suppl.suppl_site }}</td>
-				<td>{{ suppl.suppl_phone }}</td>
+				<td>{{ suppl.desc }}</td>
+				<td>{{ suppl.email }}</td>
+				<td>{{ suppl.addr }}</td>
+				<td>{{ suppl.site }}</td>
+				<td>{{ suppl.phone }}</td>
 				<td>
 					{% if suppl.is_active %}
 					<span class="text-green-700">

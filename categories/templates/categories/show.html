@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Category - {{ cat.cat_name }}
+Category - {{ cat.name }}
 {% endblock %}
 
 {% block pop-ups %}
@@ -11,10 +11,17 @@ Category - {{ cat.cat_name }}
 {% block main %}
 <section class="container mx-auto p-5 rounded-md bg-white">
 	<div class="mb-10 grid grid-cols-3 gap-8">
-		<h1 class="text-3xl font-bold text-{{ cat.cat_clr }}-500">
-			{{ cat.cat_name }}
+		<h1 class="text-3xl font-bold text-{{ cat.clr }}-500">
+			<span>
+				<a href="{% url 'categories' %}">Categories</a>
+				<span>&frasl;</span>
+			</span>
+			<br>
+			<span>
+				{{ cat.name }}
+			</span>
 			<span id="to_cpy" class="cursor-pointer text-blue-700 duration-300 hover:text-blue-900">
-				&num;{{ cat.cat_id }}
+				&num;{{ cat.id }}
 			</span>
 		</h1>
 		<div class="flex gap-3">
@@ -31,12 +38,14 @@ Category - {{ cat.cat_name }}
 	<table class="">
 		<thead>
 			<tr>
+				<th>name</th>
 				<th>description</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr class="bg-white hover:bg-gray-200 duration-250">
-				<td>{{ cat.cat_desc }}</td>
+				<td>{{ cat.name }}</td>
+				<td>{{ cat.desc }}</td>
 			</tr>
 		</tbody>
 	</table>

@@ -10,8 +10,8 @@ from .models import Supplier
 
 @login_required
 def show(req, id):
-    if Supplier.objects.filter(suppl_id=id).exists():
-        suppl = Supplier.objects.filter(suppl_id=id)
+    if Supplier.objects.filter(id=id).exists():
+        suppl = Supplier.objects.filter(id=id)
         # form = UpdateSupplierForm(instance=item)
         # context = { "suppl": suppl[0], "form": form, "count": get_count() }
         context = {
@@ -38,17 +38,17 @@ def new(req):
         action = req.POST.get("action")
         if form.is_valid():
             form.save()
-            new_s = Supplier.objects.filter(suppl_name=form.cleaned_data["suppl_name"])[
+            new_s = Supplier.objects.filter(name=form.cleaned_data["name"])[
                 0
             ]
             messages.success(
                 req,
-                f"You have successfully created a supplier: {new_s.suppl_name}",
+                f"You have successfully created a supplier: {new_s.name}",
             )
             if action == "save":
                 context = {"form": form}
             elif action == "save_quit":
-                return redirect("show_supplier", id=new_s.suppl_id)
+                return redirect("show_supplier", id=new_s.id)
         else:
             form.add_error(None, "Form not valid!")
             context = {"form": form}

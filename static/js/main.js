@@ -28,17 +28,13 @@ function updatePopUp() {
 
 function updateRow()
 {
-	console.log("updateRow");
 	const id = $(this).data("id");
-	const action = $(this).data("action");
-	console.log(`action = ${action}`);
-	console.log(`id = ${id}`);
 	$.ajax({
 		method: "POST",
 		url: "",
 		contentType: "application/x-www-form-urlencoded",
 		data: {
-			action: action,
+			action: "getUpdateForm",
 			id: id
 		},
 		 success: function(res) {

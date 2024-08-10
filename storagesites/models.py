@@ -9,18 +9,18 @@ class Site(models.Model):
             ("Cold storage", "cold"),
             ("Distribution Center", "distribution"),
         ]
-    site_id = models.IntegerField(primary_key=True)
-    site_name = models.CharField(max_length=100)
-    site_type = models.CharField(max_length=50, choices=SITE_TYPES)
-    site_img = models.ImageField(upload_to="imgs/", null=True, blank=True)
-    site_addr = models.CharField(max_length=200)
-    site_phone = models.CharField(max_length=12)
+    id = models.CharField(max_length=50, primary_key=True)
+    name = models.CharField(max_length=100, unique=True)
+    type = models.CharField(max_length=50, choices=SITE_TYPES)
+    img = models.ImageField(upload_to="imgs/", null=True, blank=True)
+    addr = models.CharField(max_length=200)
+    phone = models.CharField(max_length=12, unique=True)
 
-    # site_email = models.EmailField(max_length=100)
-    # site_capacity = models.
-    # site_resp
-    # site_man = models.
+    # email = models.EmailField(max_length=100)
+    # capacity = models.
+    # resp
+    # man = models.
     # is_active
 
     def __str__(self):
-        return self.site_name
+        return self.name

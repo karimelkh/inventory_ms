@@ -78,25 +78,25 @@ Suppliers
 			{% for s in suppls %}
 			<tr class="{% cycle 'bg-white' 'bg-gray-100' %} hover:bg-gray-200 duration-250">
 				<td class="p-3 text-sm text-gary-700 text-left">
-					<a href="/suppliers/{{ s.suppl_id }}" class="text-blue-500 font-bold hover:underline">
-						{{ s.suppl_id }}
+					<a href="/suppliers/{{ s.id }}" class="text-blue-500 font-bold hover:underline">
+						{{ s.id }}
 					</a>
 				</td>
 				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
-					{{ s.suppl_name }}
+					{{ s.name }}
 				</td>
 				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
-					{{ s.suppl_desc }}
+					{{ s.desc }}
 				</td>
 				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
-					{{ s.suppl_addr }}
+					{{ s.addr }}
 				</td>
 				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
-					{{ s.suppl_phone }}
+					{{ s.phone }}
 				</td>
 				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
-					<a href="mailto:{{s.suppl_email}}">
-						{{ s.suppl_email }}
+					<a href="mailto:{{s.email}}">
+						{{ s.email }}
 					</a>
 				</td>
 				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
@@ -111,8 +111,8 @@ Suppliers
 					{% endif %}
 				</td>
 				<td class="p-3 text-left text-blue-500 font-bold">
-					{% if s.suppl_site %}
-						<a href="{{ s.suppl_site }}" target="_blank" class="text-blue-500 underline">
+					{% if s.site %}
+						<a href="{{ s.site }}" target="_blank" class="text-blue-500 underline">
 							<i class="fa-solid fa-arrow-up-right-from-square"></i>
 						</a>
 					{% else %}

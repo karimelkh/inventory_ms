@@ -1,7 +1,7 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
-    {% block title %}
+{% block title %}
 Items
 {% endblock %}
 
@@ -102,31 +102,31 @@ Items
             {% for item in prod_data %}
             <tr class="{% cycle 'bg-white' 'bg-gray-100' %}">
                 <td>
-                    <input type="checkbox" name="row" data-name="{{ item.prod_title }}" data-id="{{ item.prod_id }}">
+                    <input type="checkbox" name="row" data-name="{{ item.ttl }}" data-id="{{ item.id }}">
                 </td>
                 <td id="td-id">
-                    <a href="{% url 'show_item' id=item.prod_id %}">{{ item.prod_id }}</a>
+                    <a href="{% url 'show_item' id=item.id %}">{{ item.id }}</a>
                 </td>
-                <td id="td-ttl">{{ item.prod_title }}</td>
-                <td id="td-desc">{{ item.prod_desc }}</td>
-                <td id="td-qty">{{ item.stock }}</td>
+                <td id="td-ttl">{{ item.ttl }}</td>
+                <td id="td-desc">{{ item.desc }}</td>
+                <td id="td-qty">{{ item.qty }}</td>
                 <td id="td-suppl">
-                    <a href="{% url 'show_supplier' id=item.suppl_id %}">
-						{{ item.suppl.suppl_name }}
+                    <a href="{% url 'show_supplier' id=item.suppl.id %}">
+						{{ item.suppl.name }}
 					</a>
                 </td>
                 <td id="td-cat">
-                    <a href="{% url 'show_cat' id=item.cat_id %}">
-						{{ item.cat.cat_name }}
+                    <a href="{% url 'show_cat' id=item.cat.id %}">
+						{{ item.cat.name }}
 					</a>
                 </td>
                 <td id="td-site">
-                    <a href="{% url 'show_site' id=item.locat_id %}">
-						{{ item.locat.site_name }}
+                    <a href="{% url 'show_site' id=item.site.id %}">
+						{{ item.site.name }}
 					</a>
                 </td>
                 <td class="">
-					<button data-id="{{ item.prod_id }}" data-action="getUpdateForm" class="update-btn px-3 py-2 h-fit font-semibold text-blue-800 bg-blue-200">
+					<button data-id="{{ item.id }}" class="update-btn px-3 py-2 h-fit font-semibold text-blue-800 bg-blue-200">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </button>
                 </td>

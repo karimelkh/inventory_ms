@@ -2,10 +2,82 @@
 {% load static %}
 
 {% block title %}
-Suppliers
+Sites
+{% endblock %}
+
+{% block pop-ups %}
+<div style="display:none" id="rm-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white">
+	<form method="post" class="rm-form">
+		{% csrf_token %}
+		<p>
+		Are you sure you want to
+		<b>remove</b> the following items:
+		</p>
+		<div id="send-ids"></div>
+		<button type="submit" name="action" value="remove">yes</button>
+	</form>
+	<button>no</button>
+</div>
+
+<div style="display:none" id="ud-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white"></div>
 {% endblock %}
 
 {% block actions %}
+<section class="mb-10 px-10 py-2 bg-white flex flex-col">
+	<div class="flex items-center justify-between">
+		<h1 class="text-3xl font-bold text-green-900">
+			Sites
+		</h1>
+		<div class="flex">
+			<button id="del-btn" class="px-4 font-semibold text-red-50 bg-red-400">
+				<i class="fa-solid fa-trash-can"></i>
+				<span>delete</span>
+			</button>
+			<a href="{% url 'new_site' %}">
+				<button class="px-4 py-3 flex items-center font-semibold text-white bg-green-800">
+					<i class="fa-solid fa-square-plus w-5"></i>
+					<span class="ml-3">New Site</span>
+				</button>
+			</a>
+			<button id="tog-colsmenu" class="ml-2 px-2 py-1 bg-gray-500 text-gray-50 rounded-sm">
+				<i class="fa-solid fa-list"></i>
+				<i class="fa-solid fa-caret-down"></i>
+			</button>
+		</div>
+	</div>
+	<div class="relative flex justify-end">
+		<form style="display:none" id="colsmenu" class="p-5 absolute flex flex-col bg-white shadow">
+			<div>
+				<input type="checkbox" name="col" value="id" id="id-opt" checked>
+				<label for="id-opt">id</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="ttl" id="name-opt" checked>
+				<label for="name-opt">title</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="desc" id="desc-opt" checked>
+				<label for="desc-opt">description</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="qty" id="qty-opt" checked>
+				<label for="qty-opt">quantity</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="suppl" id="suppl-opt" checked>
+				<label for="suppl-opt">supplier</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="cat" id="cat-opt" checked>
+				<label for="cat-opt">category</label>
+			</div>
+			<div>
+				<input type="checkbox" name="col" value="site" id="site-opt" checked>
+				<label for="site-opt">site</label>
+			</div>
+		</form>
+	</div>
+</section>
 {% endblock %}
 
 {% block table %}
@@ -13,32 +85,44 @@ Suppliers
 	<table class="w-full">
 		<thead class="border-b-2 border-gray-200 bg-gray-50">
 			<tr class="">
+				<th class="w-10">
+					<input id="select-all" type="checkbox">
+				</th>
 				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">ID</th>
 				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Name</th>
-				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Address</th>
+				<th class="p-3 text-sm font-semibold tracking-wide text-left">Address</th>
 				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Phone</th>
 				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">type</th>
+                <th class="w-6"></th>
 			</tr>
 		</thead>
 		<tbody class="divide-y devide-gray-200">
 			{% for s in sites %}
 			<tr class="{% cycle 'bg-white' 'bg-gray-100' %} hover:bg-gray-200 duration-250">
+				<td>
+					<input type="checkbox" name="row" data-name="{{ s.name }}" data-id="{{ s.id }}">
+				</td>
 				<td class="p-3 text-sm text-gary-700 text-left">
-					<a href="/sites/{{ s.site_id }}" class="text-blue-500 font-bold hover:underline">
-						{{ s.site_id }}
+					<a href="{% url 'show_site' id=s.id %}" class="text-blue-500 font-bold hover:underline">
+						{{ s.id }}
 					</a>
 				</td>
 				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
-					{{ s.site_name }}
+					{{ s.name }}
 				</td>
 				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
-					{{ s.site_addr }}
+					{{ s.addr }}
 				</td>
 				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
-					{{ s.site_phone }}
+					{{ s.phone }}
 				</td>
 				<td class="p-3 text-sm text-gary-700 text-left whitespace-nowrap">
-					{{ s.site_type }}
+					{{ s.type }}
+				</td>
+				<td class="">
+					<button data-id="{{ s.id }}" class="update-btn px-3 py-2 h-fit font-semibold text-blue-800 bg-blue-200">
+						<i class="fa-solid fa-pen-to-square"></i>
+					</button>
 				</td>
 			</tr>
 			{% endfor %}

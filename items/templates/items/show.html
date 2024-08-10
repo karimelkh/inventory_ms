@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Item - {{ prod.prod_title }}
+{{ prod.ttl }}
 {% endblock %}
 
 {% block pop-ups %}
@@ -38,9 +38,16 @@ Item - {{ prod.prod_title }}
 <section class="container mx-auto p-5 bg-white rounded-md">
 	<div class="mb-10 grid grid-cols-3 gap-8">
 		<h1 class="text-3xl font-bold">
-			{{ prod.prod_title }}
+			<span>
+				<a href="{% url 'items' %}">Items</a>
+				<span>&frasl;</span>
+			</span>
+			<br>
+			<span>
+				{{ prod.ttl }}
+			</span>
 			<span id="to_cpy" class="cursor-pointer text-blue-700 duration-300 hover:text-blue-900">
-				&num;{{ prod.prod_id }}
+				&num;{{ prod.id }}
 			</span>
 		</h1>
 		{% if prod.img %}
@@ -76,11 +83,11 @@ Item - {{ prod.prod_title }}
 		</thead>
 		<tbody>
 			<tr>
-				<td>{{ prod.prod_desc }}</td>
-				<td>{{ prod.stock }}</td>
-				<td>{{ prod.suppl.suppl_name }}</td>
-				<td>{{ prod.cat.cat_name }}</td>
-				<td>{{ prod.locat.site_name }}</td>
+				<td>{{ prod.desc }}</td>
+				<td>{{ prod.qty }}</td>
+				<td>{{ prod.supplname }}</td>
+				<td>{{ prod.catname }}</td>
+				<td>{{ prod.sitename }}</td>
 			</tr>
 		</tbody>
 	</table>

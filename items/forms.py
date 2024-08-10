@@ -7,51 +7,24 @@ class NewItemForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = [
-            "prod_id",
-            "prod_title",
-            "prod_desc",
-            "stock",
+            "id",
+            "ttl",
+            "desc",
+            "qty",
             "img",
             "suppl",
             "cat",
-            "locat",
+            "site",
         ]
         labels = {
-            "prod_id": "id",
-            "prod_title": "title",
-            "prod_desc": "description",
-            "stock": "stock",
+            "id": "article",
+            "ttl": "title",
+            "desc": "description",
+            "qty": "stock",
             "img": "image",
             "suppl": "supplier",
             "cat": "category",
-            "locat": "site",
-        }
-        help_texts = {}
-        error_messages = {}
-
-
-class UpdateItemForm(forms.ModelForm):
-    class Meta:
-        model = Item
-        fields = [
-            "prod_id",
-            "prod_title",
-            "prod_desc",
-            "stock",
-            "img",
-            "suppl",
-            "cat",
-            "locat",
-        ]
-        labels = {
-            "prod_id": "id",
-            "prod_title": "title",
-            "prod_desc": "description",
-            "stock": "stock",
-            "img": "image",
-            "suppl": "supplier",
-            "cat": "category",
-            "locat": "site",
+            "site": "site",
         }
         help_texts = {}
         error_messages = {}
