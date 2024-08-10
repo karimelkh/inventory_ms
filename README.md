@@ -16,7 +16,6 @@
 - make the forms with separated html files and
 use ajax to get them as popups
 - form help messages
-- add `reset` and `abord` buttons in forms
 - make short links like: `i` -> `items`
 - rename files/images after uploading them
 - edit db schema: products/items can have multiple storage sites
