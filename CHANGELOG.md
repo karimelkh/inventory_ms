@@ -1,5 +1,12 @@
 # Changelogs
 
+## commit [cfb7f56](https://github.com/karimelkh/inventory_ms/commit/cfb7f56251d3895db34758425bd3c8012ae61f27):
+
+- code enhancements:
+- use `url` keyword instead of static urls
+- database changes, renaming, ...
+- delete items/users/categories/suppliers/sites in groups
+
 ## commit [b5d4f61](https://github.com/karimelkh/inventory_ms/commit/b5d4f610c8674930f508db9d3178f22239464422):
 
 - code enhancements especially in `views.py`
