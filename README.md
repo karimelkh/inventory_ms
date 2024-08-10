@@ -15,7 +15,6 @@
 
 - make the forms with separated html files and
 use ajax to get them as popups
-- add more info fields to the user: `AbstractUser`
 - form help messages
 - add `reset` and `abord` buttons in forms
 - make short links like: `i` -> `items`
@@ -45,7 +44,6 @@ the ability for some users to manage other users
 - use django-phonenumber-field
 - add rating attribute/column to some tables
 - handle forms errors
-- search if possible to use ModelForm... for loginForm
 - discover decorators that comes with django:
   - `user_passes_test`
   - `require_http_methods`
