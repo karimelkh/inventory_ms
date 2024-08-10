@@ -13,21 +13,15 @@
 
 ### feats
 
-- learn how to work with `ajax` in jquery
-- delete items/users/... in groups
-    - [X] items
-    - users
-    - ...
-- add more info fields to the user
+- make the forms with separated html files and
+use ajax to get them as popups
+- add more info fields to the user: `AbstractUser`
 - form help messages
-- reset form btn
-- add `cancel/abord` button in forms
+- add `reset` and `abord` buttons in forms
 - make short links like: `i` -> `items`
 - rename files/images after uploading them
 - edit db schema: products/items can have multiple storage sites
 - drag&drop images/attachments [yt](https://www.youtube.com/watch?v=9Xh_ZpFkROI)
-- CRUD operations on items/cats/sites/suppliers
-- find the best ID pattern for the project
 - page 404
 - create the following apps:
   - `orders`/`ship`: -
@@ -44,16 +38,15 @@
 
 ### others
 
-- make different users types and permessions and the ability for some users to manage other users
+- make errors in the bottom instead of above
+- make different users types and permessions and
+the ability for some users to manage other users
 - make the `img` field fk referencing the table of imgs
-- rename tables attributes of the db
 - use django-phonenumber-field
 - add rating attribute/column to some tables
-- add uniqueness constaint to the tables
 - handle forms errors
 - search if possible to use ModelForm... for loginForm
 - discover decorators that comes with django:
-  - `login_required` (DONE)
   - `user_passes_test`
   - `require_http_methods`
   - `cache_page`
@@ -61,7 +54,10 @@
 - make `SITE_TYPES` a table instead of a var
 - apply some jquery plugins:
   - [EasyZoom](i-like-robots.github.io/EasyZoom)
+  - check the [repo](github.com/petk/awesome-jquery)
 - add more to the messaging feature
+- think about moving to bootstrap
+or use it with tailwindcss
 
 ## Ideas for home page
 
