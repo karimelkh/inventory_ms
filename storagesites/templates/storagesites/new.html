@@ -18,6 +18,10 @@ New Site
 			{% endfor %}
 			<button type="submit" name="action" value="save">save</button>
 			<button type="submit" name="action" value="save_quit">save &amp; quit</button>
+			<button type="reset">reset</button>
+			<a href="{% url 'sites' %}">
+				<button type="button">abort</button>
+			</a>
 		</form>
 	</div>
 </section>
