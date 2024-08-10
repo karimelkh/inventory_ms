@@ -15,7 +15,7 @@ Users
 			Users
 		</h1>
 		<div class="flex">
-			<a href="/users/new/">
+			<a href="{% url 'new_user' %}">
 				<button class="px-4 py-3 flex items-center font-semibold text-white bg-green-800">
 					<i class="fa-solid fa-square-plus w-5"></i>
 					<span class="ml-3">New User</span>
@@ -68,7 +68,14 @@ Users
 		<thead>
 			<tr>
 				<th>username</th>
+				<th>firstname</th>
+				<th>lastname</th>
 				<th>email</th>
+				<th>role</th>
+				<th>address</th>
+				<th>gsm</th>
+				<th>joined at</th>
+				<th>active</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -80,9 +87,31 @@ Users
 					</a>
 				</td>
 				<td>
+					{{ user.first_name }}
+				</td>
+				<td>
+					{{ user.last_name }}
+				</td>
+
+				<td>
 					<a href="mailto:{{ user.email }}" class="">
 						{{ user.email }}
 					</a>
+				</td>
+				<td>
+					{{ user.role }}
+				</td>
+				<td>
+					{{ user.address }}
+				</td>
+				<td>
+					{{ user.gsm }}
+				</td>
+				<td>
+					{{ user.joined_at }}
+				</td>
+				<td>
+					{{ user.is_active }}
 				</td>
 			</tr>
 			{% endfor %}

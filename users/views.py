@@ -1,11 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, redirect, render
 
 from utils.count import get_count
 
+from .models import User
 from .forms import LoginForm, NewUserForm
 
 
