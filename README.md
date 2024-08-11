@@ -4,17 +4,30 @@
 
 ### fixes
 
-- fix: change the default home look
-- fix: make some enhancements in `items.views.index` (and for other apps)
-- fix tailwind problem (not compiling some the classes in `categories` app)
-- fix: delay/lag in loading styles after hiding columns (just in Firefox)
+- change the default home look
+- make some enhancements in `items.views.index` (and for other apps)
+- ailwind problem (not compiling some the classes in `categories` app)
+- delay/lag in loading styles after hiding columns (just in Firefox)
   - **possible solutions:**
     - return a json response and generate table in JS
+- fix all update/remove buttons
+- fix `show_item` view: does not work when `save` button clicked
+- delete/update button for users
+- fix `update` buttons for:
+    - sites
+    - categories
+    - suppliers
 
 ### feats
 
+- send a message when a form does not create a new thing
+and the reason
+- class-based view
+- search
+- add animations to messages
 - make the forms with separated html files and
 use ajax to get them as popups
+- when all the checkbox are unchecked, uncheck the select all one 
 - form help messages
 - make short links like: `i` -> `items`
 - rename files/images after uploading them
@@ -36,6 +49,8 @@ use ajax to get them as popups
 
 ### others
 
+- use 2-cols table with no header for displaying
+specific items
 - make errors in the bottom instead of above
 - make different users types and permessions and
 the ability for some users to manage other users
