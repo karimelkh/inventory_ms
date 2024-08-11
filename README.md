@@ -17,9 +17,14 @@
     - sites
     - categories
     - suppliers
+- fix the `no` button when deleting
 
 ### feats
 
+- send a message if an item,... was not found when
+requesting it
+- when a user created send an email if it was provided
+- add abort button when updating
 - send a message when a form does not create a new thing
 and the reason
 - class-based view
@@ -46,6 +51,7 @@ use ajax to get them as popups
 - history and system logs
 - mv all/some items from one site to another
 - recent updates like in the arch [home](archlinux.org)
+- backup
 
 ### others
 
