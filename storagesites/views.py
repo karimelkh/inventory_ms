@@ -17,7 +17,6 @@ def show(req, id):
         site = Site.objects.filter(id=id)
         context = {"site": site[0], "count": get_count(), "username": req.user.username}
         return render(req, "storagesites/show.html", context)
-    print(f"SITE {id} DOES NOT EXISTS")
     return redirect("sites")
 
 
@@ -36,10 +35,10 @@ def index(req):
                 if form.is_valid:
                     form.save()
             elif action == "getUpdateForm":
-                site = get_object_or_404(Site, i=req.POST.get("id"))
+                site = get_object_or_404(Site, id=req.POST.get("id"))
                 update_form = NewSiteForm(instance=site)
-                form_html = render_to_string('main/update_form.html', {'update_form': update_form})
-                return JsonResponse({'form_html': form_html})
+                form_html = render_to_string("main/update_form.html", {"update_form": update_form})
+                return JsonResponse({"form_html": form_html})
     sites = Site.objects.all()
     context = {"sites": sites, "count": get_count(), "username": req.user.username}
     return render(req, "storagesites/index.html", context)

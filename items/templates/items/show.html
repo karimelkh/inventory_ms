@@ -7,7 +7,7 @@
 
 {% block pop-ups %}
 <div style="display:none" id="rm-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white">
-	<form method="post" class="rm-form">
+	<form metdod="post" class="rm-form">
 		{% csrf_token %}
 		<p>
 			Are you sure you want to
@@ -20,7 +20,7 @@
 </div>
 
 <div style="display:none" id="ud-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white">
-	<form method="post" class="rm-form">
+	<form metdod="post" class="rm-form">
 		{% csrf_token %}
 		{{ form.as_div }}
 		<button type="submit" name="ud">Update</button>
@@ -51,7 +51,7 @@
 			</span>
 		</h1>
 		{% if prod.img %}
-		<img width=400 id="item-img" class="cursor-zoom-in" src="{{ prod.img.url }}" alt="{{ prod.img }}" title="{{ prod.img }}">
+		<img widtd=400 id="item-img" class="cursor-zoom-in" src="{{ prod.img.url }}" alt="{{ prod.img }}" title="{{ prod.img }}">
 		{% else %}
 		<span class="w-26 h-60 flex items-center justify-center text-white bg-gray-500">
 			<button class="">
@@ -72,22 +72,26 @@
 		</div>
 	</div>
 	<table class="">
-		<thead>
-			<tr>
-				<th>description</th>
-				<th>quantity</th>
-				<th>supplier</th>
-				<th>category</th>
-				<th>site</th>
-			</tr>
-		</thead>
 		<tbody>
 			<tr>
+				<td>description</td>
 				<td>{{ prod.desc }}</td>
+			</tr>
+			<tr>
+				<td>quantity</td>
 				<td>{{ prod.qty }}</td>
-				<td>{{ prod.supplname }}</td>
-				<td>{{ prod.catname }}</td>
-				<td>{{ prod.sitename }}</td>
+			</tr>
+			<tr>
+				<td>supplier</td>
+				<td>{{ prod.suppl.name }}</td>
+			</tr>
+			<tr>
+				<td>category</td>
+				<td>{{ prod.cat.name }}</td>
+			</tr>
+			<tr>
+				<td>site</td>
+				<td>{{ prod.site.name }}</td>
 			</tr>
 		</tbody>
 	</table>

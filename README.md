@@ -13,10 +13,6 @@
 - fix all update/remove buttons
 - fix `show_item` view: does not work when `save` button clicked
 - delete/update button for users
-- fix `update` buttons for:
-    - sites
-    - categories
-    - suppliers
 - fix the `no` button when deleting
 
 ### feats

@@ -55,8 +55,8 @@ def index(req):
             elif action == "getUpdateForm":
                 item = get_object_or_404(Item, id=req.POST.get("id"))
                 update_form = NewItemForm(instance=item)
-                form_html = render_to_string('main/update_form.html', {'update_form': update_form})
-                return JsonResponse({'form_html': form_html})
+                form_html = render_to_string("main/update_form.html", {"update_form": update_form})
+                return JsonResponse({"form_html": form_html})
     prods = Item.objects.select_related("cat", "suppl", "site").all()
     context = {
             "prod_data": prods,

@@ -6,6 +6,20 @@ Users
 {% endblock %}
 
 {% block pop-ups %}
+<div style="display:none" id="rm-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white">
+    <form method="post" class="rm-form">
+        {% csrf_token %}
+        <p>
+            Are you sure you want to
+            <b>remove</b> the following items:
+        </p>
+        <div id="send-ids"></div>
+        <button type="submit" name="action" value="remove">yes</button>
+    </form>
+	<button>no</button>
+</div>
+
+<div style="display:none" id="ud-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white"></div>
 {% endblock %}
 
 {% block actions %}
@@ -15,6 +29,10 @@ Users
 			Users
 		</h1>
 		<div class="flex">
+            <button id="del-btn" class="px-4 font-semibold text-red-50 bg-red-400">
+                <i class="fa-solid fa-trash-can"></i>
+                <span>delete</span>
+            </button>
 			<a href="{% url 'new_user' %}">
 				<button class="px-4 py-3 flex items-center font-semibold text-white bg-green-800">
 					<i class="fa-solid fa-square-plus w-5"></i>
@@ -67,6 +85,9 @@ Users
 	<table>
 		<thead>
 			<tr>
+				<th>
+					<input id="select-all" type="checkbox">
+				</th>
 				<th>username</th>
 				<th>firstname</th>
 				<th>lastname</th>
@@ -76,11 +97,15 @@ Users
 				<th>gsm</th>
 				<th>joined at</th>
 				<th>active</th>
+                <th class="w-6"></th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for user in users %}
 			<tr class="{% cycle 'bg-white' 'bg-gray-100' %}">
+				<td>
+					<input type="checkbox" name="row" data-name="{{ user.username }}" data-id="{{ user.id }}">
+				</td>
 				<td>
 					<a href="/users/@{{ user.username }}">
 						{{ user.username }}
@@ -113,6 +138,11 @@ Users
 				<td>
 					{{ user.is_active }}
 				</td>
+                <td class="">
+					<button data-id="{{ user.id }}" class="update-btn px-3 py-2 h-fit font-semibold text-blue-800 bg-blue-200">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                </td>
 			</tr>
 			{% endfor %}
 		</tbody>

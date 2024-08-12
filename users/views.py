@@ -1,8 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-# from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from django.template.loader import render_to_string
+from django.shortcuts import get_object_or_404, render, redirect
 
 from utils.count import get_count
 
@@ -11,12 +13,28 @@ from .forms import LoginForm, NewUserForm
 
 
 @login_required
+@csrf_exempt
 def index(req):
-    if req.user.is_authenticated:
-        users = User.objects.all()
-        context = {"users": users, "count": get_count(), "username": req.user.username}
-        return render(req, "users/index.html", context)
-    return redirect("login")
+    if req.method == "POST":
+        if "action" in req.POST:
+            action = req.POST.get("action")
+            if action == "remove":
+                for id in req.POST.getlist("rm-id"):
+                    User.objects.filter(id=id).delete()
+            elif action == "update":
+                user = get_object_or_404(User, id=req.POST.get("id"))
+                form = NewUserForm(req.POST, instance=user)
+                if form.is_valid:
+                    form.save()
+            elif action == "getUpdateForm":
+                user = get_object_or_404(User, id=req.POST.get("id"))
+                update_form = NewUserForm(instance=user)
+                form_html = render_to_string("main/update_form.html", {"update_form": update_form})
+                return JsonResponse({"form_html": form_html})
+
+    users = User.objects.all()
+    context = {"users": users, "count": get_count(), "username": req.user.username}
+    return render(req, "users/index.html", context)
 
 
 @login_required

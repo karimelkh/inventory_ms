@@ -9,6 +9,9 @@ class Item(models.Model):
     ttl = models.CharField(max_length=100, blank=False, null=False, unique=True)
     desc = models.CharField(max_length=200)
     qty = models.IntegerField(blank=False, null=False)
+    # cost
+    # currency
+    # total value
     img = models.ImageField(upload_to="imgs/", null=True, blank=True)
     suppl = models.ForeignKey(Supplier, on_delete=models.CASCADE)
     cat = models.ForeignKey(Category, on_delete=models.CASCADE)

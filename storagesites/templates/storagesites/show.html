@@ -25,7 +25,7 @@
 			</span>
 		</h1>
 		{% if site.img %}
-		<img width=400 id="item-img" class="cursor-zoom-in" src="{{ site.img.url }}" alt="{{ site.img }}" title="{{ site.img }}">
+		<img widtd=400 id="item-img" class="cursor-zoom-in" src="{{ site.img.url }}" alt="{{ site.img }}" title="{{ site.img }}">
 		{% else %}
 		<span class="w-26 h-60 flex items-center justify-center text-white bg-gray-500">
 			<button class="">
@@ -46,17 +46,17 @@
 		</div>
 	</div>
 	<table class="">
-		<thead>
-			<tr>
-				<th>type</th>
-				<th>address</th>
-				<th>phone</th>
-			</tr>
-		</thead>
 		<tbody>
 			<tr>
+				<td>type</td>
 				<td>{{ site.type }}</td>
+			</tr>
+			<tr>
+				<td>address</td>
 				<td>{{ site.addr }}</td>
+			</tr>
+			<tr>
+				<td>phone</td>
 				<td>{{ site.phone }}</td>
 			</tr>
 		</tbody>

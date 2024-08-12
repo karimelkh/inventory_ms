@@ -36,23 +36,29 @@
 		</div>
 	</div>
 	<table class="">
-		<thead>
-			<tr>
-				<th>description</th>
-				<th>email</th>
-				<th>addr</th>
-				<th>website</th>
-				<th>phone</th>
-				<th>is active</th>
-			</tr>
-		</thead>
 		<tbody>
 			<tr>
+				<td>description</td>
 				<td>{{ suppl.desc }}</td>
+			</tr>
+			<tr>
+				<td>email</td>
 				<td>{{ suppl.email }}</td>
+			</tr>
+			<tr>
+				<td>address</td>
 				<td>{{ suppl.addr }}</td>
-				<td>{{ suppl.site }}</td>
+			</tr>
+			<tr>
+				<td>phone</td>
 				<td>{{ suppl.phone }}</td>
+			</tr>
+			<tr>
+				<td>website</td>
+				<td>{{ suppl.site }}</td>
+			</tr>
+			<tr>
+				<td>status</td>
 				<td>
 					{% if suppl.is_active %}
 					<span class="text-green-700">
