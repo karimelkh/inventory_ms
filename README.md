@@ -6,17 +6,13 @@
 
 - change the default home look
 - make some enhancements in `items.views.index` (and for other apps)
-- ailwind problem (not compiling some the classes in `categories` app)
-- delay/lag in loading styles after hiding columns (just in Firefox)
-  - **possible solutions:**
-    - return a json response and generate table in JS
-- fix all update/remove buttons
-- fix `show_item` view: does not work when `save` button clicked
-- delete/update button for users
+- fix tailwind problem (not compiling some the classes in `categories` app)
+- fix `show_item` view: does not work when `save` button clicked (context problem)
 - fix the `no` button when deleting
 
 ### feats
 
+- file uplaod
 - send a message if an item,... was not found when
 requesting it
 - when a user created send an email if it was provided
@@ -48,6 +44,7 @@ use ajax to get them as popups
 - mv all/some items from one site to another
 - recent updates like in the arch [home](archlinux.org)
 - backup
+- pagination
 
 ### others
 
