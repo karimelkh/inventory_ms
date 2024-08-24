@@ -2,10 +2,7 @@
 
 ## issues
 
-- updating images not working
-- The Category could not be changed because the data didn't validate
-- The title of the Site can't be updated
-    - solution: hide the id field
+*(empty)*
 
 ## fixes
 
@@ -15,10 +12,12 @@
 - fix the `no` button when deleting
 - the update operation not working, make the create of users easy
 - use `DO_NOTHING` or `SET_NULL` instead of `CASCADE` in some FKs
+- fix zoom using a jquery plugin
 
 ## feats
 
-- detaile error messages: errors reasons
+- display images if available
+- detail error messages: errors reasons
 - change the default home look
 - make the update button besides the delete button
 - display the number of selected items in tables
@@ -27,7 +26,7 @@
 - table sorting
 - make a tree view for the product and its items
 - make the products app
-- file uplaod
+- file upload
 - send a message if an item,... was not found when
 requesting it
 - when a user created send an email if it was provided
@@ -50,7 +49,7 @@ use ajax to get them as popups
   - `orders`/`ship`: -
   - `notifications`: notify for low stock (...)
   - `settings`: stock settings
-  - `partners` to transfare items to them
+  - `partners` to transfer items to them
 - show a floating menu at a time
 - Bar/QR code support
 - Reporting and Analytics
@@ -66,7 +65,7 @@ use ajax to get them as popups
 - use 2-cols table with no header for displaying
 specific items
 - make errors in the bottom instead of above
-- make different users types and permessions and
+- make different users types and permissions and
 the ability for some users to manage other users
 - make the `img` field fk referencing the table of imgs
 - use django-phonenumber-field
