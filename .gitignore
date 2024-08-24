@@ -19,3 +19,4 @@ static/css/styles.css
 djenv/
 media/
 main/templates/404.html
+db.sqlite3
