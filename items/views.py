@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 
 from utils.count import get_count
 
-from .forms import NewItemForm
+from .forms import NewItemForm, UpdateItemForm
 from .models import Item
 
 
@@ -24,10 +24,10 @@ def show(req, id):
                 form.save()
             return redirect("show_item", id=id)
     if Item.objects.filter(id=id).exists():
-        prod = Item.objects.select_related("cat", "suppl", "site").filter(id=id)
-        form = NewItemForm(instance=item)
+        item = Item.objects.select_related("prod", "cat", "suppl", "site").filter(id=id)
+        form = NewItemForm(instance=item[0])
         context = {
-            "prod": prod[0],
+            "prod": item[0],
             "form": form,
             "count": get_count(),
             "username": req.user.username,
@@ -46,20 +46,22 @@ def index(req):
                 for id in req.POST.getlist("rm-id"):
                     Item.objects.filter(id=id).delete()
             elif action == "update":
-                # the title should not be unique, to FIND a better way to do this
-                item = get_object_or_404(Item, ttl=req.POST.get("ttl"))
-                form = NewItemForm(req.POST, instance=item)
-                if form.is_valid:
-                    form.save()
-                # pass
+                if "id" in req.POST:
+                    item = get_object_or_404(Item, id=req.POST.get("id"))
+                    form = NewItemForm(req.POST, instance=item)
+                    if form.is_valid:
+                        form.save()
+                        messages.success(req, "Update Successed!")
+                else:
+                    messages.error(req, "Update Failed!")
             elif action == "getUpdateForm":
                 item = get_object_or_404(Item, id=req.POST.get("id"))
-                update_form = NewItemForm(instance=item)
+                update_form = UpdateItemForm(instance=item)
                 form_html = render_to_string("main/update_form.html", {"update_form": update_form})
                 return JsonResponse({"form_html": form_html})
-    prods = Item.objects.select_related("cat", "suppl", "site").all()
+    items = Item.objects.select_related("cat", "suppl", "site", "prod").all()
     context = {
-            "prod_data": prods,
+            "items": items,
             "count": get_count(),
             "username": req.user.username,
             }

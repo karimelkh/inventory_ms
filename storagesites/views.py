@@ -7,8 +7,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 
 from utils.count import get_count
 
-from .forms import NewSiteForm
-from .models import Site
+from .forms import NewSiteForm, UpdateSiteForm
+from .models import Site, SiteType
 
 
 @login_required
@@ -30,16 +30,22 @@ def index(req):
                 for id in req.POST.getlist("rm-id"):
                     Site.objects.filter(id=id).delete()
             elif action == "update":
-                site = get_object_or_404(Site, name=req.POST.get("name"))
-                form = NewSiteForm(req.POST, instance=site)
-                if form.is_valid:
-                    form.save()
+                if "id" in req.POST:
+                    site = get_object_or_404(Site, id=req.POST.get('id'))
+                    print(f"new type: {site.type}")
+                    form = UpdateSiteForm(req.POST, instance=site)
+                    if form.is_valid:
+                        form.save()
+                        messages.success(req, "Update Successed!")
+                else:
+                    messages.error(req, "Update Failed!")
             elif action == "getUpdateForm":
                 site = get_object_or_404(Site, id=req.POST.get("id"))
-                update_form = NewSiteForm(instance=site)
+                print(f"old type: {site.type}")
+                update_form = UpdateSiteForm(instance=site)
                 form_html = render_to_string("main/update_form.html", {"update_form": update_form})
                 return JsonResponse({"form_html": form_html})
-    sites = Site.objects.all()
+    sites = Site.objects.select_related("type").all();
     context = {"sites": sites, "count": get_count(), "username": req.user.username}
     return render(req, "storagesites/index.html", context)
 

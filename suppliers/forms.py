@@ -22,3 +22,27 @@ class NewSupplForm(forms.ModelForm):
         }
         help_texts = {}
         error_messages = {}
+
+class UpdateSupplForm(forms.ModelForm):
+    class Meta():
+        model = Supplier
+        fields = [
+                "id", "name", "desc",
+                "email", "phone", "addr",
+                "site", "is_active", "img"
+            ]
+        labels = {
+            "name": "name",
+            "desc": "description",
+            "email": "email",
+            "addr": "address",
+            "phone": "phone",
+            "site": "website",
+            "is_active": "is active",
+            "img": "supplier image"
+            }
+        widgets = {
+                "id": forms.HiddenInput(),
+            }
+        help_texts = {}
+        error_messages = {}

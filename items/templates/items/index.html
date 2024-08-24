@@ -99,34 +99,34 @@ Items
             </tr>
         </thead>
         <tbody>
-            {% for item in prod_data %}
+            {% for i in items %}
             <tr class="{% cycle 'bg-white' 'bg-gray-100' %}">
                 <td>
-                    <input type="checkbox" name="row" data-name="{{ item.ttl }}" data-id="{{ item.id }}">
+                    <input type="checkbox" name="row" data-name="{{ i.ttl }}" data-id="{{ i.id }}">
                 </td>
                 <td id="td-id">
-                    <a href="{% url 'show_item' id=item.id %}">{{ item.id }}</a>
+                    <a href="{% url 'show_item' id=i.id %}">{{ i.id }}</a>
                 </td>
-                <td id="td-ttl">{{ item.ttl }}</td>
-                <td id="td-desc">{{ item.desc }}</td>
-                <td id="td-qty">{{ item.qty }}</td>
+                <td id="td-ttl">{{ i.ttl }}</td>
+                <td id="td-desc">{{ i.desc }}</td>
+                <td id="td-qty">{{ i.qty }}</td>
                 <td id="td-suppl">
-                    <a href="{% url 'show_supplier' id=item.suppl.id %}">
-						{{ item.suppl.name }}
+                    <a href="{% url 'show_supplier' id=i.suppl.id %}">
+						{{ i.suppl.name }}
 					</a>
                 </td>
                 <td id="td-cat">
-                    <a href="{% url 'show_cat' id=item.cat.id %}">
-						{{ item.cat.name }}
+                    <a href="{% url 'show_cat' id=i.cat.id %}">
+						{{ i.cat.name }}
 					</a>
                 </td>
                 <td id="td-site">
-                    <a href="{% url 'show_site' id=item.site.id %}">
-						{{ item.site.name }}
+                    <a href="{% url 'show_site' id=i.site.id %}">
+						{{ i.site.name }}
 					</a>
                 </td>
                 <td class="">
-					<button data-id="{{ item.id }}" class="update-btn px-3 py-2 h-fit font-semibold text-blue-800 bg-blue-200">
+					<button data-id="{{ i.id }}" class="update-btn px-3 py-2 h-fit font-semibold text-blue-800 bg-blue-200">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </button>
                 </td>

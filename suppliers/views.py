@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 
 from utils.count import get_count
 
-from .forms import NewSupplForm
+from .forms import NewSupplForm, UpdateSupplForm
 from .models import Supplier
 
 
@@ -34,14 +34,18 @@ def index(req):
                 for id in req.POST.getlist("rm-id"):
                     Supplier.objects.filter(id=id).delete()
             elif action == "update":
-                s = get_object_or_404(Supplier, id=req.POST.get("id"))
-                form = NewSupplForm(req.POST, instance=s)
-                if form.is_valid:
-                    form.save()
+                if "id" in req.POST:
+                    s = get_object_or_404(Supplier, id=req.POST.get("id"))
+                    form = UpdateSupplForm(req.POST, instance=s)
+                    if form.is_valid:
+                        form.save()
+                        messages.success(req, "Update Successed!")
+                else:
+                    messages.error(req, "Update Failed!")
             elif action == "getUpdateForm":
                 print("getUpdateForm")
                 s = get_object_or_404(Supplier, id=req.POST.get("id"))
-                update_form = NewSupplForm(instance=s)
+                update_form = UpdateSupplForm(instance=s)
                 form_html = render_to_string('main/update_form.html', {'update_form': update_form})
                 return JsonResponse({'form_html': form_html})
     suppls = Supplier.objects.all()

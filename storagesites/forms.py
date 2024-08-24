@@ -15,3 +15,20 @@ class NewSiteForm(forms.ModelForm):
           }
         help_texts = {}
         error_messages = {}
+
+class UpdateSiteForm(forms.ModelForm):
+    class Meta():
+        model = Site
+        fields = [ "id", "name", "phone", "addr", "type", "img" ]
+        labels = {
+              "name": "name",
+              "phone": "phone",
+              "addr": "address",
+              "type": "type",
+              "img": "image",
+          }
+        widgets = {
+                "id": forms.HiddenInput(),
+                }
+        help_texts = {}
+        error_messages = {}

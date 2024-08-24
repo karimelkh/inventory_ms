@@ -103,7 +103,7 @@ Suppliers
 			{% for s in suppls %}
 			<tr class="{% cycle 'bg-white' 'bg-gray-100' %} hover:bg-gray-200 duration-250">
 				<td>
-					<input type="checkbox" name="row" data-name="{{ item.ttl }}" data-id="{{ item.id }}">
+					<input type="checkbox" name="row" data-name="{{ s.name }}" data-id="{{ s.id }}">
 				</td>
 				<td class="p-3 text-sm text-gary-700 text-left">
 					<a href="/suppliers/{{ s.id }}" class="text-blue-500 font-bold hover:underline">

@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from categories.models import Category
 from utils.count import get_count
 
-from .forms import NewCatForm
+from .forms import NewCatForm, UpdateCatForm
 
 
 @login_required
@@ -30,14 +30,17 @@ def index(req):
                 for id in req.POST.getlist("rm-id"):
                     Category.objects.filter(id=id).delete()
             elif action == "update":
-                # the title should not be unique, to FIND a better way to do this
-                cat = get_object_or_404(Category, name=req.POST.get("name"))
-                form = NewCatForm(req.POST, instance=cat)
-                if form.is_valid:
-                    form.save()
+                if "id" in req.POST:
+                    cat = get_object_or_404(Category, id=req.POST.get("id"))
+                    form = UpdateCatForm(req.POST, instance=cat)
+                    if form.is_valid:
+                        form.save()
+                        messages.success(req, "Update Successed!")
+                else:
+                    messages.error(req, "Update Failed!")
             elif action == "getUpdateForm":
                 cat = get_object_or_404(Category, id=req.POST.get("id"))
-                update_form = NewCatForm(instance=cat)
+                update_form = UpdateCatForm(instance=cat)
                 form_html = render_to_string('main/update_form.html', {'update_form': update_form})
                 return JsonResponse({'form_html': form_html})
     cats = Category.objects.all()

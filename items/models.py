@@ -1,9 +1,11 @@
 from django.db import models
+from products.models import Product
 from categories.models import Category
 from suppliers.models import Supplier
 from storagesites.models import Site
 
 
+# TODO: mv cat to product
 class Item(models.Model):
     id = models.CharField(max_length=50, primary_key=True)
     ttl = models.CharField(max_length=100, blank=False, null=False, unique=True)
@@ -11,8 +13,9 @@ class Item(models.Model):
     qty = models.IntegerField(blank=False, null=False)
     # cost
     # currency
-    # total value
+    # total value (to be calculated in the view)
     img = models.ImageField(upload_to="imgs/", null=True, blank=True)
+    prod = models.ForeignKey(Product, on_delete=models.CASCADE)
     suppl = models.ForeignKey(Supplier, on_delete=models.CASCADE)
     cat = models.ForeignKey(Category, on_delete=models.CASCADE)
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
