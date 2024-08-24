@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "livereload",
     "main.apps.MainConfig",
+    "products.apps.ProductsConfig",
     "items.apps.ItemsConfig",
     "users.apps.UsersConfig",
     "categories.apps.CategoriesConfig",

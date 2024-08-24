@@ -1,6 +1,8 @@
 ims/__pycache__/
 main/__pycache__/
 main/migrations/__pycache__/
+products/__pycache__/
+products/migrations/__pycache__/
 items/__pycache__/
 items/migrations/__pycache__/
 users/__pycache__/
