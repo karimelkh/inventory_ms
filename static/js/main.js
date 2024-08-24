@@ -37,12 +37,12 @@ function updateRow()
 			action: "getUpdateForm",
 			id: id
 		},
-		 success: function(res) {
-            console.log("success");
-            if (res.form_html) {
-                $("#ud-pop").html(res.form_html);
-                updatePopUp();
-            }
+		success: function(res) {
+			console.log("success");
+			if (res.form_html) {
+				$("#ud-pop").html(res.form_html);
+				updatePopUp();
+			         }
         },
 		 error: function() { console.log("failure") }
 	});
