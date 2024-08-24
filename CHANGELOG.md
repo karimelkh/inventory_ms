@@ -1,5 +1,14 @@
 # Changelogs
 
+## commit [b0a15ef](https://github.com/karimelkh/inventory_ms/commit/b0a15ef8e46b4365df371136a8f3bee9fc1319a2)
+
+- make an appropriate id for the models
+- enhance the update experience by
+- fix all update issues in index pages
+- make site types a model `SiteType`
+- adding messages when the update succeeds or fails
+- link items and products
+
 ## commit [cfb7f56](https://github.com/karimelkh/inventory_ms/commit/cfb7f56251d3895db34758425bd3c8012ae61f27):
 
 - code enhancements:
