@@ -34,11 +34,17 @@ def index(req):
                     site = get_object_or_404(Site, id=req.POST.get('id'))
                     print(f"new type: {site.type}")
                     form = UpdateSiteForm(req.POST, req.FILES, instance=site)
-                    if form.is_valid:
+                    if form.is_valid():
                         form.save()
                         messages.success(req, "Update Successed!")
-                else:
-                    messages.error(req, "Update Failed!")
+                    else:
+                        if form.errors:
+                            for field, errors in form.errors.items():
+                                for error in errors:
+                                    messages.error(req, f"{field}: {error}")
+                        if form.non_field_errors():
+                            for error in form.non_field_errors():
+                                messages.error(req, error)
             elif action == "getUpdateForm":
                 site = get_object_or_404(Site, id=req.POST.get("id"))
                 print(f"old type: {site.type}")

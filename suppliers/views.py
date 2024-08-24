@@ -37,13 +37,18 @@ def index(req):
                 if "id" in req.POST:
                     s = get_object_or_404(Supplier, id=req.POST.get("id"))
                     form = UpdateSupplForm(req.POST, req.FILES, instance=s)
-                    if form.is_valid:
+                    if form.is_valid():
                         form.save()
                         messages.success(req, "Update Successed!")
-                else:
-                    messages.error(req, "Update Failed!")
+                    else:
+                        if form.errors:
+                            for field, errors in form.errors.items():
+                                for error in errors:
+                                    messages.error(req, f"{field}: {error}")
+                        if form.non_field_errors():
+                            for error in form.non_field_errors():
+                                messages.error(req, error)
             elif action == "getUpdateForm":
-                print("getUpdateForm")
                 s = get_object_or_404(Supplier, id=req.POST.get("id"))
                 update_form = UpdateSupplForm(instance=s)
                 form_html = render_to_string('main/update_form.html', {'update_form': update_form})
