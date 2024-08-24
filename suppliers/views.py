@@ -36,7 +36,7 @@ def index(req):
             elif action == "update":
                 if "id" in req.POST:
                     s = get_object_or_404(Supplier, id=req.POST.get("id"))
-                    form = UpdateSupplForm(req.POST, instance=s)
+                    form = UpdateSupplForm(req.POST, req.FILES, instance=s)
                     if form.is_valid:
                         form.save()
                         messages.success(req, "Update Successed!")

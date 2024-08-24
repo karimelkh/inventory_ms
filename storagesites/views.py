@@ -33,7 +33,7 @@ def index(req):
                 if "id" in req.POST:
                     site = get_object_or_404(Site, id=req.POST.get('id'))
                     print(f"new type: {site.type}")
-                    form = UpdateSiteForm(req.POST, instance=site)
+                    form = UpdateSiteForm(req.POST, req.FILES, instance=site)
                     if form.is_valid:
                         form.save()
                         messages.success(req, "Update Successed!")

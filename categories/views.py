@@ -32,6 +32,7 @@ def index(req):
             elif action == "update":
                 if "id" in req.POST:
                     cat = get_object_or_404(Category, id=req.POST.get("id"))
+                    # form = UpdateCatForm(req.POST, req.FILES, instance=cat)
                     form = UpdateCatForm(req.POST, instance=cat)
                     if form.is_valid:
                         form.save()

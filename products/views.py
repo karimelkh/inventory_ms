@@ -49,7 +49,7 @@ def index(req):
             elif action == "update":
                 if "id" in req.POST:
                     prod = get_object_or_404(Product, id=req.POST.get("id"))
-                    form = NewProdForm(req.POST, instance=prod)
+                    form = NewProdForm(req.POST, req.FILES, instance=prod)
                     if form.is_valid():
                         form.save()
                         messages.success(req, "Update Successed!")
