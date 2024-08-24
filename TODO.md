@@ -6,6 +6,7 @@
 
 ## fixes
 
+- make hide/show columns menu adabtable between pages
 - make some enhancements in `items.views.index` (and for other apps)
 - fix tailwind problem (not compiling some the classes in `categories` app)
 - fix `show_item` view: does not work when `save` button clicked (context problem)
@@ -13,52 +14,60 @@
 - the update operation not working, make the create of users easy
 - use `DO_NOTHING` or `SET_NULL` instead of `CASCADE` in some FKs
 - fix zoom using a jquery plugin
+- fix update and remove buttons in specific pages for and item...
 
 ## feats
 
-- display images if available
-- detail error messages: errors reasons
-- change the default home look
-- make the update button besides the delete button
-- display the number of selected items in tables
-- give dropdown menu a good new look
-- give notifications/messages a new look (+ timeout)
-- table sorting
-- make a tree view for the product and its items
-- make the products app
-- file upload
-- send a message if an item,... was not found when
-requesting it
-- when a user created send an email if it was provided
-- add abort button when updating
-- send a message when a form does not create a new thing
-and the reason
+### technical
+
 - class-based view
-- search
-- add animations to messages
-- make the forms with separated html files and
-use ajax to get them as popups
-- when all the checkbox are unchecked, uncheck the select all one 
-- form help messages
-- make short links like: `i` -> `items`
 - rename files/images after uploading them
-- edit db schema: products/items can have multiple storage sites
-- drag&drop images/attachments [yt](https://www.youtube.com/watch?v=9Xh_ZpFkROI)
 - page 404
 - create the following apps:
   - `orders`/`ship`: -
-  - `notifications`: notify for low stock (...)
   - `settings`: stock settings
   - `partners` to transfer items to them
+- history and system logs
+- backup
+
+### user
+
+- change the default home look
+- display the number of selected items in tables
+- give dropdown menu a good new look
+- table sorting
+- make a tree view for the product and its items
+- file upload
+- when a user created send an email if it was provided
+- search
+- when all the checkbox are unchecked, uncheck the select all one 
 - show a floating menu at a time
+- make short links like: `i` -> `items`
 - Bar/QR code support
 - Reporting and Analytics
 - support mobile
-- history and system logs
+- table pagination
 - mv all/some items from one site to another
 - recent updates like in the arch [home](archlinux.org)
-- backup
-- pagination
+
+### messages
+
+- give notifications/messages a new look (+ timeout)
+- add animations to messages
+- send a message if an item,... was not found when
+requesting it
+- send a message when a form does not create a new thing
+and the reason
+
+### buttons
+
+- make the update button besides the delete button
+- add abort button when updating
+
+### forms
+
+- make the forms with separated html files and
+use ajax to get them as popups
 
 ## others
 
