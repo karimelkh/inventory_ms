@@ -1,15 +1,31 @@
 # TODOs
 
+## issues
+
+- updating images not working
+- The Category could not be changed because the data didn't validate
+- The title of the Site can't be updated
+    - solution: hide the id field
+
 ## fixes
 
-- change the default home look
 - make some enhancements in `items.views.index` (and for other apps)
 - fix tailwind problem (not compiling some the classes in `categories` app)
 - fix `show_item` view: does not work when `save` button clicked (context problem)
 - fix the `no` button when deleting
+- the update operation not working, make the create of users easy
+- use `DO_NOTHING` or `SET_NULL` instead of `CASCADE` in some FKs
 
 ## feats
 
+- detaile error messages: errors reasons
+- change the default home look
+- make the update button besides the delete button
+- display the number of selected items in tables
+- give dropdown menu a good new look
+- give notifications/messages a new look (+ timeout)
+- table sorting
+- make a tree view for the product and its items
 - make the products app
 - file uplaod
 - send a message if an item,... was not found when
@@ -34,7 +50,7 @@ use ajax to get them as popups
   - `orders`/`ship`: -
   - `notifications`: notify for low stock (...)
   - `settings`: stock settings
-  - `partners`
+  - `partners` to transfare items to them
 - show a floating menu at a time
 - Bar/QR code support
 - Reporting and Analytics
