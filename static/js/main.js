@@ -3,6 +3,10 @@
  * this code needs more enhancements amd fixes
  * */
 $(document).ready(function () {
+	const zoom = mediumZoom($(".zoom").toArray(), {
+		margin: 50,
+		background: '#000000bf'
+	});
 	$("#tog-usermenu").click(toggleUserMenu);
 	$("#tog-newmenu").click(toggleNewMenu);
 	$("#tog-browsemenu").click(toggleBrowseMenu);

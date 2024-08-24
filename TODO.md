@@ -13,7 +13,6 @@
 - fix the `no` button when deleting
 - the update operation not working, make the create of users easy
 - use `DO_NOTHING` or `SET_NULL` instead of `CASCADE` in some FKs
-- fix zoom using a jquery plugin
 - fix update and remove buttons in specific pages for and item...
 
 ## feats
@@ -87,8 +86,7 @@ the ability for some users to manage other users
   - `vary_on_headers`
 - make `SITE_TYPES` a table instead of a var
 - apply some jquery plugins:
-  - [EasyZoom](i-like-robots.github.io/EasyZoom)
-  - check the [repo](github.com/petk/awesome-jquery)
+  - check the [repo](https://github.com/petk/awesome-jquery)
 - add more to the messaging feature
 - think about moving to bootstrap
 or use it with tailwindcss
