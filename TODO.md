@@ -81,7 +81,7 @@ and the reason
 
 ### forms
 
-- make the forms with separated html files and
+- make the (new, delete, update) forms with separated html files and
 use ajax to get them as popups
 
 ## Ideas for home page
