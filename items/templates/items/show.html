@@ -19,19 +19,7 @@
 	</form>
 </div>
 
-<div style="display:none" id="ud-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white">
-	<form metdod="post" class="rm-form">
-		{% csrf_token %}
-		{{ form.as_div }}
-		<button type="submit" name="ud">Update</button>
-	</form>
-</div>
-
-{% if prod.img %}
-<div style="display:none" id="img-modal" class="absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4">
-	<img class="cursor-zoom-out" src="{{ prod.img.url }}" alt="{{ prod.img }}" title="{{ prod.img }}">
-</div>
-{% endif %}
+<div style="display:none" id="ud-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white"></div>
 {% endblock %}
 
 {% block main %}
@@ -65,7 +53,7 @@
 				<i class="fa-solid fa-trash-can"></i>
 				Remove
 			</button>
-			<button id="ud-item" class="p-2 h-fit font-semibold text-blue-800 bg-blue-200">
+			<button id="ud-item" class="update-btn p-2 h-fit font-semibold text-blue-800 bg-blue-200">
 				<i class="fa-solid fa-pen-to-square"></i>
 				Update
 			</button>

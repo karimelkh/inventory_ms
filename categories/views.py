@@ -12,13 +12,32 @@ from .forms import NewCatForm, UpdateCatForm
 
 
 @login_required
+@csrf_exempt
 def show(req, id):
-    if Category.objects.filter(id=id).exists():
-        cat = Category.objects.filter(id=id)
-        context = {"cat": cat[0], "count": get_count(), "username": req.user.username}
-        return render(req, "categories/show.html", context)
-    return redirect("categories")
-
+    cat = get_object_or_404(Category, id=id)
+    if req.method == "POST" and "action" in req.POST:
+        action = req.POST.get("action")
+        if action == "delete":
+            Category.objects.filter(id=id).delete()
+            return redirect("cats")
+        if action == "update":
+            form = UpdateCatForm(req.POST, req.FILES, instance=cat)
+            if form.is_valid():
+                form.save()
+            return redirect("show_cat", id=id)
+        elif action == "getUpdateForm":
+            cat = get_object_or_404(Category, id=id)
+            update_form = UpdateCatForm(instance=cat)
+            form_html = render_to_string("main/update_form.html", {"update_form": update_form})
+            return JsonResponse({"form_html": form_html})
+    form = UpdateCatForm(instance=cat)
+    context = {
+        "cat": cat,
+        "form": form,
+        "count": get_count(),
+        "username": req.user.username,
+    }
+    return render(req, "categories/show.html", context)
 
 @login_required
 @csrf_exempt

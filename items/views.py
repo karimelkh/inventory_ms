@@ -12,20 +12,27 @@ from .models import Item
 
 
 @login_required
+@csrf_exempt
 def show(req, id):
     item = get_object_or_404(Item, id=id)
-    if req.method == "POST":
-        if "rm" in req.POST:
+    if req.method == "POST" and "action" in req.POST:
+        action = req.POST.get("action")
+        if action == "delete":
             Item.objects.filter(id=id).delete()
             return redirect("items")
-        elif "ud" in req.POST:
-            form = NewItemForm(req.POST, instance=item)
-            if form.is_valid:
+        elif action == "update":
+            form = UpdateItemForm(req.POST, req.FILES, instance=item)
+            if form.is_valid():
                 form.save()
             return redirect("show_item", id=id)
+        elif action == "getUpdateForm":
+            item = get_object_or_404(Item, id=id)
+            update_form = UpdateItemForm(instance=item)
+            form_html = render_to_string("main/update_form.html", {"update_form": update_form})
+            return JsonResponse({"form_html": form_html})
     if Item.objects.filter(id=id).exists():
         item = Item.objects.select_related("prod", "cat", "suppl", "site").filter(id=id)
-        form = NewItemForm(instance=item[0])
+        form = UpdateItemForm(instance=item[0])
         context = {
             "prod": item[0],
             "form": form,

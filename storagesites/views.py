@@ -12,13 +12,32 @@ from .models import Site, SiteType
 
 
 @login_required
+@csrf_exempt
 def show(req, id):
-    if Site.objects.filter(id=id).exists():
-        site = Site.objects.filter(id=id)
-        context = {"site": site[0], "count": get_count(), "username": req.user.username}
-        return render(req, "storagesites/show.html", context)
-    return redirect("sites")
-
+    site = get_object_or_404(Site, id=id)
+    if req.method == "POST" and "action" in req.POST:
+        action = req.POST.get("action")
+        if action == "delete":
+            Site.objects.filter(id=id).delete()
+            return redirect("sites")
+        if action == "update":
+            form = UpdateSiteForm(req.POST, req.FILES, instance=site)
+            if form.is_valid():
+                form.save()
+            return redirect("show_site", id=id)
+        elif action == "getUpdateForm":
+            site = get_object_or_404(Site, id=id)
+            update_form = UpdateSiteForm(instance=site)
+            form_html = render_to_string("main/update_form.html", {"update_form": update_form})
+            return JsonResponse({"form_html": form_html})
+    form = UpdateSiteForm(instance=site)
+    context = {
+        "site": site,
+        "form": form,
+        "count": get_count(),
+        "username": req.user.username,
+    }
+    return render(req, "storagesites/show.html", context)
 
 @login_required
 @csrf_exempt

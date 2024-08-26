@@ -12,17 +12,31 @@ from .models import Supplier
 
 
 @login_required
+@csrf_exempt
 def show(req, id):
-    if Supplier.objects.filter(id=id).exists():
-        suppl = Supplier.objects.filter(id=id)
-        context = {
-            "suppl": suppl[0],
-            "count": get_count(),
-            "username": req.user.username,
-        }
-        return render(req, "suppliers/show.html", context)
-    return redirect("suppliers")
-
+    suppl = get_object_or_404(Supplier, id=id)
+    if req.method == "POST" and "action" in req.POST:
+        action = req.POST.get("action")
+        if action == "delete":
+            Supplier.objects.filter(id=id).delete()
+            return redirect("suppliers")
+        if action == "update":
+            form = UpdateSupplForm(req.POST, req.FILES, instance=suppl)
+            if form.is_valid():
+                form.save()
+            return redirect("show_supplier", id=id)
+        elif action == "getUpdateForm":
+            update_form = UpdateSupplForm(instance=suppl)
+            form_html = render_to_string("main/update_form.html", {"update_form": update_form})
+            return JsonResponse({"form_html": form_html})
+    form = UpdateSupplForm(instance=suppl)
+    context = {
+        "suppl": suppl,
+        "form": form,
+        "count": get_count(),
+        "username": req.user.username,
+    }
+    return render(req, "suppliers/show.html", context)
 
 @login_required
 @csrf_exempt

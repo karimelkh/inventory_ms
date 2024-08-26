@@ -12,28 +12,32 @@ from .models import Product
 
 
 @login_required
+@csrf_exempt
 def show(req, id):
     prod = get_object_or_404(Product, id=id)
-    if req.method == "POST":
-        if "rm" in req.POST:
+    if req.method == "POST" and "action" in req.POST:
+        action = req.POST.get("action")
+        if action == "delete":
             Product.objects.filter(id=id).delete()
             return redirect("prods")
-        elif "ud" in req.POST:
-            form = NewProdForm(req.POST, instance=prod)
+        if action == "update":
+            form = UpdateProdForm(req.POST, req.FILES, instance=prod)
             if form.is_valid():
                 form.save()
             return redirect("show_prod", id=id)
-    if Product.objects.filter(id=id).exists():
-        prod = Product.objects.filter(id=id)
-        form = NewProdForm(instance=prod[0])
-        context = {
-            "prod": prod[0],
-            "form": form,
-            "count": get_count(),
-            "username": req.user.username,
-        }
-        return render(req, "products/show.html", context)
-    return redirect("prods")
+        elif action == "getUpdateForm":
+            prod = get_object_or_404(Product, id=id)
+            update_form = UpdateProdForm(instance=prod)
+            form_html = render_to_string("main/update_form.html", {"update_form": update_form})
+            return JsonResponse({"form_html": form_html})
+    form = UpdateProdForm(instance=prod)
+    context = {
+        "prod": prod,
+        "form": form,
+        "count": get_count(),
+        "username": req.user.username,
+    }
+    return render(req, "products/show.html", context)
 
 
 @login_required
