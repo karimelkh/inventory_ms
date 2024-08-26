@@ -14,7 +14,7 @@
 - fix the `no` button when deleting
 - the update operation not working, make the create of users easy
 - use `DO_NOTHING` or `SET_NULL` instead of `CASCADE` in some FKs
-- fix update and remove buttons in specific pages for and item...
+- fix delete btns
 
 ## feats
 
