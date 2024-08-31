@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.template.loader import render_to_string
@@ -14,7 +15,10 @@ from .models import Product
 @login_required
 @csrf_exempt
 def show(req, id):
-    prod = get_object_or_404(Product, id=id)
+    prod = get_object_or_404(
+        Product.objects.annotate(item_count=Count("item")),
+        id=id
+    )
     if req.method == "POST" and "action" in req.POST:
         action = req.POST.get("action")
         if action == "delete":
@@ -26,7 +30,6 @@ def show(req, id):
                 form.save()
             return redirect("show_prod", id=id)
         elif action == "getUpdateForm":
-            prod = get_object_or_404(Product, id=id)
             update_form = UpdateProdForm(instance=prod)
             form_html = render_to_string("main/update_form.html", {"update_form": update_form})
             return JsonResponse({"form_html": form_html})
@@ -73,7 +76,7 @@ def index(req):
                 update_form = UpdateProdForm(instance=prod)
                 form_html = render_to_string("main/update_form.html", {"update_form": update_form})
                 return JsonResponse({"form_html": form_html})
-    prods = Product.objects.all()
+    prods = Product.objects.annotate(item_count=Count("item"))
     context = {
             "prods": prods,
             "count": get_count(),

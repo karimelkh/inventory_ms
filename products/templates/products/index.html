@@ -75,6 +75,7 @@ Products
                 <th id="th-ttl" class="w-22">Title</th>
                 <th id="th-desc">Description</th>
                 <th>Category</th>
+				<th>N.O. Items</th>
                 <th class="w-6"></th>
             </tr>
         </thead>
@@ -90,6 +91,7 @@ Products
                 <td id="td-ttl">{{ p.ttl }}</td>
                 <td id="td-desc">{{ p.desc }}</td>
                 <td>{{ p.cat }}</td>
+				<td>{{ p.item_count }}</td>
                 <td class="">
 					<button data-id="{{ p.id }}" id="update-btn" class="px-3 py-2 h-fit font-semibold text-blue-800 bg-blue-200">
                         <i class="fa-solid fa-pen-to-square"></i>
