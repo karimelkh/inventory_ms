@@ -2,10 +2,11 @@
 
 ## issues
 
-*(empty)*
+- issues with hiding forms and pop-ups
 
 ## fixes
 
+- fix delete btn in index pages
 - make hide/show columns menu adaptable between pages
 - make some enhancements in `items.views.index` (and for other apps)
 - fix tailwind problem (not compiling some the classes in `categories` app)

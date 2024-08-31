@@ -26,9 +26,12 @@ def show(req, id):
                 form.save()
             return redirect("show_site", id=id)
         elif action == "getUpdateForm":
-            site = get_object_or_404(Site, id=id)
             update_form = UpdateSiteForm(instance=site)
             form_html = render_to_string("main/update_form.html", {"update_form": update_form})
+            return JsonResponse({"form_html": form_html})
+        elif action == "getDelConfirm":
+            message = f"Are you sure you want to delete: <b>{site.name}</b> ?"
+            form_html = render_to_string("main/delete_form.html", {"confirm_message": message})
             return JsonResponse({"form_html": form_html})
     form = UpdateSiteForm(instance=site)
     context = {

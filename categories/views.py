@@ -26,9 +26,12 @@ def show(req, id):
                 form.save()
             return redirect("show_cat", id=id)
         elif action == "getUpdateForm":
-            cat = get_object_or_404(Category, id=id)
             update_form = UpdateCatForm(instance=cat)
             form_html = render_to_string("main/update_form.html", {"update_form": update_form})
+            return JsonResponse({"form_html": form_html})
+        elif action == "getDelConfirm":
+            message = f"Are you sure you want to delete: <b>{cat.name}</b> ?"
+            form_html = render_to_string("main/delete_form.html", {"confirm_message": message})
             return JsonResponse({"form_html": form_html})
     form = UpdateCatForm(instance=cat)
     context = {

@@ -5,23 +5,6 @@
 {{ prod.ttl }}
 {% endblock %}
 
-{% block pop-ups %}
-<div style="display:none" id="rm-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white">
-	<form metdod="post" class="rm-form">
-		{% csrf_token %}
-		<p>
-			Are you sure you want to
-			<b>remove</b> Item NO.
-			<b>{{ prod.prod_id }}</b> ?
-			<button type="submit" name="rm">yes</button>
-			<button>no</button>
-		</p>
-	</form>
-</div>
-
-<div style="display:none" id="ud-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white"></div>
-{% endblock %}
-
 {% block main %}
 <section class="container mx-auto p-5 bg-white rounded-md">
 	<div class="mb-10 grid grid-cols-3 gap-8">
@@ -33,7 +16,7 @@
 			<br>
 			<span>
 				{{ prod.ttl }}
-			</span>
+		</span>
 			<span id="to_cpy" class="cursor-pointer text-blue-700 duration-300 hover:text-blue-900">
 				&num;{{ prod.id }}
 			</span>
@@ -49,11 +32,11 @@
 		</span>
 		{% endif %}
 		<div class="flex gap-3">
-			<button id="rm-item" class="p-2 h-fit font-semibold text-red-800 bg-red-200">
+			<button id="delete-btn" class="p-2 h-fit font-semibold text-red-800 bg-red-200">
 				<i class="fa-solid fa-trash-can"></i>
-				Remove
+				Delete
 			</button>
-			<button id="ud-item" class="cursor-pointer p-2 h-fit font-semibold text-blue-800 bg-blue-200">
+			<button id="update-btn" class="cursor-pointer p-2 h-fit font-semibold text-blue-800 bg-blue-200">
 				<i class="fa-solid fa-pen-to-square"></i>
 				Update
 			</button>

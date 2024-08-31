@@ -26,14 +26,18 @@ def show(req, id):
                 form.save()
             return redirect("show_item", id=id)
         elif action == "getUpdateForm":
-            item = get_object_or_404(Item, id=id)
             update_form = UpdateItemForm(instance=item)
             form_html = render_to_string("main/update_form.html", {"update_form": update_form})
+            return JsonResponse({"form_html": form_html})
+        if action == "getDelConfirm":
+            message = f"Are you sure you want to delete: <b>{item.ttl}</b> ?"
+            form_html = render_to_string("main/delete_form.html", {"confirm_message": message})
             return JsonResponse({"form_html": form_html})
     if Item.objects.filter(id=id).exists():
         item = Item.objects.select_related("prod", "cat", "suppl", "site").filter(id=id)
         form = UpdateItemForm(instance=item[0])
         context = {
+             # TODO: change prod to item
             "prod": item[0],
             "form": form,
             "count": get_count(),

@@ -107,7 +107,7 @@ Users
 					<input type="checkbox" name="row" data-name="{{ user.username }}" data-id="{{ user.id }}">
 				</td>
 				<td>
-					<a href="/users/@{{ user.username }}">
+					<a href="{% url 'show_user' username=user.username %}">
 						{{ user.username }}
 					</a>
 				</td>
