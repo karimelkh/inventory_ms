@@ -54,7 +54,6 @@ def index(req):
             elif action == "update":
                 if "id" in req.POST:
                     site = get_object_or_404(Site, id=req.POST.get('id'))
-                    print(f"new type: {site.type}")
                     form = UpdateSiteForm(req.POST, req.FILES, instance=site)
                     if form.is_valid():
                         form.save()
@@ -69,7 +68,6 @@ def index(req):
                                 messages.error(req, error)
             elif action == "getUpdateForm":
                 site = get_object_or_404(Site, id=req.POST.get("id"))
-                print(f"old type: {site.type}")
                 update_form = UpdateSiteForm(instance=site)
                 form_html = render_to_string("main/update_form.html", {"update_form": update_form})
                 return JsonResponse({"form_html": form_html})

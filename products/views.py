@@ -48,7 +48,6 @@ def show(req, id):
 @csrf_exempt
 def index(req):
     if req.method == "POST":
-        print(f"Entire POST data: {req.POST}")
         if "action" in req.POST:
             action = req.POST.get("action")
             if action == "remove":
