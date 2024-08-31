@@ -2,11 +2,10 @@
 
 ## issues
 
-- issues with hiding forms and pop-ups
+*empty*
 
 ## fixes
 
-- fix delete btn in index pages
 - make hide/show columns menu adaptable between pages
 - make some enhancements in `items.views.index` (and for other apps)
 - fix tailwind problem (not compiling some the classes in `categories` app)
@@ -15,7 +14,6 @@
 - fix the `no` button when deleting
 - the update operation not working, make the create of users easy
 - use `DO_NOTHING` or `SET_NULL` instead of `CASCADE` in some FKs
-- fix delete btns
 
 ## feats
 
@@ -25,9 +23,9 @@
 - rename files/images after uploading them
 - page 404
 - create the following apps:
-  - `orders`/`ship`: -
-  - `settings`: stock settings
-  - `partners` to transfer items to them
+    - `orders`/`ship`: -
+    - `settings`: stock settings
+    - `partners` to transfer items to them
 - history and system logs
 - backup
 - find a way to use csrf token properly without using `csrf_exempt` decorator
@@ -40,6 +38,12 @@ the ability for some users to manage other users
 
 ### user
 
+- handle the case where the added thing has same values (id, title, category, ...)
+as an existing record
+    - maybe asking for merge is the best way
+- upload data via a text/csv file
+- add links to suppliers/categories/... in show pages
+- work on the html titles attributes (like in item currency, ...)
 - when requesting data using ajax, fill the divs with loading animation first
 - change the default home look
 - display the number of selected items in tables
@@ -59,12 +63,12 @@ the ability for some users to manage other users
 - mv all/some items from one site to another
 - recent updates like in the arch [home](archlinux.org)
 - discover decorators that comes with django:
-  - `user_passes_test`
-  - `require_http_methods`
-  - `cache_page`
-  - `vary_on_headers`
+    - `user_passes_test`
+    - `require_http_methods`
+    - `cache_page`
+    - `vary_on_headers`
 - apply some jquery plugins:
-  - check the [repo](https://github.com/petk/awesome-jquery)
+    - check the [repo](https://github.com/petk/awesome-jquery)
 
 ### messages
 
