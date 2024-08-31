@@ -11,10 +11,11 @@ class NewItemForm(forms.ModelForm):
             "ttl",
             "desc",
             "qty",
+            "price",
+            "currency",
             "img",
             "prod",
             "suppl",
-            "cat",
             "site",
         ]
         labels = {
@@ -22,10 +23,11 @@ class NewItemForm(forms.ModelForm):
             "ttl": "title",
             "desc": "description",
             "qty": "stock",
+            "price": "price",
+            "currency": "currency",
             "img": "image",
             "prod": "product",
             "suppl": "supplier",
-            "cat": "category",
             "site": "site",
         }
         help_texts = {}
@@ -39,20 +41,22 @@ class UpdateItemForm(forms.ModelForm):
             "ttl",
             "desc",
             "qty",
+            "price",
+            "currency",
             "img",
             "prod",
             "suppl",
-            "cat",
             "site",
         ]
         labels = {
             "ttl": "title",
             "desc": "description",
             "qty": "stock",
+            "price": "price",
+            "currency": "currency",
             "img": "image",
             "prod": "product",
             "suppl": "supplier",
-            "cat": "category",
             "site": "site",
         }
         widgets = {

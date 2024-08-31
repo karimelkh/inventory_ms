@@ -10,12 +10,14 @@ class NewProdForm(forms.ModelForm):
                 "id",
                 "ttl",
                 "desc",
+                "cat",
                 "img",
                 ]
         labels = {
                 "id": "id",
                 "ttl": "title",
                 "desc": "description",
+                "cat": "category",
                 "img": "image",
                 }
         widgets = {}
@@ -30,11 +32,13 @@ class UpdateProdForm(forms.ModelForm):
                 "id",
                 "ttl",
                 "desc",
+                "cat",
                 "img",
                 ]
         labels = {
                 "ttl": "title",
                 "desc": "description",
+                "cat": "category",
                 "img": "image",
                 }
         widgets = {

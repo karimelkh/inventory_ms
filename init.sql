@@ -1,15 +1,17 @@
-insert into products_product (ttl, desc, img, id)
-values
-('chair', 'used to seat', 'imgs/chair_h6pQLPi.jpeg', 'p001'),
-('table', 'used to eat on it', '', 'p002'),
-('sardine', 'none', '', 'p003'),
-('laptop', 'u r on a one right now', '', 'p004'),
-('sneakers', 'none', '', 'p005');
-
 insert into categories_category (id, clr, desc, name)
 values
 ('c001', 'red', 'none', 'solid'),
 ('c002', 'green', 'none', 'food');
+
+
+insert into products_product (ttl, desc, img, id, cat_id)
+values
+('chair', 'used to seat', 'imgs/chair_h6pQLPi.jpeg', 'p001', 'c001'),
+('table', 'used to eat on it', '', 'p002', 'c002'),
+('sardine', 'none', '', 'p003', 'c001'),
+('laptop', 'u r on a one right now', '', 'p004', 'c002'),
+('sneakers', 'none', '', 'p005', 'c002');
+
 
 insert into storagesites_sitetype (name)
 values
@@ -19,6 +21,7 @@ values
 ('Cold storage'),
 ('Smart'),
 ('Distribution Center');
+
 
 insert into storagesites_site (id, addr, img, name, type_id, phone)
 values
@@ -35,21 +38,20 @@ values
 ('s003', false, 'safi', 'none', 'joshuagross@example.net', '', 'ocp', 'https://www.smith-jackson.org/', '0636363642');
 
 
-insert into items_item (id, img, desc, qty, ttl, cat_id, site_id, suppl_id, prod_id)
+insert into items_item (id, img, desc, qty, ttl, site_id, suppl_id, prod_id, currency, price)
 values
-('i001', '', 'none', 10, 'chair', 'c001', 's001', 's001', 'p001'),
-('i002', '', 'none', 40, 'laptop', 'c002', 's002', 's002', 'p002'),
-('i003', '', 'none', 60, 'pc case', 'c001', 's003', 's003', 'p003'),
-('i004', '', 'none', 6, 'table', 'c002', 's004', 's001', 'p004'),
-('i005', '', 'none', 190, 'cable', 'c001', 's002', 's002', 'p005'),
-('i006', '', 'none', 300, 'book', 'c002', 's002', 's003', 'p001'),
-('i007', '', 'none', 200, 'notebook', 'c001', 's003', 's001', 'p002'),
-('i008', '', 'none', 1100, 'sardine', 'c002', 's004', 's002', 'p003'),
-('i009', '', 'none', 1000, 'indomi', 'c001', 's001', 's003', 'p004'),
-('i010', '', 'none', 150, 'momo', 'c002', 's002', 's001', 'p005'),
-('i011', '', 'none', 120, 'mirindina', 'c001', 's002', 's002', 'p001'),
-('i012', '', 'none', 10000, 'kabaila', 'c002', 's003', 's003', 'p005');
-
+('i001', '', 'none', 10,	'chair',	's001', 's001', 'p001', 'MAD', 0),
+('i002', '', 'none', 40,	'laptop',	's002', 's002', 'p002', 'MAD', 0),
+('i003', '', 'none', 60,	'pc case',	's003', 's003', 'p003', 'MAD', 0),
+('i004', '', 'none', 6,		'table',	's004', 's001', 'p004', 'MAD', 0),
+('i005', '', 'none', 190,	'cable',	's002', 's002', 'p005', 'MAD', 0),
+('i006', '', 'none', 300,	'book',		's002', 's003', 'p001', 'MAD', 0),
+('i007', '', 'none', 200,	'notebook',	's003', 's001', 'p002', 'MAD', 0),
+('i008', '', 'none', 1100,	'sardine',	's004', 's002', 'p003', 'MAD', 0),
+('i009', '', 'none', 1000,	'indomi',	's001', 's003', 'p004', 'MAD', 0),
+('i010', '', 'none', 150, 	'momo',		's002', 's001', 'p005', 'MAD', 0),
+('i011', '', 'none', 120,	'mirindina','s002', 's002', 'p001', 'MAD', 0),
+('i012', '', 'none', 10000,	'kabaila',	's003', 's003', 'p005', 'MAD', 0);
 
 insert into users_user
 values

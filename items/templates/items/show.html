@@ -1,8 +1,9 @@
 {% extends 'main/base.html' %}
 {% load static %}
+{% load custom_filters %}
 
 {% block title %}
-{{ prod.ttl }}
+{{ item.ttl }}
 {% endblock %}
 
 {% block main %}
@@ -15,14 +16,14 @@
 			</span>
 			<br>
 			<span>
-				{{ prod.ttl }}
+				{{ item.ttl }}
 			</span>
 			<span id="to_cpy" class="cursor-pointer text-blue-700 duration-300 hover:text-blue-900">
-				&num;{{ prod.id }}
+				&num;{{ item.id }}
 			</span>
 		</h1>
-		{% if prod.img %}
-		<img class="zoom" src="{{ prod.img.url }}" alt="" />
+		{% if item.img %}
+		<img class="zoom" src="{{ item.img.url }}" alt="" />
 		{% else %}
 		<span class="w-26 h-60 flex items-center justify-center text-white bg-gray-500">
 			<button class="">
@@ -46,23 +47,33 @@
 		<tbody>
 			<tr>
 				<td>description</td>
-				<td>{{ prod.desc }}</td>
+				<td>{{ item.desc }}</td>
 			</tr>
 			<tr>
 				<td>quantity</td>
-				<td>{{ prod.qty }}</td>
+				<td>{{ item.qty }}</td>
+			</tr>
+			<tr>
+				<td>price</td>
+				<td>{{ item.price }}</td>
+			</tr>
+			{% with total_price=item.price|multiply:item.qty %}
+			<tr>
+				<td>total price</td>
+				<td>{{ total_price }}</td>
+			</tr>
+			{% endwith %}
+			<tr>
+				<td>currency</td>
+				<td>{{ item.currency }}</td>
 			</tr>
 			<tr>
 				<td>supplier</td>
-				<td>{{ prod.suppl.name }}</td>
-			</tr>
-			<tr>
-				<td>category</td>
-				<td>{{ prod.cat.name }}</td>
+				<td>{{ item.suppl.name }}</td>
 			</tr>
 			<tr>
 				<td>site</td>
-				<td>{{ prod.site.name }}</td>
+				<td>{{ item.site.name }}</td>
 			</tr>
 		</tbody>
 	</table>

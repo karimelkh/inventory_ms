@@ -34,11 +34,10 @@ def show(req, id):
             form_html = render_to_string("main/delete_form.html", {"confirm_message": message})
             return JsonResponse({"form_html": form_html})
     if Item.objects.filter(id=id).exists():
-        item = Item.objects.select_related("prod", "cat", "suppl", "site").filter(id=id)
+        item = Item.objects.select_related("prod", "suppl", "site").filter(id=id)
         form = UpdateItemForm(instance=item[0])
         context = {
-             # TODO: change prod to item
-            "prod": item[0],
+            "item": item[0],
             "form": form,
             "count": get_count(),
             "username": req.user.username,
@@ -76,7 +75,7 @@ def index(req):
                 update_form = UpdateItemForm(instance=item)
                 form_html = render_to_string("main/update_form.html", {"update_form": update_form})
                 return JsonResponse({"form_html": form_html})
-    items = Item.objects.select_related("cat", "suppl", "site", "prod").all()
+    items = Item.objects.select_related("suppl", "site", "prod").all()
     context = {
             "items": items,
             "count": get_count(),
