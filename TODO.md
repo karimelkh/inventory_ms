@@ -2,10 +2,11 @@
 
 ## issues
 
-*(empty)*
+- issues with hiding forms and pop-ups
 
 ## fixes
 
+- fix delete btn in index pages
 - make hide/show columns menu adaptable between pages
 - make some enhancements in `items.views.index` (and for other apps)
 - fix tailwind problem (not compiling some the classes in `categories` app)
@@ -81,7 +82,7 @@ and the reason
 
 ### forms
 
-- make the forms with separated html files and
+- make the (new, delete, update) forms with separated html files and
 use ajax to get them as popups
 
 ## Ideas for home page

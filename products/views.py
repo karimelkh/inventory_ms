@@ -30,6 +30,10 @@ def show(req, id):
             update_form = UpdateProdForm(instance=prod)
             form_html = render_to_string("main/update_form.html", {"update_form": update_form})
             return JsonResponse({"form_html": form_html})
+        elif action == "getDelConfirm":
+            message = f"Are you sure you want to delete: <b>{prod.ttl}</b>?"
+            form_html = render_to_string("main/delete_form.html", {"confirm_message": message})
+            return JsonResponse({"form_html": form_html})
     form = UpdateProdForm(instance=prod)
     context = {
         "prod": prod,

@@ -5,23 +5,6 @@
 Suppliers
 {% endblock %}
 
-{% block pop-ups %}
-<div style="display:none" id="rm-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white">
-    <form method="post" class="rm-form">
-        {% csrf_token %}
-        <p>
-            Are you sure you want to
-            <b>remove</b> the following items:
-        </p>
-        <div id="send-ids"></div>
-        <button type="submit" name="action" value="remove">yes</button>
-    </form>
-	<button>no</button>
-</div>
-
-<div style="display:none" id="ud-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white"></div>
-{% endblock %}
-
 {% block actions %}
 <section class="mb-10 px-10 py-2 bg-white flex flex-col">
 	<div class="flex items-center justify-between">
@@ -33,7 +16,7 @@ Suppliers
                 <i class="fa-solid fa-trash-can"></i>
                 <span>delete</span>
             </button>
-			<a href="/suppliers/new/">
+			<a href="{% url 'new_supplier' %}">
 				<button class="px-4 py-3 flex items-center font-semibold text-white bg-green-800">
 					<i class="fa-solid fa-square-plus w-5"></i>
 					<span class="ml-3">New Supplier</span>
@@ -106,7 +89,7 @@ Suppliers
 					<input type="checkbox" name="row" data-name="{{ s.name }}" data-id="{{ s.id }}">
 				</td>
 				<td class="p-3 text-sm text-gary-700 text-left">
-					<a href="/suppliers/{{ s.id }}" class="text-blue-500 font-bold hover:underline">
+					<a href="{% url 'show_supplier' id=s.id %}" class="text-blue-500 font-bold hover:underline">
 						{{ s.id }}
 					</a>
 				</td>
@@ -148,7 +131,7 @@ Suppliers
 					{% endif %}
 				</td>
 				<td class="">
-					<button data-id="{{ s.id }}" class="update-btn px-3 py-2 h-fit font-semibold text-blue-800 bg-blue-200">
+					<button data-id="{{ s.id }}" id="update-btn" class="px-3 py-2 h-fit font-semibold text-blue-800 bg-blue-200">
 						<i class="fa-solid fa-pen-to-square"></i>
 					</button>
 				</td>

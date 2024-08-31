@@ -1,7 +1,11 @@
 /*
  * TODO: enhance code
  * this code needs more enhancements amd fixes
+ * to optimize and simplify the code experience
  * */
+// vars goes here
+// let var = "value";
+
 $(document).ready(function () {
 	const zoom = mediumZoom($(".zoom").toArray(), {
 		margin: 50,
@@ -13,21 +17,41 @@ $(document).ready(function () {
 	$("#tog-colsmenu").click(toggleColsMenu);
 	$("input[name='col']").on("change", updateTable);
 	$("#to_cpy").click(copyToClip);
-	// $("#rm-item").click(removeItemPopUp);
-	$("#ud-item").click(updatePopUp);
 	$("#item-img").click(zoomInImg);
 	$("#modal-img > img").click(zoomOutImg);
 	$("#overlay, #img-modal, #modal-img > img").click(zoomOutImg);
 	$("#overlay, form.rm-form button").click(hideRemoveForm);
-	// $("#overlay, form.ud-form button").click(hideUpdateForm);
 	$("input#select-all").on("change", ToggleRows);
 	$("button#del-btn").click(delRows);
-	$("button.update-btn").click(updateRow);
+	$("button#update-btn").click(updateRow);
+	$("button#delete-btn").click(DeleteRecord);
 });
 
-function updatePopUp() {
-	$("#ud-pop").show();
+function showPopUp()
+{
+	$("#pop-up").show();
 	$("#overlay").show();
+}
+
+function DeleteRecord()
+{
+	$.ajax({
+		method: "POST",
+		url: "",
+		contentType: "application/x-www-form-urlencoded",
+		data: {
+			action: "getDelConfirm",
+			//id: id
+		},
+		success: function(res) {
+			console.log("success");
+			if (res.form_html) {
+				$("#pop-up").html(res.form_html);
+				showPopUp();
+			}
+        },
+		 error: function() { console.log("failure") }
+	});
 }
 
 function updateRow()
@@ -44,9 +68,9 @@ function updateRow()
 		success: function(res) {
 			console.log("success");
 			if (res.form_html) {
-				$("#ud-pop").html(res.form_html);
-				updatePopUp();
-			         }
+				$("#pop-up").html(res.form_html);
+				showPopUp();
+			}
         },
 		 error: function() { console.log("failure") }
 	});
@@ -55,7 +79,35 @@ function updateRow()
 // use Ajax instead
 function delRows() {
 	const inputs = $("input[type='checkbox'][name='row']:checked");
-	const rmlist = $("form.rm-form div#send-ids");
+	const popup = $("div#pop-up");
+	popup.empty();
+	const form = $("<form>", {
+		id: "rm-form",
+		method: "post",
+		class: "rm-form"
+	});
+	const confirmMsg = $("<p>", {
+		text: "Are you sure you want to remove the following records:"
+	});
+	const list = $("<div>", {
+		id: "rmlist"
+	});
+	const submit = $("<button>", {
+		type: "submit",
+		name: "action",
+		value: "remove", // TODO: TO CHANGE LATER
+		text: "yes"
+	});
+	const abort = $("<button>", {
+		id: "abortdel", // TODO: TO MAP ABOVE LATER to cancel the deletion
+		type: "button",
+		text: "no"
+	});
+	form.append(list);
+	form.append(submit);
+	form.append(abort);
+	popup.append(confirmMsg);
+	popup.append(form);
 	inputs.each(function () {
 		const id = $(this).data("id");
 		const name = $(this).data("name");
@@ -75,9 +127,9 @@ function delRows() {
 		});
 		div.append(checkbox);
 		div.append(label);
-		rmlist.append(div);
+		list.append(div);
 	});
-	removeItemPopUp();
+	showPopUp();
 }
 
 function ToggleRows() {
@@ -88,11 +140,11 @@ function ToggleRows() {
 }
 
 function hideRemoveForm() {
-	$("#rm-pop").hide();
+	$("#pop-up").hide();
 }
 
 function hideRemoveForm() {
-	$("#ud-pop").hide();
+	$("#pop-up").hide();
 }
 
 function zoomInImg() {
@@ -140,9 +192,4 @@ function updateCol() {
 function copyToClip() {
 	const txt = $(this).text().trim().slice(1);
 	navigator.clipboard.writeText(txt);
-}
-
-function removeItemPopUp() {
-	$("#rm-pop").show();
-	$("#overlay").show();
 }

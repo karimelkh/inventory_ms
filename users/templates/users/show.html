@@ -30,7 +30,7 @@
 			<tr>
 				<td>username</td>
 				<td>
-					<a href="/users/@{{ user.username }}">
+					<a href="{% url 'show_user' username=user.username %}">
 						{{ user.username }}
 					</a>
 				</td>
