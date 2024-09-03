@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404, render, redirect
 
+from action_logs.models import ActionLog
 from utils.count import get_count
 
 from .forms import NewSiteForm, UpdateSiteForm
@@ -19,11 +20,23 @@ def show(req, id):
         action = req.POST.get("action")
         if action == "delete":
             Site.objects.filter(id=id).delete()
+            ActionLog.objects.create(
+                user=req.user,
+                action="delete",
+                model_name="Site",
+                object_id=id
+            )
             return redirect("sites")
         if action == "update":
             form = UpdateSiteForm(req.POST, req.FILES, instance=site)
             if form.is_valid():
                 form.save()
+                ActionLog.objects.create(
+                    user=req.user,
+                    action="update",
+                    model_name="Site",
+                    object_id=id
+                )
             return redirect("show_site", id=id)
         elif action == "getUpdateForm":
             update_form = UpdateSiteForm(instance=site)
@@ -51,12 +64,24 @@ def index(req):
             if action == "remove":
                 for id in req.POST.getlist("rm-id"):
                     Site.objects.filter(id=id).delete()
+                    ActionLog.objects.create(
+                        user=req.user,
+                        action="delete",
+                        model_name="Site",
+                        object_id=id
+                    )
             elif action == "update":
                 if "id" in req.POST:
                     site = get_object_or_404(Site, id=req.POST.get('id'))
                     form = UpdateSiteForm(req.POST, req.FILES, instance=site)
                     if form.is_valid():
                         form.save()
+                        ActionLog.objects.create(
+                            user=req.user,
+                            action="update",
+                            model_name="Site",
+                            object_id=req.POST.get("id")
+                        )
                         messages.success(req, "Update Successed!")
                     else:
                         if form.errors:
@@ -83,7 +108,13 @@ def new(req):
         action = req.POST.get("action")
         if form.is_valid():
             form.save()
-            new_site = Site.objects.filter(name=form.cleaned_data["name"])[0]
+            new_site = Site.objects.filter(id=form.cleaned_data["id"])[0]
+            ActionLog.objects.create(
+                user=req.user,
+                action="create",
+                model_name="Site",
+                object_id=new_site.id
+            )
             messages.success(
                 req,
                 f"you have successfully created a site: {new_site.name}",

@@ -5,10 +5,11 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404, render, redirect
 
-from categories.models import Category
+from action_logs.models import ActionLog
 from utils.count import get_count
 
 from .forms import NewCatForm, UpdateCatForm
+from .models import Category
 
 
 @login_required
@@ -19,11 +20,23 @@ def show(req, id):
         action = req.POST.get("action")
         if action == "delete":
             Category.objects.filter(id=id).delete()
+            ActionLog.objects.create(
+                user=req.user,
+                action="delete",
+                model_name="Category",
+                object_id=id
+            )
             return redirect("cats")
         if action == "update":
             form = UpdateCatForm(req.POST, req.FILES, instance=cat)
             if form.is_valid():
                 form.save()
+            ActionLog.objects.create(
+                user=req.user,
+                action="update",
+                model_name="Category",
+                object_id=id
+            )
             return redirect("show_cat", id=id)
         elif action == "getUpdateForm":
             update_form = UpdateCatForm(instance=cat)
@@ -51,12 +64,24 @@ def index(req):
             if action == "remove":
                 for id in req.POST.getlist("rm-id"):
                     Category.objects.filter(id=id).delete()
+                    ActionLog.objects.create(
+                        user=req.user,
+                        action="delete",
+                        model_name="Category",
+                        object_id=id
+                    )
             elif action == "update":
                 if "id" in req.POST:
                     cat = get_object_or_404(Category, id=req.POST.get("id"))
                     form = UpdateCatForm(req.POST, instance=cat)
                     if form.is_valid():
                         form.save()
+                        ActionLog.objects.create(
+                            user=req.user,
+                            action="update",
+                            model_name="Category",
+                            object_id=req.POST.get("id")
+                        )
                         messages.success(req, "Update Successed!")
                     else:
                         if form.errors:
@@ -88,7 +113,13 @@ def new(req):
         action = req.POST.get("action")
         if form.is_valid():
             form.save()
-            new_cat = Category.objects.filter(name=form.cleaned_data["name"])[0]
+            new_cat = Category.objects.filter(id=form.cleaned_data["id"])[0]
+            ActionLog.objects.create(
+                user=req.user,
+                action="create",
+                model_name="Category",
+                object_id=new_cat.id
+            )
             messages.success(
                 req, f"You have successfully created the {new_cat.name} category"
             )

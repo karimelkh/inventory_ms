@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404, render, redirect
 
+from action_logs.models import ActionLog
 from utils.count import get_count
 
 from .forms import NewProdForm, UpdateProdForm
@@ -23,11 +24,23 @@ def show(req, id):
         action = req.POST.get("action")
         if action == "delete":
             Product.objects.filter(id=id).delete()
+            ActionLog.objects.create(
+                user=req.user,
+                action="delete",
+                model_name="Product",
+                object_id=id
+            )
             return redirect("prods")
         if action == "update":
             form = UpdateProdForm(req.POST, req.FILES, instance=prod)
             if form.is_valid():
                 form.save()
+            ActionLog.objects.create(
+                user=req.user,
+                action="update",
+                model_name="Product",
+                object_id=id
+            )
             return redirect("show_prod", id=id)
         elif action == "getUpdateForm":
             update_form = UpdateProdForm(instance=prod)
@@ -56,12 +69,24 @@ def index(req):
             if action == "remove":
                 for id in req.POST.getlist("rm-id"):
                     Product.objects.filter(id=id).delete()
+                    ActionLog.objects.create(
+                        user=req.user,
+                        action="delete",
+                        model_name="Product",
+                        object_id=id
+                    )
             elif action == "update":
                 if "id" in req.POST:
                     prod = get_object_or_404(Product, id=req.POST.get("id"))
                     form = NewProdForm(req.POST, req.FILES, instance=prod)
                     if form.is_valid():
                         form.save()
+                        ActionLog.objects.create(
+                            user=req.user,
+                            action="update",
+                            model_name="Product",
+                            object_id=prod.id
+                        )
                         messages.success(req, "Update Successed!")
                     else:
                         if form.errors:
@@ -93,8 +118,14 @@ def new(req):
         if form.is_valid():
             form.save()
             created_prod = Product.objects.filter(
-                ttl=form.cleaned_data["ttl"]
+                id=form.cleaned_data["id"]
             )[0]
+            ActionLog.objects.create(
+                user=req.user,
+                action="create",
+                model_name="Product",
+                object_id=created_prod.id
+            )
             messages.success(
                 req,
                 f"You have created the prod {created_prod.ttl} successfully",

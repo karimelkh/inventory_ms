@@ -1,5 +1,21 @@
 {% extends 'main/base.html' %}
 
 {% block title %}
-	Home
+Home
+{% endblock %}
+
+{% block main %}
+<div class="container mx-auto grid grid-cols-2 gap-3">
+	<div class="p-5 bg-white">
+		<h1 class="mb-5 text-center font-bold text-3xl">
+			Recent Changes
+		</h1>
+		{% for log in recent_logs %}
+		<p class="mb-3">
+			<b>{{ log.user.username }}</b> performed the action <b>{{ log.action }}</b> on <b>{{ log.model_name }}</b>,
+			ID: <b>{{ log.object_id }}</b> {{ log.timestamp|timesince }} ago.
+		</p>
+		{% endfor %}
+	</div>
+</div>
 {% endblock %}
