@@ -7,5 +7,4 @@ urlpatterns = [
     path("users/", views.index, name="users"),
     path("users/new/", views.new, name="new_user"),
     path("users/<str:username>/", views.show, name="show_user"),
-    path("users/@<str:username>/", views.show, name="show_user"),
 ]
