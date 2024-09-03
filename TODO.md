@@ -14,8 +14,15 @@
 - fix the `no` button when deleting
 - the update operation not working, make the create of users easy
 - use `DO_NOTHING` or `SET_NULL` instead of `CASCADE` in some FKs
+- follow the device timestamp
 
 ## feats
+
+### main
+
+- import/export data
+- log system
+- ui/ux
 
 ### technical
 
@@ -36,8 +43,9 @@ the ability for some users to manage other users
 - make the `img` field fk referencing the table of imgs
 - use django-phonenumber-field
 
-### user
+### ui/ux
 
+- add urls to logs: use the `reverse` function
 - handle the case where the added thing has same values (id, title, category, ...)
 as an existing record
     - maybe asking for merge is the best way
