@@ -20,6 +20,8 @@
 
 ### main
 
+- move to bootstrap
+
 - import/export data
 - log system
 - ui/ux
@@ -36,7 +38,6 @@
 - history and system logs
 - backup
 - find a way to use csrf token properly without using `csrf_exempt` decorator
-- think about moving to bootstrap
 or use it with tailwindcss
 - make different users types and permissions and
 the ability for some users to manage other users
