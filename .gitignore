@@ -6,3 +6,4 @@ djenv/
 media/
 main/templates/404.html
 db.sqlite3
+schema.dbml
