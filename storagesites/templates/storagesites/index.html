@@ -6,77 +6,48 @@ Sites
 {% endblock %}
 
 {% block actions %}
-<section class="mb-10 px-10 py-2 bg-white flex flex-col">
-	<div class="flex items-center justify-between">
-		<h1 class="text-3xl font-bold text-green-900">
+<section class="container mx-auto ">
+	<div class="mb-4 d-flex align-items-center justify-content-between">
+		<h1 class="fw-bold text-dark">
 			Sites
 		</h1>
-		<div class="flex">
-			<button id="del-btn" class="px-4 font-semibold text-red-50 bg-red-400">
+		<div class="d-flex justify-content-center gap-3">
+			<button type="button" class="btn btn-outline-primary" disabled>
+				<i class="fa-solid fa-pen-to-square"></i>
+				<span>update</span>
+			</button>
+			<button id="del-btn" type="button" class="btn btn-outline-danger" disabled>
 				<i class="fa-solid fa-trash-can"></i>
 				<span>delete</span>
 			</button>
 			<a href="{% url 'new_site' %}">
-				<button class="px-4 py-3 flex items-center font-semibold text-white bg-green-800">
+				<button type="button" class="btn btn-dark">
 					<i class="fa-solid fa-square-plus w-5"></i>
 					<span class="ml-3">New Site</span>
 				</button>
 			</a>
-			<button id="tog-colsmenu" class="ml-2 px-2 py-1 bg-gray-500 text-gray-50 rounded-sm">
+			<button id="tog-colsmenu" type="button" class="btn btn-light">
 				<i class="fa-solid fa-list"></i>
-				<i class="fa-solid fa-caret-down"></i>
 			</button>
 		</div>
-	</div>
-	<div class="relative flex justify-end">
-		<form style="display:none" id="colsmenu" class="p-5 absolute flex flex-col bg-white shadow">
-			<div>
-				<input type="checkbox" name="col" value="id" id="id-opt" checked>
-				<label for="id-opt">id</label>
-			</div>
-			<div>
-				<input type="checkbox" name="col" value="ttl" id="name-opt" checked>
-				<label for="name-opt">title</label>
-			</div>
-			<div>
-				<input type="checkbox" name="col" value="desc" id="desc-opt" checked>
-				<label for="desc-opt">description</label>
-			</div>
-			<div>
-				<input type="checkbox" name="col" value="qty" id="qty-opt" checked>
-				<label for="qty-opt">quantity</label>
-			</div>
-			<div>
-				<input type="checkbox" name="col" value="suppl" id="suppl-opt" checked>
-				<label for="suppl-opt">supplier</label>
-			</div>
-			<div>
-				<input type="checkbox" name="col" value="cat" id="cat-opt" checked>
-				<label for="cat-opt">category</label>
-			</div>
-			<div>
-				<input type="checkbox" name="col" value="site" id="site-opt" checked>
-				<label for="site-opt">site</label>
-			</div>
-		</form>
 	</div>
 </section>
 {% endblock %}
 
 {% block table %}
-<section class="overflow-auto rounded-m shadow">
-	<table class="w-full">
-		<thead class="border-b-2 border-gray-200 bg-gray-50">
-			<tr class="">
-				<th class="w-10">
+<section class="table-sec container mx-auto">
+	<table class="table table-striped table-hover table-bordered">
+		<thead class="table-dark">
+			<tr>
+				<th scope="col">
 					<input id="select-all" type="checkbox">
 				</th>
-				<th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">ID</th>
-				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Name</th>
-				<th class="p-3 text-sm font-semibold tracking-wide text-left">Address</th>
-				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">Phone</th>
-				<th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">type</th>
-                <th class="w-6"></th>
+				<th scope="col">ID</th>
+				<th scope="col">Name</th>
+				<th scope="col">Address</th>
+				<th scope="col">Phone</th>
+				<th scope="col">Type</th>
+				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody class="divide-y devide-gray-200">

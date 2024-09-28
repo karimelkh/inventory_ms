@@ -102,10 +102,10 @@ def index(req):
                 return JsonResponse({"form_html": form_html})
     items = Item.objects.select_related("suppl", "site", "prod").all()
     context = {
-            "items": items,
-            "count": get_count(),
-            "username": req.user.username,
-            }
+        "items": items,
+        "count": get_count(),
+        "username": req.user.username,
+    }
     return render(req, "items/index.html", context)
 
 

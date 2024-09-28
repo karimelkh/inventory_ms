@@ -6,54 +6,50 @@
 {% endblock %}
 
 {% block main %}
-<section class="container mx-auto p-5 bg-white rounded-md">
-	<div class="mb-10 grid grid-cols-3 gap-8">
-		<h1 class="text-3xl font-bold">
+<section class="container mx-auto">
+	<div class="mb-4 d-flex align-items-start justify-content-between gap-3 mb-5">
+		<h1 class="fw-bold">
 			<span>
-				<a href="{% url 'prods' %}">Products</a>
+				<a class="text-dark text-decoration-none" href="{% url 'prods' %}">
+					products
+				</a>
 				<span>&frasl;</span>
 			</span>
 			<br>
 			<span>
 				{{ prod.ttl }}
-		</span>
-			<span id="to_cpy" class="cursor-pointer text-blue-700 duration-300 hover:text-blue-900">
-				&num;{{ prod.id }}
 			</span>
 		</h1>
 		{% if prod.img %}
 		<img class="zoom" src="{{ prod.img.url }}" alt="" />
-		{% else %}
-		<span class="w-26 h-60 flex items-center justify-center text-white bg-gray-500">
-			<button class="">
-				<i class="fa-solid fa-file-arrow-up"></i>
-				Add image
-			</button>
-		</span>
 		{% endif %}
-		<div class="flex gap-3">
-			<button id="delete-btn" class="p-2 h-fit font-semibold text-red-800 bg-red-200">
-				<i class="fa-solid fa-trash-can"></i>
-				Delete
-			</button>
-			<button id="update-btn" class="cursor-pointer p-2 h-fit font-semibold text-blue-800 bg-blue-200">
+		<div class="d-flex justify-content-center gap-3">
+			<button id="update-btn" type="button" class="btn btn-outline-primary"data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
 				<i class="fa-solid fa-pen-to-square"></i>
-				Update
+				<span>update</span>
+			</button>
+			<button class="btn btn-outline-danger" id="delete-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
+				<i class="fa-solid fa-trash-can"></i>
+				<span>delete</span>
 			</button>
 		</div>
 	</div>
-	<table>
+	<table class="table table-striped table-hover table-bordered">
 		<tbody>
 			<tr>
-				<td>description</td>
+				<th scope="row">id</th>
+				<td>{{ prod.id }}</td>
+			</tr>
+			<tr>
+				<th scope="row">description</th>
 				<td>{{ prod.desc }}</td>
 			</tr>
 			<tr>
-				<td>category</td>
+				<th scope="row">category</th>
 				<td>{{ prod.cat }}</td>
 			</tr>
 			<tr>
-				<td>N.O. Items</td>
+				<th  scope="row">N.O. Items</th>
 				<td>{{ prod.item_count }}</td>
 			</tr>
 		</tbody>

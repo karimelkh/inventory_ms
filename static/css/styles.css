@@ -1,0 +1,66 @@
+button {
+	all: unset;
+}
+
+
+h1 {
+	text-transform: capitalize;
+}
+
+img.zoom {
+	max-width: 500px;
+	max-height: 300px;
+}
+
+.dropdown-item a {
+	color: black;
+	text-decoration: none;
+}
+
+.table-sec {
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+}
+
+thead {
+    border-bottom: 2px solid #e5e7eb;
+    background-color: #f8f9fa;
+}
+
+tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+    transition-duration: 250ms;
+}
+
+tbody tr:hover {
+    background-color: #e2e6ea;
+}
+
+th {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-align: left;
+	text-transform: capitalize;
+}
+
+td {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    color: #495057;
+    text-align: left;
+    white-space: nowrap;
+}
+
+td a {
+    color: #0d6efd;
+    font-weight: 700;
+}
+
+td a:hover {
+    text-decoration: underline;
+}

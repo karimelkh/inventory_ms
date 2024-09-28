@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+	font-family: 'Poppins', 'Arial', 'Helvetica', 'Verdana', sans-serif;
+	@apply relative;
+	@apply bg-gray-200;
+}
+
 .table-sec {
   @apply overflow-auto rounded-md shadow;
 }

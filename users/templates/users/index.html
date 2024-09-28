@@ -5,99 +5,53 @@
 Users
 {% endblock %}
 
-{% block pop-ups %}
-<div style="display:none" id="rm-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white">
-    <form method="post" class="rm-form">
-        {% csrf_token %}
-        <p>
-            Are you sure you want to
-            <b>remove</b> the following items:
-        </p>
-        <div id="send-ids"></div>
-        <button type="submit" name="action" value="remove">yes</button>
-    </form>
-	<button>no</button>
-</div>
-
-<div style="display:none" id="ud-pop" class="p-5 absolute z-20 top-1/2 right-1/2 translate-x-1/2 -translate-y-1/4 bg-white"></div>
-{% endblock %}
-
 {% block actions %}
-<section class="mb-10 px-10 py-2 bg-white flex flex-col">
-	<div class="flex items-center justify-between">
-		<h1 class="text-3xl font-bold text-green-900">
+<section class="container mx-auto">
+	<div class="mb-4 d-flex align-items-center justify-content-between">
+		<h1 class="fw-bold text-dark">
 			Users
 		</h1>
-		<div class="flex">
-            <button id="del-btn" class="px-4 font-semibold text-red-50 bg-red-400">
-                <i class="fa-solid fa-trash-can"></i>
-                <span>delete</span>
-            </button>
+		<div class="d-flex justify-content-center gap-3">
+			<button type="button" class="btn btn-outline-primary" disabled>
+				<i class="fa-solid fa-pen-to-square"></i>
+				<span>update</span>
+			</button>
+			<button id="del-btn" type="button" class="btn btn-outline-danger" disabled>
+				<i class="fa-solid fa-trash-can"></i>
+				<span>delete</span>
+			</button>
 			<a href="{% url 'new_user' %}">
-				<button class="px-4 py-3 flex items-center font-semibold text-white bg-green-800">
+				<button type="button" class="btn btn-dark">
 					<i class="fa-solid fa-square-plus w-5"></i>
 					<span class="ml-3">New User</span>
 				</button>
 			</a>
-			<button id="tog-colsmenu" class="ml-2 px-2 py-1 bg-gray-500 text-gray-50 rounded-sm">
+			<button id="tog-colsmenu" type="button" class="btn btn-light">
 				<i class="fa-solid fa-list"></i>
-				<i class="fa-solid fa-caret-down"></i>
 			</button>
 		</div>
-	</div>
-	<div class="relative flex justify-end">
-		<form style="display:none" id="colsmenu" class="p-5 absolute flex flex-col bg-white shadow">
-			<div>
-				<input type="checkbox" name="col" value="id" id="id-opt" checked>
-				<label for="id-opt">id</label>
-			</div>
-			<div>
-				<input type="checkbox" name="col" value="ttl" id="name-opt" checked>
-				<label for="name-opt">title</label>
-			</div>
-			<div>
-				<input type="checkbox" name="col" value="desc" id="desc-opt" checked>
-				<label for="desc-opt">description</label>
-			</div>
-			<div>
-				<input type="checkbox" name="col" value="qty" id="qty-opt" checked>
-				<label for="qty-opt">quantity</label>
-			</div>
-			<div>
-				<input type="checkbox" name="col" value="suppl" id="suppl-opt" checked>
-				<label for="suppl-opt">supplier</label>
-			</div>
-			<div>
-				<input type="checkbox" name="col" value="cat" id="cat-opt" checked>
-				<label for="cat-opt">category</label>
-			</div>
-			<div>
-				<input type="checkbox" name="col" value="site" id="site-opt" checked>
-				<label for="site-opt">site</label>
-			</div>
-		</form>
 	</div>
 </section>
 {% endblock %}
 
 {% block table %}
-<section class="table-sec">
-	<table>
-		<thead>
+<section class="table-sec container mx-auto">
+	<table class="table table-striped table-hover table-bordered">
+		<thead class="table-dark">
 			<tr>
 				<th>
 					<input id="select-all" type="checkbox">
 				</th>
-				<th>username</th>
-				<th>firstname</th>
-				<th>lastname</th>
-				<th>email</th>
-				<th>role</th>
-				<th>address</th>
-				<th>gsm</th>
-				<th>joined at</th>
-				<th>active</th>
-                <th class="w-6"></th>
+				<th scope="col">username</th>
+				<th scope="col">firstname</th>
+				<th scope="col">lastname</th>
+				<th scope="col">email</th>
+				<th scope="col">role</th>
+				<th scope="col">address</th>
+				<th scope="col">gsm</th>
+				<th scope="col">joined at</th>
+				<th scope="col">active</th>
+                <th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -138,8 +92,8 @@ Users
 				<td>
 					{{ user.is_active }}
 				</td>
-                <td class="">
-					<button data-id="{{ user.id }}" class="update-btn px-3 py-2 h-fit font-semibold text-blue-800 bg-blue-200">
+				<td>
+					<button data-id="{{ user.id }}" id="update-btn">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </button>
                 </td>

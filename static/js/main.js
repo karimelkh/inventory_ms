@@ -11,16 +11,16 @@ $(document).ready(function () {
 		margin: 50,
 		background: '#000000bf'
 	});
-	$("#tog-usermenu").click(toggleUserMenu);
-	$("#tog-newmenu").click(toggleNewMenu);
-	$("#tog-browsemenu").click(toggleBrowseMenu);
-	$("#tog-colsmenu").click(toggleColsMenu);
+	//$("#tog-usermenu").click(toggleUserMenu);
+	//$("#tog-newmenu").click(toggleNewMenu);
+	//$("#tog-browsemenu").click(toggleBrowseMenu);
+	//$("#tog-colsmenu").click(toggleColsMenu);
 	$("input[name='col']").on("change", updateTable);
-	$("#to_cpy").click(copyToClip);
-	$("#item-img").click(zoomInImg);
-	$("#modal-img > img").click(zoomOutImg);
-	$("#overlay, #img-modal, #modal-img > img").click(zoomOutImg);
-	$("#overlay, form.rm-form button").click(hideRemoveForm);
+	//$("#to_cpy").click(copyToClip);
+	//$("#item-img").click(zoomInImg);
+	//$("#modal-img > img").click(zoomOutImg);
+	//$("#overlay, #img-modal, #modal-img > img").click(zoomOutImg);
+	//$("#overlay, form.rm-form button").click(hideRemoveForm);
 	$("input#select-all").on("change", ToggleRows);
 	$("button#del-btn").click(delRows);
 	$("button#update-btn").click(updateRow);
@@ -46,8 +46,7 @@ function DeleteRecord()
 		success: function(res) {
 			console.log("success");
 			if (res.form_html) {
-				$("#pop-up").html(res.form_html);
-				showPopUp();
+				$(".offcanvas-body").html(res.form_html);
 			}
         },
 		 error: function() { console.log("failure") }
@@ -68,8 +67,7 @@ function updateRow()
 		success: function(res) {
 			console.log("success");
 			if (res.form_html) {
-				$("#pop-up").html(res.form_html);
-				showPopUp();
+				$(".offcanvas-body").html(res.form_html);
 			}
         },
 		 error: function() { console.log("failure") }
@@ -96,11 +94,13 @@ function delRows() {
 		type: "submit",
 		name: "action",
 		value: "remove", // TODO: TO CHANGE LATER
+		class: "btn btn-danger mt-2 me-2", // TEMP MARGIN
 		text: "yes"
 	});
 	const abort = $("<button>", {
 		id: "abortdel", // TODO: TO MAP ABOVE LATER to cancel the deletion
 		type: "button",
+		class: "btn btn-primary mt-2", // TEMP MARGIN
 		text: "no"
 	});
 	form.append(list);
@@ -111,19 +111,21 @@ function delRows() {
 	inputs.each(function () {
 		const id = $(this).data("id");
 		const name = $(this).data("name");
-		const div = $("<div>");
+		const div = $("<div>", {
+			class: "form-check"
+		});
 		const checkbox = $("<input>", {
 			type: "checkbox",
 			checked: true,
 			id: `rm-id-${id}`,
 			name: "rm-id",
 			value: id,
-			class: "mr-3",
+			class: "form-check-input",
 		});
 		const label = $("<label>", {
 			for: `rm-id-${id}`,
-			class: "",
-			text: `article #${id}: ${name}`,
+			class: "form-check-label",
+			html: `article <b>${name}</b> (${id})`,
 		});
 		div.append(checkbox);
 		div.append(label);
@@ -139,9 +141,9 @@ function ToggleRows() {
 	else inputs.prop("checked", false);
 }
 
-function hideRemoveForm() {
-	$("#pop-up").hide();
-}
+//function hideRemoveForm() {
+//	$("#pop-up").hide();
+//}
 
 function hideRemoveForm() {
 	$("#pop-up").hide();
@@ -189,7 +191,7 @@ function updateCol() {
 	}
 }
 
-function copyToClip() {
-	const txt = $(this).text().trim().slice(1);
-	navigator.clipboard.writeText(txt);
-}
+//function copyToClip() {
+//	const txt = $(this).text().trim().slice(1);
+//	navigator.clipboard.writeText(txt);
+//}
