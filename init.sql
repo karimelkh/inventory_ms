@@ -66,6 +66,7 @@ values
 	'2024-08-24 03:35:09.233883',
 	'staff',
 	'karim@ims.org',
-	NULL,NULL,'','','',
+	NULL,NULL,'',
+	'karim','elkhanoufi',
 	'2024-08-24 03:35:09.233924'
 );
