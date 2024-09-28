@@ -8,7 +8,6 @@
 
 - make hide/show columns menu adaptable between pages
 - make some enhancements in `items.views.index` (and for other apps)
-- fix tailwind problem (not compiling some the classes in `categories` app)
 - fix all problems with adding new stuff
     - fix `show_item` view: does not work when `save` button clicked (context problem)
 - fix the `no` button when deleting
@@ -21,6 +20,7 @@
 ### main
 
 - import/export data
+- moving items from one site to another
 - log system
 - ui/ux
 
@@ -36,8 +36,6 @@
 - history and system logs
 - backup
 - find a way to use csrf token properly without using `csrf_exempt` decorator
-- think about moving to bootstrap
-or use it with tailwindcss
 - make different users types and permissions and
 the ability for some users to manage other users
 - make the `img` field fk referencing the table of imgs
@@ -45,24 +43,22 @@ the ability for some users to manage other users
 
 ### ui/ux
 
+- for the recent changes page, use [this](https://getbootstrap.com/docs/5.3/components/card/#card-layout)
+card layout
 - add urls to logs: use the `reverse` function
 - handle the case where the added thing has same values (id, title, category, ...)
 as an existing record
     - maybe asking for merge is the best way
 - upload data via a text/csv file
-- add links to suppliers/categories/... in show pages
-- work on the html titles attributes (like in item currency, ...)
+- add links to suppliers/categories/... in items and products show pages
+- work on the html titles attributes (like in item currency, ...) **??**
 - when requesting data using ajax, fill the divs with loading animation first
-- change the default home look
 - display the number of selected items in tables
-- give dropdown menu a good new look
 - table sorting
 - make a tree view for the product and its items
-- file upload
 - when a user created send an email if it was provided
 - search
 - when all the checkbox are unchecked, uncheck the select all one 
-- show a floating menu at a time
 - make short links like: `i` -> `items`
 - Bar/QR code support
 - Reporting and Analytics
@@ -75,8 +71,6 @@ as an existing record
     - `require_http_methods`
     - `cache_page`
     - `vary_on_headers`
-- apply some jquery plugins:
-    - check the [repo](https://github.com/petk/awesome-jquery)
 
 ### messages
 
@@ -89,16 +83,5 @@ and the reason
 
 ### buttons
 
-- make the update button besides the delete button
+- make the update button besides the delete button (in the final step: functionality)
 - add abort button when updating
-
-### forms
-
-- make the (new, delete, update) forms with separated html files and
-use ajax to get them as popups
-
-## Ideas for home page
-
-- grid of items and products, ...
-- notifications
-- latest changes/actions
