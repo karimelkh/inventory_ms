@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "livereload",
+    "crispy_forms",
+    "crispy_bootstrap5",
     "main.apps.MainConfig",
     "products.apps.ProductsConfig",
     "items.apps.ItemsConfig",
@@ -36,6 +38,9 @@ INSTALLED_APPS = [
     "storagesites.apps.StoragesitesConfig",
     "action_logs.apps.ActionLogsConfig",
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

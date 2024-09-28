@@ -1,7 +1,7 @@
 **/__pycache__/
 **/migrations/__pycache__/
 node_modules/
-static/css/styles.css
+static/css/input.css
 djenv/
 media/
 main/templates/404.html

@@ -1,4 +1,11 @@
+{% load crispy_forms_tags %}
+
 <form method="post" enctype="multipart/form-data" class="update-form">
-    {{ update_form.as_p }}
-    <button type="submit" name="action" value="update">Update</button>
+    {{ update_form|crispy }}
+    <button class="btn btn-success text-capitalize"
+		type="submit"
+		name="action"
+		value="update">
+		update
+	</button>
 </form>

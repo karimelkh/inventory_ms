@@ -1,7 +1,7 @@
 {% extends "main/base.html" %}
 {% load static %}
 
-{% block title %}
+	{% block title %}
 Logout
 {% endblock %}
 
@@ -9,14 +9,20 @@ Logout
 {% endblock %}
 
 {% block main %}
-<section class="h-screen w-full p-10 flex flex-col items-center justify-center bg-gray-100 dark:bg-black">
-	<div class="w-2/5 p-10 rounded-lg shadow text-gray-800 bg-gray-300">
-		<h1>Logout</h1>
+<!--<section class="h-screen w-full p-10 flex flex-col items-center justify-center bg-gray-100 dark:bg-black">-->
+<!--	<div class="w-2/5 p-10 rounded-lg shadow text-gray-800 bg-gray-300">-->
+<section class="d-flex justify-content-center align-items-center w-100 vh-100">
+	<div class="card p-4">
+		<h1 class="fw-bold text-center mb-4">
+			Logout
+		</h1>
 		<form method="post" class="logout">
 			{% csrf_token %}
-			<p>
+			<p class="text-center">
 				You are logged in. Are you sure you want to
-				<button type="submit">logout</button> ?
+				<button type="submit" class="fw-bold text-danger text-decoration-underline">
+					logout
+				</button> ?
 			</p>
 		</form>
 	</div>
